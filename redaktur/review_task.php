@@ -47,13 +47,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $action === 'approve') {
         $pdo->beginTransaction();
 
         // Update status task
-        $stmt = $pdo->prepare("UPDATE tasks SET status = 'uploaded' WHERE id = ?");
+        $stmt = $pdo->prepare("UPDATE tasks SET status = 'completed' WHERE id = ?");
         $stmt->execute([$taskId]);
 
         // Log perubahan status
         $stmt = $pdo->prepare("
             INSERT INTO task_status_logs (task_id, status, updated_by)
-            VALUES (?, 'uploaded', ?)
+            VALUES (?, 'completed', ?)
         ");
         $stmt->execute([$taskId, $userId]);
 
@@ -265,7 +265,7 @@ include '../includes/header.php';
                                 <div class="card-body d-flex flex-column justify-content-center">
                                     <?php if ($action === 'approve'): ?>
                                         <div class="alert alert-success">
-                                            <p>Anda akan menyetujui hasil pekerjaan ini. Status task akan berubah menjadi "Telah Upload" dan menunggu verifikasi akhir dari Creative Director.</p>
+                                            <p>Anda akan menyetujui hasil pekerjaan ini. Status task akan berubah menjadi "Selesai".</p>
                                         </div>
                                         
                                         <form method="POST">

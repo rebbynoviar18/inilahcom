@@ -3,123 +3,124 @@ require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
 
+// Periksa login dan role
 redirectIfNotLoggedIn();
-
-// Pastikan taskId didefinisikan di awal file
-$taskId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
-
-if (!$taskId) {
-    $_SESSION['error'] = "ID task tidak valid";
-    header('Location: tasks.php');
-    exit;
-}
-
 if (getUserRole() !== 'redaktur_pelaksana') {
     header("Location: ../index.php");
     exit();
 }
 
-// Tambahkan definisi $userId
 $userId = $_SESSION['user_id'];
+$taskId = isset($_GET['id']) ? (int)$_GET['id'] : 0;
 
-// Ambil detail task terlebih dahulu untuk digunakan dalam proses verifikasi
+// Dapatkan detail task
+// Ubah query untuk mengambil detail task
+// Hapus kondisi WHERE yang membatasi akses
 $stmt = $pdo->prepare("
     SELECT t.*, 
-           c.name as category_name,
-           ct.name as content_type_name,
-           cp.name as content_pillar_name,
-           a.id as account_id,
+           c.name as category_name, 
+           ct.name as content_type_name, 
            a.name as account_name,
-           uc.id as created_by,
-           uc.name as created_by_name,
-           ua.id as assigned_to,
-           ua.name as assigned_to_name
+           cp.name as content_pillar_name,
+           u_creator.name as creator_name, 
+           u_creator.profile_photo as creator_photo,
+           u_assignee.name as assignee_name,
+           u_assignee.profile_photo as assignee_photo
     FROM tasks t
-    JOIN categories c ON t.category_id = c.id
-    JOIN content_types ct ON t.content_type_id = ct.id
-    JOIN content_pillars cp ON t.content_pillar_id = cp.id
-    JOIN accounts a ON t.account_id = a.id
-    JOIN users uc ON t.created_by = uc.id
-    JOIN users ua ON t.assigned_to = ua.id
+    LEFT JOIN categories c ON t.category_id = c.id
+    LEFT JOIN content_types ct ON t.content_type_id = ct.id
+    LEFT JOIN accounts a ON t.account_id = a.id
+    LEFT JOIN content_pillars cp ON t.content_pillar_id = cp.id
+    LEFT JOIN users u_creator ON t.created_by = u_creator.id
+    LEFT JOIN users u_assignee ON t.assigned_to = u_assignee.id
     WHERE t.id = ?
 ");
 $stmt->execute([$taskId]);
 $task = $stmt->fetch();
 
+// Ambil daftar tim produksi tambahan yang terlibat
+try {
+    $assistantsStmt = $pdo->prepare("
+        SELECT ta.*, u.name as assistant_name, u.profile_photo
+        FROM task_assistance ta
+        JOIN users u ON ta.user_id = u.id
+        WHERE ta.task_id = ?
+        ORDER BY ta.created_at ASC
+    ");
+    $assistantsStmt->execute([$taskId]);
+    $assistants = $assistantsStmt->fetchAll();
+} catch (PDOException $e) {
+    // Jika tabel belum ada atau error lainnya, set assistants sebagai array kosong
+    $assistants = [];
+}
+
 if (!$task) {
-    $_SESSION['error'] = "Task tidak ditemukan";
-    header("Location: tasks.php");
+    $_SESSION['error'] = "Task tidak ditemukan atau Anda tidak memiliki akses";
+    header('Location: tasks.php');
     exit();
 }
 
-// Proses verifikasi task
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    if (isset($_POST['verify'])) {
-        // Verifikasi dan selesaikan task
-        try {
-            $pdo->beginTransaction();
-            
-            // Update status task menjadi completed
-            $stmt = $pdo->prepare("UPDATE tasks SET status = 'completed' WHERE id = ?");
-            $stmt->execute([$taskId]);
-            
-            // Catat perubahan status
-            $stmt = $pdo->prepare("INSERT INTO task_status_logs (task_id, status, updated_by) VALUES (?, 'completed', ?)");
-            $stmt->execute([$taskId, $userId]);
-            
-            // Kirim notifikasi ke pembuat task
-            $message = "Task yang Anda buat telah selesai dan diverifikasi oleh Creative Director";
-            $stmt = $pdo->prepare("INSERT INTO notifications (user_id, message, link) VALUES (?, ?, ?)");
-            $stmt->execute([$task['created_by'], $message, "view_task.php?id=$taskId"]);
-            
-            $pdo->commit();
-            $_SESSION['success'] = "Task berhasil diverifikasi dan diselesaikan";
-            header("Location: view_task.php?id=$taskId");
-            exit();
-        } catch (PDOException $e) {
-            $pdo->rollBack();
-            $_SESSION['error'] = "Gagal memverifikasi task: " . $e->getMessage();
-        }
-    } elseif (isset($_POST['reject'])) {
-        // Tolak task dan minta revisi
-        $rejectReason = trim($_POST['reject_reason']);
-        
-        if (empty($rejectReason)) {
-            $_SESSION['error'] = "Alasan penolakan harus diisi";
-        } else {
-            try {
-                $pdo->beginTransaction();
-                
-                // Update status task menjadi revision
-                $stmt = $pdo->prepare("UPDATE tasks SET status = 'revision' WHERE id = ?");
-                $stmt->execute([$taskId]);
-                
-                // Catat perubahan status
-                $stmt = $pdo->prepare("INSERT INTO task_status_logs (task_id, status, updated_by) VALUES (?, 'revision', ?)");
-                $stmt->execute([$taskId, $userId]);
-                
-                // Simpan catatan revisi
-                $stmt = $pdo->prepare("INSERT INTO task_revisions (task_id, note, revised_by) VALUES (?, ?, ?)");
-                $stmt->execute([$taskId, $rejectReason, $userId]);
-                
-                // Kirim notifikasi ke tim produksi
-                $message = "Task Anda memerlukan revisi dari Creative Director";
-                $stmt = $pdo->prepare("INSERT INTO notifications (user_id, message, link) VALUES (?, ?, ?)");
-                $stmt->execute([$task['assigned_to'], $message, "view_task.php?id=$taskId"]);
-                
-                $pdo->commit();
-                $_SESSION['success'] = "Task berhasil dikembalikan untuk revisi";
-                header("Location: view_task.php?id=$taskId");
-                exit();
-            } catch (PDOException $e) {
-                $pdo->rollBack();
-                $_SESSION['error'] = "Gagal mengirim permintaan revisi: " . $e->getMessage();
-            }
-        }
+// Dapatkan komentar task
+try {
+    $stmt = $pdo->prepare("
+        SELECT c.*, u.name, u.profile_photo, u.role
+        FROM task_comments c
+        JOIN users u ON c.user_id = u.id
+        WHERE c.task_id = ?
+        ORDER BY c.created_at ASC
+    ");
+    $stmt->execute([$taskId]);
+    $comments = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Jika tabel tidak ada, gunakan array kosong
+    if ($e->getCode() == '42S02') {
+        $comments = [];
+    } else {
+        throw $e; // Rethrow jika error bukan karena tabel tidak ada
     }
 }
 
-    // Berikan poin kepada user yang menyelesaikan task
+// Dapatkan log status task
+try {
+    $stmt = $pdo->prepare("
+        SELECT tsl.*, u.name, u.profile_photo
+        FROM task_status_logs tsl
+        JOIN users u ON tsl.updated_by = u.id
+        WHERE tsl.task_id = ?
+        ORDER BY tsl.timestamp DESC
+    ");
+    $stmt->execute([$taskId]);
+    $statusLogs = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Jika tabel tidak ada, gunakan array kosong
+    if ($e->getCode() == '42S02') {
+        $statusLogs = [];
+    } else {
+        throw $e; // Rethrow jika error bukan karena tabel tidak ada
+    }
+}
+
+// Dapatkan file lampiran
+try {
+    $stmt = $pdo->prepare("
+        SELECT * FROM task_attachments
+        WHERE task_id = ?
+        ORDER BY id DESC
+    ");
+    $stmt->execute([$taskId]);
+    $attachments = $stmt->fetchAll();
+} catch (PDOException $e) {
+    // Jika tabel tidak ada, gunakan array kosong
+    if ($e->getCode() == '42S02') {
+        $attachments = [];
+    } else {
+        throw $e; // Rethrow jika error bukan karena tabel tidak ada
+    }
+}
+
+
+
+// Berikan poin kepada user yang menyelesaikan task
         if ($task['assigned_to']) {
             $pointsAwarded = calculateAndSavePoints($taskId, $task['assigned_to']);
             error_log("Points awarded for task $taskId to production team: " . ($pointsAwarded ? "Yes" : "No"));
@@ -132,6 +133,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         }
 
 
+
+
+
+
+
+// Dapatkan riwayat status
+$statusHistory = getTaskStatusHistory($taskId);
+
+// Periksa apakah tabel task_revisions ada
+$revisions = null;
+try {
+    // Dapatkan catatan revisi
+    $stmt = $pdo->prepare("
+        SELECT r.*, u.name as revised_by_name
+        FROM task_revisions r
+        JOIN users u ON r.revised_by = u.id
+        WHERE r.task_id = ?
+        ORDER BY r.created_at DESC
+    ");
+    $stmt->execute([$taskId]);
+    $revisions = $stmt;
+} catch (PDOException $e) {
+    // Jika tabel tidak ada, abaikan error
+    if ($e->getCode() == '42S02') {
+        $revisions = null;
+    } else {
+        throw $e; // Rethrow jika error bukan karena tabel tidak ada
+    }
+}
+
 // Ambil link postingan
 $stmt = $pdo->prepare("
     SELECT platform, link 
@@ -141,27 +172,7 @@ $stmt = $pdo->prepare("
 $stmt->execute([$taskId]);
 $taskLinks = $stmt->fetchAll();
 
-// Ambil riwayat status
-$statusHistory = $pdo->prepare("
-    SELECT tsl.*, u.name as updated_by_name, u.id as updated_by
-    FROM task_status_logs tsl
-    JOIN users u ON tsl.updated_by = u.id
-    WHERE tsl.task_id = ?
-    ORDER BY tsl.timestamp DESC
-");
-$statusHistory->execute([$taskId]);
-
-// Ambil catatan revisi
-$revisions = $pdo->prepare("
-    SELECT r.*, u.name as revised_by_name, u.id as revised_by
-    FROM revisions r
-    JOIN users u ON r.revised_by = u.id
-    WHERE r.task_id = ?
-    ORDER BY r.created_at DESC
-");
-$revisions->execute([$taskId]);
-
-$pageTitle = "Detail Task";
+$pageTitle = "Detail Task: " . $task['title'];
 include '../includes/header.php';
 ?>
 
@@ -171,7 +182,9 @@ include '../includes/header.php';
             <div class="card mb-4">
                 <div class="card-header d-flex justify-content-between align-items-center">
                     <h4><?= htmlspecialchars(cleanWhatsAppFormatting($task['title'])) ?></h4>
-                    <span><?= getStatusBadge($task['status']) ?></span>
+                    <div>
+                        <h4><?= getStatusBadge($task['status']) ?></h4>
+                    </div>
                 </div>
                 <div class="card-body">
                     <div class="mb-3">
@@ -192,42 +205,122 @@ include '../includes/header.php';
                         <div class="col-md-6">
                             <h5>Informasi Task</h5>
                             <ul class="list-unstyled">
-                                <li><strong>Dibuat Oleh:</strong> <?php echo getUserProfilePhotoWithName($task['created_by'], $task['created_by_name']); ?></li>
-                                <li><strong>Ditugaskan Ke:</strong> <?php echo getUserProfilePhotoWithName($task['assigned_to'], $task['assigned_to_name']); ?></li>
+                                <li>
+                                    <!-- For created by user -->
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Dibuat Oleh:</strong></label>
+                                        <div>
+                                            <?= getUserProfilePhotoWithName($task['created_by'], $task['creator_name']) ?>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <!-- For assigned to user -->
+                                    <div class="mb-3">
+                                        <label class="form-label"><strong>Ditugaskan ke:</strong></label>
+                                        <div>
+                                            <?= getUserProfilePhotoWithName($task['assigned_to'], $task['assignee_name']) ?>
+                                        </div>
+                                    </div>
+                                </li>
                                 <li><strong>Prioritas:</strong> <?= getPriorityBadge($task['priority']) ?></li>
                                 <li><strong>Deadline:</strong> 
                                     <span class="<?= (strtotime($task['deadline']) - time() < 86400 && !in_array($task['status'], ['completed', 'uploaded'])) ? 'text-danger' : '' ?>">
                                         <?= date('d M Y - H:i', strtotime($task['deadline'])) ?> WIB
                                     </span>
                                 </li>
+                                <div class="mb-3">
+                                    <strong>Poin Task:</strong>
+                                    <span class="badge bg-info"><?= number_format($task['points'], 1) ?></span>
+                                </div>
                             </ul>
                         </div>
+                    </div>                                 
+
+                    <?php 
+            // Get task links
+            try {
+                $linkStmt = $pdo->prepare("
+                    SELECT * FROM task_links 
+                    WHERE task_id = ? 
+                    ORDER BY created_at DESC
+                ");
+                $linkStmt->execute([$taskId]);
+                $taskLinks = $linkStmt->fetchAll();
+                
+                // Hanya tampilkan card jika ada link postingan
+                if (count($taskLinks) > 0):
+            ?>
+                    <div class="card mt-4">
+                        <div class="card-header">
+                            <h5>Link Postingan</h5>
+                        </div>
+                        <div class="card-body">
+                                <ul class="list-group">
+                                    <?php foreach ($taskLinks as $link): ?>
+                                        <li class="list-group-item">
+                                            <strong><?= ucfirst($link['platform']) ?>:</strong> 
+                                            <a href="<?= htmlspecialchars($link['link']) ?>" target="_blank">
+                                                <?= htmlspecialchars($link['link']) ?>
+                                            </a>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                        </div>
                     </div>
+
                     
-                    
-<div class="card mt-4">
-    <div class="card-header">
-        <h5>Link Postingan</h5>
-    </div>
-    <div class="card-body">
-        <?php if (!empty($taskLinks)): ?>
-            <ul class="list-group">
-                <?php foreach ($taskLinks as $link): ?>
-                    <li class="list-group-item">
-                        <strong><?= ucfirst($link['platform']) ?>:</strong> 
-                        <a href="<?= htmlspecialchars($link['link']) ?>" target="_blank">
-                            <?= htmlspecialchars($link['link']) ?>
-                        </a>
-                    </li>
-                <?php endforeach; ?>
-            </ul>
-        <?php else: ?>
-            <div class="alert alert-info">Belum ada link postingan yang tersedia.</div>
-        <?php endif; ?>
-    </div>
-</div>
+                                <?php 
+                endif;
+            } catch (PDOException $e) {
+                // Tidak perlu menampilkan apa-apa jika terjadi error
+            }
+            ?>
                 </div>
             </div>
+            
+            <?php if ($task['status'] === 'rejected'): ?>
+            <div class="card mb-4 border-danger">
+                <div class="card-header bg-danger text-white">
+                    <h5><i class="fas fa-times-circle me-2"></i> Task Ditolak</h5>
+                </div>
+                <div class="card-body">
+                    <h6>Alasan Penolakan:</h6>
+                    <p><?= nl2br(htmlspecialchars($rejectionReason ?? 'Tidak ada alasan yang diberikan')) ?></p>
+                    
+                    <?php if ($rejectedBy): ?>
+                    <p class="text-muted">
+                        Ditolak oleh <?= htmlspecialchars($rejectedBy) ?> 
+                        pada <?= date('d M Y H:i', strtotime($rejectionDate)) ?>
+                    </p>
+                    <?php endif; ?>
+                    
+                    <hr>
+                    
+                    <h6>Alihkan ke Tim Produksi Lain</h6>
+                    <form method="POST">
+                        <div class="row g-3 align-items-center">
+                            <div class="col-md-8">
+                                <select name="new_assignee" class="form-select" required>
+                                    <option value="">-- Pilih Tim Produksi --</option>
+                                    <?php foreach ($productionTeam as $member): ?>
+                                        <?php if ($member['id'] != $task['assigned_to']): ?>
+                                        <option value="<?= $member['id'] ?>"><?= htmlspecialchars($member['name']) ?></option>
+                                        <?php endif; ?>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="submit" name="reassign_task" class="btn btn-primary">
+                                    <i class="fas fa-user-edit me-2"></i> Alihkan Tugas
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <?php endif; ?>
+            
             
             <div class="card mb-4">
                 <div class="card-header">
@@ -242,32 +335,103 @@ include '../includes/header.php';
                             </div>
                             <div class="timeline-content">
                                 <h6><?= getStatusBadge($history['status']) ?></h6>
-                                <p>Diperbarui oleh: <?php echo getUserProfilePhotoWithName($history['updated_by'], $history['updated_by_name']); ?></p>
+                                <div class="mt-2">
+                                    <p>Diperbarui oleh:</p>
+                                    <?= getUserProfilePhotoWithName($history['updated_by'], $history['updated_by_name'], "rounded-circle me-2", "32") ?>
+                                </div>
+                                <?php if (!empty($history['notes'])): ?>
+                                    <div class="mt-2">
+                                        <p class="text-muted"><strong>Catatan:</strong> <?= nl2br(htmlspecialchars($history['notes'])) ?></p>
+                                    </div>
+                                <?php endif; ?>
                             </div>
                         </li>
                         <?php endwhile; ?>
                     </ul>
                 </div>
             </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h5>Aksi</h5>
+                </div>
+                <div class="card-body">
+                    <?php 
+        // Cek apakah task masih bisa diedit (status belum completed)
+        $canEdit = ($task['created_by'] == $userId && 
+                   !in_array($task['status'], ['completed', 'uploaded', 'ready_for_review']));
+        
+        if ($canEdit): 
+        ?>
+            <a href="edit_task.php?id=<?= $task['id'] ?>" class="btn btn-primary btn-block mb-2 w-100">
+                <i class="fas fa-edit"></i> Edit Task
+            </a>
+        <?php endif; ?>
+
+        <?php if ($task['status'] === 'waiting_redaktur_confirmation'): ?>
+        <!-- Tambahkan tombol verifikasi dengan modal popup untuk rating -->
+        <button type="button" class="btn btn-success btn-block mb-3 w-100" data-bs-toggle="modal" data-bs-target="#TerimaModal">
+            <i class="fas fa-check-circle"></i> Terima Task
+        </button>
+    <?php endif; ?>
+                    
+                    <?php if ($task['status'] === 'ready_for_review'): ?>
+                        <a href="review_task.php?id=<?= $task['id'] ?>" class="btn btn-success btn-block mb-2 w-100">
+                            <i class="fas fa-check"></i> Review Hasil
+                        </a>
+                    <?php endif; ?>
+                    
+                    <?php if ($task['category_name'] === 'Distribusi' && ($task['status'] === 'waiting_confirmation' || $task['status'] === 'revision')): ?>
+                        <a href="upload_distribution.php?id=<?= $task['id'] ?>" class="btn btn-info btn-block mb-2 w-100">
+                            <i class="fas fa-upload"></i> <?= $task['status'] === 'revision' ? 'Upload Revisi Link' : 'Upload Link Distribusi' ?>
+                        </a>
+                    <?php endif; ?>
+                    
+                    <a href="tasks.php" class="btn btn-secondary btn-block w-100">
+                        <i class="fas fa-arrow-left"></i> Kembali ke Daftar
+                    </a>
+                </div>
+            </div>
             
-            <div class="card mt-4">
+            <?php 
+            // Get task revisions
+            try {
+                $revStmt = $pdo->prepare("
+                    SELECT r.*, u.name as revised_by_name 
+                    FROM task_revisions r 
+                    JOIN users u ON r.revised_by = u.id 
+                    WHERE r.task_id = ? 
+                    ORDER BY r.created_at DESC
+                ");
+                $revStmt->execute([$taskId]);
+                $revisions = $revStmt->fetchAll();
+                
+                // Hanya tampilkan card jika ada revisi
+                if (count($revisions) > 0):
+            ?>
+            <div class="card mb-4">
                 <div class="card-header">
                     <h5>Catatan Revisi</h5>
                 </div>
                 <div class="card-body">
-                    <?php if ($revisions->rowCount() > 0): ?>
-                        <?php while ($revision = $revisions->fetch()): ?>
-                        <div class="mb-3 p-2 border rounded">
-                            <p class="mb-1"><?php echo getUserProfilePhotoWithName($revision['revised_by'], $revision['revised_by_name']); ?> - <?= date('d M Y H:i', strtotime($revision['created_at'])) ?></p>
-                            <p class="mb-0"><?= nl2br(htmlspecialchars($revision['note'])) ?></p>
+                    <?php foreach ($revisions as $revision): ?>
+                        <div class="card mb-2">
+                            <div class="card-body">
+                                <p><?= nl2br(htmlspecialchars($revision['note'])) ?></p>
+                            </div>
                         </div>
-                        <?php endwhile; ?>
-                    <?php else: ?>
-                        <p class="text-muted">Tidak ada catatan revisi</p>
-                    <?php endif; ?>
+                    <?php endforeach; ?>
                 </div>
             </div>
-            
+            <?php 
+                endif;
+            } catch (PDOException $e) {
+                // Tidak perlu menampilkan apa-apa jika terjadi error
+            }
+            ?>
+
             <div class="card mb-4">
     <div class="card-header">
         <h5>Tim Bantuan Tambahan</h5>
@@ -296,10 +460,10 @@ include '../includes/header.php';
                                  class="rounded-circle me-2" width="40" height="40">
                             <div>
                                 <div class="fw-bold"><?= htmlspecialchars($assistant['assistant_name']) ?></div>
-                                <small class="text-muted">
-                                    <?= $assistant['role'] === 'production_team' ? 'Tim Produksi' : 'Tim Konten' ?>
+                                <small>
+                                    
                                     <?php if (!empty($assistant['note'])): ?>
-                                        - <?= htmlspecialchars($assistant['note']) ?>
+                                    <?= htmlspecialchars($assistant['note']) ?>
                                     <?php endif; ?>
                                 </small>
                                 <br>
@@ -313,143 +477,107 @@ include '../includes/header.php';
             <p class="text-muted">Tidak ada tim bantuan tambahan untuk task ini.</p>
         <?php endif; ?>
     </div>
-</div>
-        </div>
-        
+</div>      
 
-
-
-
-
-
-
-
-
-        
-        <div class="col-md-4">
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h5>Aksi</h5>
-                </div>               
-                
-                <div class="card-body">
-
-
-
-    <?php if ($task['status'] === 'waiting_redaktur_confirmation'): ?>
-        <!-- Tambahkan tombol verifikasi dengan modal popup untuk rating -->
-        <button type="button" class="btn btn-success btn-block mb-3 w-100" data-bs-toggle="modal" data-bs-target="#TerimaModal">
-            <i class="fas fa-check-circle"></i> Terima Task
-        </button>
-    <?php endif; ?>
-                        
-    <?php if ($task['status'] === 'uploaded'): ?>
-        <!-- Tambahkan tombol verifikasi dengan modal popup untuk rating -->
-        <button type="button" class="btn btn-success btn-block mb-3 w-100" data-bs-toggle="modal" data-bs-target="#verifyModal">
-            <i class="fas fa-check-circle"></i> Verifikasi Task
-        </button>
-        
-        <button type="button" class="btn btn-danger btn-block mb-2 w-100" data-bs-toggle="modal" data-bs-target="#rejectModal">
-            <i class="fas fa-times"></i> Tolak & Minta Revisi
-        </button>
-    <?php elseif ($task['status'] === 'completed'): ?>
-        <div class="alert alert-success">
-            <i class="fas fa-check-circle"></i> Task ini telah selesai dan diverifikasi
-        </div>
-        
-    <?php endif; ?>    
-    <a href="tasks.php" class="btn btn-secondary btn-block mt-2 w-100">
-        <i class="fas fa-arrow-left"></i> Kembali ke Daftar Task
-    </a>
-                </div>
-            </div>
-            
             <div class="card">
                 <div class="card-header">
                     <h5>Preview Hasil Pekerjaan</h5>
                 </div>
                 <div class="card-body">
-                    <?php if (!empty($task['file_path'])): ?>
-                        <?php 
-                        // Decode JSON file paths
-                        $filePaths = json_decode($task['file_path'], true);
-                        if (!is_array($filePaths)) {
-                            // Fallback untuk file tunggal (backward compatibility)
-                            $filePaths = [$task['file_path']];
-                        }
-                        ?>
-                        
-                        <div class="file-list">
-                            <?php foreach ($filePaths as $index => $filePath): ?>
-                                <?php
-                                $fileName = basename($filePath);
-                                $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                                $fileUrl = '../uploads/' . $filePath;
-                                $isImage = in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif']);
-                                $isVideo = in_array($fileExt, ['mp4', 'mov', 'avi']);
-                                $isPdf = $fileExt === 'pdf';
-                                
-                                // Get file icon
-                                $fileIcon = getFileIcon($fileExt);
-                                ?>
-                                
-                                <div class="file-item d-flex align-items-center p-2 mb-2 border rounded">
-                                    <div class="file-icon me-2">
-                                        <i class="fas <?= $fileIcon['icon'] ?> fa-lg text-<?= $fileIcon['color'] ?>"></i>
-                                    </div>
-                                    
-                                    <div class="file-info flex-grow-1">
-                                        <div class="file-name small fw-bold"><?= htmlspecialchars($fileName) ?></div>
-                                        <div class="file-type text-muted" style="font-size: 0.75rem;">
-                                            <?= strtoupper($fileExt) ?>
-                                            <?php if (file_exists('../uploads/' . $filePath)): ?>
-                                                • <?= formatFileSize(filesize('../uploads/' . $filePath)) ?>
-                                            <?php endif; ?>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="file-actions">
-                                        <?php if ($isImage): ?>
-                                            <button type="button" class="btn btn-sm btn-outline-primary me-1" 
-                                                    onclick="previewImage('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        <?php elseif ($isVideo): ?>
-                                            <button type="button" class="btn btn-sm btn-outline-primary me-1" 
-                                                    onclick="previewVideo('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')">
-                                                <i class="fas fa-play"></i>
-                                            </button>
-                                        <?php elseif ($isPdf): ?>
-                                            <button type="button" class="btn btn-sm btn-outline-primary me-1" 
-                                                    onclick="previewPdf('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')">
-                                                <i class="fas fa-eye"></i>
-                                            </button>
-                                        <?php endif; ?>
-                                        
-                                        <a href="<?= htmlspecialchars($fileUrl) ?>" class="btn btn-sm btn-success" download>
-                                            <i class="fas fa-download"></i>
-                                        </a>
-                                    </div>
-                                </div>
-                            <?php endforeach; ?>
-                        </div>
-                        
-                        <?php if (count($filePaths) > 1): ?>
-                            <div class="mt-3 text-center">
-                                <button type="button" class="btn btn-sm btn-primary" onclick="downloadAllFiles()">
-                                    <i class="fas fa-download"></i> Download Semua
-                                </button>
-                            </div>
+                    <?php 
+// Jika ada file yang diunggah
+if (!empty($task['file_path'])) {
+    // Decode JSON file paths
+    $filePaths = json_decode($task['file_path'], true);
+    if (!is_array($filePaths)) {
+        // Fallback untuk file tunggal (backward compatibility)
+        $filePaths = [$task['file_path']];
+    }
+    
+    // Sekarang loop melalui array file paths
+    foreach ($filePaths as $index => $filePath) {
+        $fileName = basename($filePath); // Sekarang basename() menerima string, bukan array
+        $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        // Lanjutkan dengan kode yang ada...
+        $fileUrl = '../uploads/' . $filePath;
+        $isImage = in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif']);
+        $isVideo = in_array($fileExt, ['mp4', 'mov', 'avi']);
+        $isPdf = $fileExt === 'pdf';
+        
+        // Potong nama file jika terlalu panjang
+        $displayName = strlen($fileName) > 25 ? substr($fileName, 0, 22) . '...' : $fileName;
+        
+        // Get file icon
+        $fileIcon = getFileIcon($fileExt);
+        ?>
+        
+        <div class="file-item mb-2 p-2 border rounded bg-light">
+            <div class="row align-items-center g-2">
+                <div class="col-2 text-center">
+                    <i class="fas <?= $fileIcon['icon'] ?> fa-lg text-<?= $fileIcon['color'] ?>"></i>
+                </div>
+                <div class="col-6">
+                    <div class="file-name small fw-bold text-truncate" title="<?= htmlspecialchars($fileName) ?>">
+                        <?= htmlspecialchars($displayName) ?>
+                    </div>
+                    <div class="file-type text-muted" style="font-size: 0.7rem;">
+                        <?= strtoupper($fileExt) ?>
+                        <?php if (file_exists('../uploads/' . $filePath)): ?>
+                            • <?= formatFileSize(filesize('../uploads/' . $filePath)) ?>
+                        <?php endif; ?>
+                    </div>
+                </div>
+                <div class="col-4 text-end">
+                    <div class="btn-group btn-group-sm" role="group">
+                        <?php if ($isImage): ?>
+                            <button type="button" class="btn btn-outline-primary btn-sm" 
+                                    onclick="previewImage('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                    title="Preview">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                        <?php elseif ($isVideo): ?>
+                            <button type="button" class="btn btn-outline-primary btn-sm" 
+                                    onclick="previewVideo('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                    title="Play">
+                                <i class="fas fa-play"></i>
+                            </button>
+                        <?php elseif ($isPdf): ?>
+                            <button type="button" class="btn btn-outline-primary btn-sm" 
+                                    onclick="previewPdf('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                    title="Preview">
+                                <i class="fas fa-eye"></i>
+                            </button>
                         <?php endif; ?>
                         
-                    <?php else: ?>
-                        <div class="alert alert-warning">
-                            <i class="fas fa-exclamation-triangle"></i> Belum ada file yang diupload.
-                        </div>
-                    <?php endif; ?>
+                        <a href="<?= htmlspecialchars($fileUrl) ?>" class="btn btn-success btn-sm" download title="Download">
+                            <i class="fas fa-download"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <?php
+    }
+} else {
+    // Handle kasus ketika tidak ada file
+    ?>
+    <div class="alert alert-info mb-0">
+        <i class="fas fa-info-circle"></i> Belum ada file hasil yang diunggah.
+    </div>
+    <?php
+}
+?>
                 </div>
             </div>
             
+        </div>
+    </div>
+</div>
+
+
+
+
+
 
 <!-- Modal Reject Task -->
 <div class="modal fade" id="rejectModal" tabindex="-1" aria-labelledby="rejectModalLabel" aria-hidden="true">
@@ -566,9 +694,20 @@ include '../includes/header.php';
     </div>
 </div>
 
-<?php if (getUserRole() === 'creative_director' && $task['status'] === 'completed'): ?>
 
-<?php endif; ?>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 <!-- Modal Preview -->
 <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
@@ -635,27 +774,7 @@ include '../includes/header.php';
 }
 </style>
 
-<?php include '../includes/footer.php'; ?>
-
 <script>
-document.addEventListener('DOMContentLoaded', function() {
-    // Fungsi untuk menyalin link
-    const tombolSalin = document.querySelectorAll('.salin-link');
-    tombolSalin.forEach(tombol => {
-        tombol.addEventListener('click', function() {
-            const link = this.getAttribute('data-link');
-            navigator.clipboard.writeText(link).then(() => {
-                // Ubah teks tombol sementara
-                const htmlAsli = this.innerHTML;
-                this.innerHTML = '<i class="fas fa-check"></i>';
-                setTimeout(() => {
-                    this.innerHTML = htmlAsli;
-                }, 2000);
-            });
-        });
-    });
-});
-
 // Preview functions
 function previewImage(url, fileName) {
     document.getElementById('previewModalLabel').textContent = 'Preview: ' + fileName;
@@ -712,43 +831,39 @@ function downloadAllFiles() {
 
 <?php
 // Helper function untuk icon file
-if (!function_exists('getFileIcon')) {
-    function getFileIcon($extension) {
-        $icons = [
-            'jpg' => ['icon' => 'fa-image', 'color' => 'success'],
-            'jpeg' => ['icon' => 'fa-image', 'color' => 'success'],
-            'png' => ['icon' => 'fa-image', 'color' => 'success'],
-            'gif' => ['icon' => 'fa-image', 'color' => 'success'],
-            'pdf' => ['icon' => 'fa-file-pdf', 'color' => 'danger'],
-            'doc' => ['icon' => 'fa-file-word', 'color' => 'primary'],
-            'docx' => ['icon' => 'fa-file-word', 'color' => 'primary'],
-            'xls' => ['icon' => 'fa-file-excel', 'color' => 'success'],
-            'xlsx' => ['icon' => 'fa-file-excel', 'color' => 'success'],
-            'ppt' => ['icon' => 'fa-file-powerpoint', 'color' => 'warning'],
-            'pptx' => ['icon' => 'fa-file-powerpoint', 'color' => 'warning'],
-            'zip' => ['icon' => 'fa-file-archive', 'color' => 'secondary'],
-            'rar' => ['icon' => 'fa-file-archive', 'color' => 'secondary'],
-            'ai' => ['icon' => 'fa-file-image', 'color' => 'warning'],
-            'psd' => ['icon' => 'fa-file-image', 'color' => 'info'],
-            'mp4' => ['icon' => 'fa-file-video', 'color' => 'danger'],
-            'mov' => ['icon' => 'fa-file-video', 'color' => 'danger'],
-            'avi' => ['icon' => 'fa-file-video', 'color' => 'danger'],
-            'mp3' => ['icon' => 'fa-file-audio', 'color' => 'info'],
-            'wav' => ['icon' => 'fa-file-audio', 'color' => 'info'],
-        ];
-        
-        return $icons[$extension] ?? ['icon' => 'fa-file', 'color' => 'secondary'];
-    }
+function getFileIcon($extension) {
+    $icons = [
+        'jpg' => ['icon' => 'fa-image', 'color' => 'success'],
+        'jpeg' => ['icon' => 'fa-image', 'color' => 'success'],
+        'png' => ['icon' => 'fa-image', 'color' => 'success'],
+        'gif' => ['icon' => 'fa-image', 'color' => 'success'],
+        'pdf' => ['icon' => 'fa-file-pdf', 'color' => 'danger'],
+        'doc' => ['icon' => 'fa-file-word', 'color' => 'primary'],
+        'docx' => ['icon' => 'fa-file-word', 'color' => 'primary'],
+        'xls' => ['icon' => 'fa-file-excel', 'color' => 'success'],
+        'xlsx' => ['icon' => 'fa-file-excel', 'color' => 'success'],
+        'ppt' => ['icon' => 'fa-file-powerpoint', 'color' => 'warning'],
+        'pptx' => ['icon' => 'fa-file-powerpoint', 'color' => 'warning'],
+        'zip' => ['icon' => 'fa-file-archive', 'color' => 'secondary'],
+        'rar' => ['icon' => 'fa-file-archive', 'color' => 'secondary'],
+        'ai' => ['icon' => 'fa-file-image', 'color' => 'warning'],
+        'psd' => ['icon' => 'fa-file-image', 'color' => 'info'],
+        'mp4' => ['icon' => 'fa-file-video', 'color' => 'danger'],
+        'mov' => ['icon' => 'fa-file-video', 'color' => 'danger'],
+        'avi' => ['icon' => 'fa-file-video', 'color' => 'danger'],
+    ];
+    
+    return $icons[$extension] ?? ['icon' => 'fa-file', 'color' => 'secondary'];
 }
 
 // Helper function untuk format ukuran file
-if (!function_exists('formatFileSize')) {
-    function formatFileSize($bytes) {
-        if ($bytes == 0) return '0 Bytes';
-        $k = 1024;
-        $sizes = ['Bytes', 'KB', 'MB', 'GB'];
-        $i = floor(log($bytes) / log($k));
-        return round(($bytes / pow($k, $i)), 2) . ' ' . $sizes[$i];
-    }
+function formatFileSize($bytes) {
+    if ($bytes == 0) return '0 Bytes';
+    $k = 1024;
+    $sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    $i = floor(log($bytes) / log($k));
+    return round(($bytes / pow($k, $i)), 2) . ' ' . $sizes[$i];
 }
 ?>
+
+<?php include '../includes/footer.php'; ?>
