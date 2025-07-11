@@ -67,7 +67,7 @@ $taskStructure = [
     'production_team' => [
         'Daily Content' => ['Carousel', 'Ilustrasi', 'Infografis', 'Reels', 'Single Images', 'Story'],
         'Produksi' => ['Ilustrasi', 'Images', 'Infografis', 'Pitchdeck', 'Video'],
-        'Program' => ['Carousel', 'Ilustrasi', 'Infografis', 'Reels', 'Single Images', 'Story']
+        'Program' => ['Carousel', 'Ilustrasi', 'Infografis', 'Reels', 'Single Images', 'Story', 'Video Youtube', 'Produksi']
     ],
     'content_team' => [
         'Daily Content' => ['Carousel', 'Ilustrasi', 'Infografis', 'Reels', 'Single Images', 'Story'],

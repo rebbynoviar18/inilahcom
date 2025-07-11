@@ -90,37 +90,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $clientName = trim($_POST['client_name']);
             
             // Proses file yang diupload
-            $filePathsArray = [];
+            $filePaths = [];
             if (!empty($_POST['uploaded_files'])) {
                 $uploadedFiles = json_decode($_POST['uploaded_files'], true);
-                
-                if (!empty($uploadedFiles)) {
+                if (is_array($uploadedFiles)) {
                     foreach ($uploadedFiles as $file) {
-                        // Pindahkan file dari folder temp ke folder tujuan
-                        $targetDir = '../uploads/tasks/';
-                        if (!file_exists($targetDir)) {
-                            mkdir($targetDir, 0755, true);
-                        }
-                        
-                        $fileName = basename($file['path']);
-                        $targetPath = $targetDir . $fileName;
-                        
-                        if (file_exists($file['path']) && rename($file['path'], $targetPath)) {
-                            // Simpan path relatif untuk database
-                            $relativePath = 'tasks/' . $fileName;
-                            $filePathsArray[] = [
-                                'original_name' => $file['name'],
-                                'file_path' => $relativePath,
-                                'file_size' => $file['size'],
-                                'file_type' => $file['type'] ?? mime_content_type($targetPath)
-                            ];
-                        }
+                        // Hanya ambil path file saja, sesuai format yang digunakan di production/upload_result.php
+                        $filePaths[] = $file['path'];
                     }
                 }
             }
 
-            // Simpan informasi file sebagai JSON di database
-            $filePath = !empty($filePathsArray) ? json_encode($filePathsArray) : null;
+            // Simpan file_path sebagai JSON array sederhana, bukan array objek
+            $filePath = !empty($filePaths) ? json_encode($filePaths) : null;
         }
         
         // Simpan task
