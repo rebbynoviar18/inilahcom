@@ -6,9 +6,9 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-define('DB_HOST', 'localhost');
+define('DB_HOST', 'localhost:3306');
 define('DB_USER', 'root');
-define('DB_PASS', '');
+define('DB_PASS', 'password');
 define('DB_NAME', 'creative');
 
 // Buat direktori logs jika belum ada
