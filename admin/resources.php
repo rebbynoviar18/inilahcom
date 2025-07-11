@@ -1,7 +1,7 @@
 <?php
 require_once '../config/database.php';
 require_once '../includes/auth.php';
-// === BARU: Include autoloader Composer dan class S3 Client ===
+// Include autoloader Composer dan class S3 Client
 require_once '../vendor/autoload.php';
 use Aws\S3\S3Client;
 use Aws\S3\Exception\S3Exception;
@@ -12,7 +12,7 @@ if (getUserRole() !== 'creative_director') {
     exit();
 }
 
-// === BARU: Muat konfigurasi dan inisialisasi S3 Client ===
+// Muat konfigurasi dan inisialisasi S3 Client
 $s3Config = require '../config/s3.php';
 $s3Client = new S3Client([
     'credentials' => $s3Config['credentials'],
@@ -23,7 +23,7 @@ $s3Client = new S3Client([
 $bucketName = $s3Config['bucket'];
 
 
-// === DIUBAH: Logika untuk mengunggah resource ke S3/Spaces ===
+// Logika untuk mengunggah resource ke S3/Spaces
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['resource_file'])) {
     $name = trim($_POST['name']);
     $type = $_POST['type'];
@@ -140,7 +140,7 @@ include '../includes/header.php';
                                     <td><?= htmlspecialchars($resource['type']) ?></td>
                                     <td>
                                         <?php
-                                            // === DIUBAH: Buat Pre-signed URL yang aman dan sementara ===
+                                            // Buat Pre-signed URL yang aman dan sementara
                                             try {
                                                 $cmd = $s3Client->getCommand('GetObject', [
                                                     'Bucket' => $bucketName,
