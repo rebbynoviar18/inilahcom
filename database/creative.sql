@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 05 Jul 2025 pada 04.44
--- Versi server: 10.4.32-MariaDB
--- Versi PHP: 8.2.12
+-- Generation Time: Jul 11, 2025 at 10:34 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -24,7 +24,7 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `accounts`
+-- Table structure for table `accounts`
 --
 
 CREATE TABLE `accounts` (
@@ -35,7 +35,7 @@ CREATE TABLE `accounts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `accounts`
+-- Dumping data for table `accounts`
 --
 
 INSERT INTO `accounts` (`id`, `name`, `created_by`, `created_at`) VALUES
@@ -46,7 +46,7 @@ INSERT INTO `accounts` (`id`, `name`, `created_by`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `agenda_items`
+-- Table structure for table `agenda_items`
 --
 
 CREATE TABLE `agenda_items` (
@@ -59,7 +59,7 @@ CREATE TABLE `agenda_items` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `agenda_items`
+-- Dumping data for table `agenda_items`
 --
 
 INSERT INTO `agenda_items` (`id`, `title`, `date`, `type`, `created_at`, `updated_at`) VALUES
@@ -76,7 +76,7 @@ INSERT INTO `agenda_items` (`id`, `title`, `date`, `type`, `created_at`, `update
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `announcements`
+-- Table structure for table `announcements`
 --
 
 CREATE TABLE `announcements` (
@@ -91,7 +91,7 @@ CREATE TABLE `announcements` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `announcements`
+-- Dumping data for table `announcements`
 --
 
 INSERT INTO `announcements` (`id`, `title`, `content`, `created_by`, `created_at`, `is_important`, `image_path`, `target_role`) VALUES
@@ -100,7 +100,7 @@ INSERT INTO `announcements` (`id`, `title`, `content`, `created_by`, `created_at
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `announcement_comments`
+-- Table structure for table `announcement_comments`
 --
 
 CREATE TABLE `announcement_comments` (
@@ -112,7 +112,7 @@ CREATE TABLE `announcement_comments` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `announcement_comments`
+-- Dumping data for table `announcement_comments`
 --
 
 INSERT INTO `announcement_comments` (`id`, `announcement_id`, `user_id`, `comment`, `created_at`) VALUES
@@ -122,7 +122,7 @@ INSERT INTO `announcement_comments` (`id`, `announcement_id`, `user_id`, `commen
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `announcement_reactions`
+-- Table structure for table `announcement_reactions`
 --
 
 CREATE TABLE `announcement_reactions` (
@@ -134,7 +134,7 @@ CREATE TABLE `announcement_reactions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `announcement_reactions`
+-- Dumping data for table `announcement_reactions`
 --
 
 INSERT INTO `announcement_reactions` (`id`, `announcement_id`, `user_id`, `reaction_type`, `created_at`) VALUES
@@ -144,7 +144,7 @@ INSERT INTO `announcement_reactions` (`id`, `announcement_id`, `user_id`, `react
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `categories`
+-- Table structure for table `categories`
 --
 
 CREATE TABLE `categories` (
@@ -154,7 +154,7 @@ CREATE TABLE `categories` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `categories`
+-- Dumping data for table `categories`
 --
 
 INSERT INTO `categories` (`id`, `name`, `description`) VALUES
@@ -167,7 +167,7 @@ INSERT INTO `categories` (`id`, `name`, `description`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chat_last_checked`
+-- Table structure for table `chat_last_checked`
 --
 
 CREATE TABLE `chat_last_checked` (
@@ -180,7 +180,7 @@ CREATE TABLE `chat_last_checked` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `chat_messages`
+-- Table structure for table `chat_messages`
 --
 
 CREATE TABLE `chat_messages` (
@@ -193,7 +193,7 @@ CREATE TABLE `chat_messages` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `chat_messages`
+-- Dumping data for table `chat_messages`
 --
 
 INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `message`, `is_read`, `created_at`) VALUES
@@ -307,12 +307,18 @@ INSERT INTO `chat_messages` (`id`, `sender_id`, `receiver_id`, `message`, `is_re
 (108, 20, 2, 'hai', 1, '2025-07-01 17:50:17'),
 (109, 2, 20, 'oke', 1, '2025-07-01 17:50:23'),
 (110, 2, 1, 'cek', 1, '2025-07-04 13:31:37'),
-(111, 1, 2, 'oke', 1, '2025-07-04 13:31:48');
+(111, 1, 2, 'oke', 1, '2025-07-04 13:31:48'),
+(112, 9, 2, 'cek', 1, '2025-07-08 16:32:06'),
+(113, 2, 9, 'hai', 1, '2025-07-08 16:32:15'),
+(114, 9, 2, 'ada kerjaan ya', 1, '2025-07-08 16:32:22'),
+(115, 2, 9, 'halo oke', 1, '2025-07-08 16:32:29'),
+(116, 9, 2, 'p', 1, '2025-07-10 14:36:35'),
+(117, 1, 2, 'link', 1, '2025-07-11 14:14:53');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `content_pillars`
+-- Table structure for table `content_pillars`
 --
 
 CREATE TABLE `content_pillars` (
@@ -322,7 +328,7 @@ CREATE TABLE `content_pillars` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `content_pillars`
+-- Dumping data for table `content_pillars`
 --
 
 INSERT INTO `content_pillars` (`id`, `category_id`, `name`) VALUES
@@ -348,7 +354,7 @@ INSERT INTO `content_pillars` (`id`, `category_id`, `name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `content_types`
+-- Table structure for table `content_types`
 --
 
 CREATE TABLE `content_types` (
@@ -358,7 +364,7 @@ CREATE TABLE `content_types` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `content_types`
+-- Dumping data for table `content_types`
 --
 
 INSERT INTO `content_types` (`id`, `category_id`, `name`) VALUES
@@ -379,14 +385,15 @@ INSERT INTO `content_types` (`id`, `category_id`, `name`) VALUES
 (20, 4, 'Link'),
 (22, 2, 'Reels'),
 (23, 2, 'Ilustrasi'),
-(24, 2, 'Youtube Video'),
+(24, 2, 'Video Youtube'),
 (28, 5, 'Press Release'),
-(29, 5, 'Advertorial');
+(29, 5, 'Advertorial'),
+(30, 2, 'Produksi');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `distribution_platforms`
+-- Table structure for table `distribution_platforms`
 --
 
 CREATE TABLE `distribution_platforms` (
@@ -397,7 +404,7 @@ CREATE TABLE `distribution_platforms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `distribution_platforms`
+-- Dumping data for table `distribution_platforms`
 --
 
 INSERT INTO `distribution_platforms` (`id`, `task_id`, `platform_id`, `created_at`) VALUES
@@ -417,7 +424,7 @@ INSERT INTO `distribution_platforms` (`id`, `task_id`, `platform_id`, `created_a
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `general_info`
+-- Table structure for table `general_info`
 --
 
 CREATE TABLE `general_info` (
@@ -427,7 +434,7 @@ CREATE TABLE `general_info` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `general_info`
+-- Dumping data for table `general_info`
 --
 
 INSERT INTO `general_info` (`id`, `content`, `updated_at`) VALUES
@@ -436,7 +443,7 @@ INSERT INTO `general_info` (`id`, `content`, `updated_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `notifications`
+-- Table structure for table `notifications`
 --
 
 CREATE TABLE `notifications` (
@@ -449,7 +456,7 @@ CREATE TABLE `notifications` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `notifications`
+-- Dumping data for table `notifications`
 --
 
 INSERT INTO `notifications` (`id`, `user_id`, `message`, `link`, `is_read`, `created_at`) VALUES
@@ -1345,12 +1352,88 @@ INSERT INTO `notifications` (`id`, `user_id`, `message`, `link`, `is_read`, `cre
 (896, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=214', 1, '2025-07-03 09:48:29'),
 (897, 20, 'Task siap untuk diverifikasi: sdagsad', '../redaktur/view_task.php?id=214', 0, '2025-07-03 13:03:40'),
 (898, 21, 'Task siap untuk diverifikasi: sdagsad', '../redaktur/view_task.php?id=214', 0, '2025-07-03 13:03:40'),
-(899, 9, 'Task telah disetujui: sdagsad', '../production/view_task.php?id=214', 0, '2025-07-04 06:37:02');
+(899, 9, 'Task telah disetujui: sdagsad', '../production/view_task.php?id=214', 1, '2025-07-04 06:37:02'),
+(900, 2, 'Anda mendapatkan 10 poin tambahan: bonus', 'points.php', 1, '2025-07-05 04:31:11'),
+(901, 2, 'Anda mendapatkan 21 poin tambahan: bonus', 'points.php', 1, '2025-07-05 04:32:20'),
+(902, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=215', 1, '2025-07-08 09:18:52'),
+(903, 8, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../production/view_task.php?id=215', 0, '2025-07-08 09:22:44'),
+(904, 20, 'Task siap untuk diverifikasi: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../redaktur/view_task.php?id=215', 0, '2025-07-08 09:23:37'),
+(905, 21, 'Task siap untuk diverifikasi: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../redaktur/view_task.php?id=215', 0, '2025-07-08 09:23:37'),
+(907, 9, 'Task perlu direvisi: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../production/view_task.php?id=215', 1, '2025-07-08 09:24:06'),
+(908, 20, 'Task siap untuk diverifikasi: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../redaktur/view_task.php?id=215', 0, '2025-07-08 09:24:32'),
+(909, 21, 'Task siap untuk diverifikasi: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../redaktur/view_task.php?id=215', 0, '2025-07-08 09:24:32'),
+(911, 9, 'Task telah disetujui: Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', '../production/view_task.php?id=215', 1, '2025-07-08 09:25:15'),
+(912, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=216', 1, '2025-07-08 13:18:02'),
+(913, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=217', 1, '2025-07-08 14:05:44'),
+(914, 20, 'Task siap untuk diverifikasi: Putusan MK soal *Pemilu Buat Pusing Elite Politik* dan DPR: \'Maju Kena Mundur Kena\'', '../redaktur/view_task.php?id=216', 0, '2025-07-08 14:13:33'),
+(915, 21, 'Task siap untuk diverifikasi: Putusan MK soal *Pemilu Buat Pusing Elite Politik* dan DPR: \'Maju Kena Mundur Kena\'', '../redaktur/view_task.php?id=216', 0, '2025-07-08 14:13:33'),
+(917, 20, 'Task siap untuk diverifikasi: Tarif Impor AS Tetap 32 Persen: Bukti *Kegagalan Airlangga dan Sri Mulyani* Cs Amankan Kepentingan Nasional', '../redaktur/view_task.php?id=217', 0, '2025-07-08 14:13:53'),
+(918, 21, 'Task siap untuk diverifikasi: Tarif Impor AS Tetap 32 Persen: Bukti *Kegagalan Airlangga dan Sri Mulyani* Cs Amankan Kepentingan Nasional', '../redaktur/view_task.php?id=217', 0, '2025-07-08 14:13:53'),
+(920, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=218', 1, '2025-07-08 14:21:30'),
+(921, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=219', 0, '2025-07-08 14:24:40'),
+(922, 20, 'Task siap untuk diverifikasi: Eks Menteri *BUMN Dahlan Iskan Jadi Tersangka* Pemalsuan Surat dan Penggelapan', '../redaktur/view_task.php?id=218', 0, '2025-07-08 14:29:53'),
+(923, 21, 'Task siap untuk diverifikasi: Eks Menteri *BUMN Dahlan Iskan Jadi Tersangka* Pemalsuan Surat dan Penggelapan', '../redaktur/view_task.php?id=218', 0, '2025-07-08 14:29:53'),
+(924, 20, 'Task siap untuk diverifikasi: Mengenal Pemilik CFC yang Ternyata Bukan Sembarang Orang', '../redaktur/view_task.php?id=219', 0, '2025-07-10 07:43:34'),
+(925, 21, 'Task siap untuk diverifikasi: Mengenal Pemilik CFC yang Ternyata Bukan Sembarang Orang', '../redaktur/view_task.php?id=219', 0, '2025-07-10 07:43:34'),
+(927, 6, 'Task telah disetujui: Mengenal Pemilik CFC yang Ternyata Bukan Sembarang Orang', '../production/view_task.php?id=219', 0, '2025-07-10 07:44:53'),
+(928, 1, 'Task baru dari marketing memerlukan persetujuan Anda', 'view_task.php?id=220', 1, '2025-07-10 07:50:08'),
+(929, 2, 'Anda mendapat task baru yang perlu dikerjakan dengan deadline 10/07/2025', '../content/view_task.php?id=220', 1, '2025-07-10 07:50:45'),
+(930, 1, 'Task distribusi telah diupload dan menunggu verifikasi: Bikinin deck dong', '../director/view_task.php?id=220', 1, '2025-07-10 07:51:10'),
+(931, 6, 'Anda mendapatkan 30 poin tambahan: bonus', 'points.php', 0, '2025-07-10 07:54:03'),
+(932, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=221', 0, '2025-07-10 08:26:10'),
+(933, 9, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', '../production/view_task.php?id=221', 0, '2025-07-10 08:26:45'),
+(934, 10, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', '../production/view_task.php?id=221', 0, '2025-07-10 08:30:32'),
+(935, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=222', 0, '2025-07-10 08:31:05'),
+(936, 20, 'Task siap untuk diverifikasi: Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', '../redaktur/view_task.php?id=221', 0, '2025-07-10 08:32:17'),
+(937, 21, 'Task siap untuk diverifikasi: Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', '../redaktur/view_task.php?id=221', 0, '2025-07-10 08:32:17'),
+(939, 6, 'Task telah disetujui: Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', '../production/view_task.php?id=221', 0, '2025-07-10 08:32:37'),
+(940, 9, 'Anda mendapatkan 1.5 poin tambahan: desain cover', 'points.php', 0, '2025-07-10 08:33:37'),
+(941, 10, 'Anda mendapatkan 2 poin tambahan: voice over', 'points.php', 0, '2025-07-10 08:33:54'),
+(942, 10, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=223', 0, '2025-07-10 08:45:40'),
+(943, 20, 'Task siap untuk diverifikasi: Syuting Jurnalisik', '../redaktur/view_task.php?id=223', 0, '2025-07-10 08:47:51'),
+(944, 21, 'Task siap untuk diverifikasi: Syuting Jurnalisik', '../redaktur/view_task.php?id=223', 0, '2025-07-10 08:47:51'),
+(946, 6, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Syuting Jurnalisik', '../production/view_task.php?id=223', 0, '2025-07-10 08:48:19'),
+(947, 8, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Syuting Jurnalisik', '../production/view_task.php?id=223', 0, '2025-07-10 08:49:22'),
+(948, 1, 'Task baru dari marketing memerlukan persetujuan Anda', 'view_task.php?id=224', 1, '2025-07-10 11:11:03'),
+(949, 1, 'Task baru dari marketing memerlukan persetujuan Anda', 'view_task.php?id=225', 1, '2025-07-10 11:11:16'),
+(950, 22, 'Anda ditambahkan sebagai tim konten bantuan untuk task: Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', '../production/view_task.php?id=222', 0, '2025-07-10 11:49:05'),
+(951, 10, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', '../production/view_task.php?id=222', 0, '2025-07-10 11:49:19'),
+(952, 20, 'Task siap untuk diverifikasi: Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', '../redaktur/view_task.php?id=222', 0, '2025-07-10 11:55:45'),
+(953, 21, 'Task siap untuk diverifikasi: Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', '../redaktur/view_task.php?id=222', 0, '2025-07-10 11:55:45'),
+(955, 10, 'Task telah disetujui: Syuting Jurnalisik', '../production/view_task.php?id=223', 0, '2025-07-10 12:15:42'),
+(956, 6, 'Task telah disetujui: Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', '../production/view_task.php?id=222', 0, '2025-07-10 12:16:40'),
+(957, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=226', 0, '2025-07-10 12:18:04'),
+(958, 20, 'Task siap untuk diverifikasi: dfsghd', '../redaktur/view_task.php?id=226', 0, '2025-07-10 12:19:01'),
+(959, 21, 'Task siap untuk diverifikasi: dfsghd', '../redaktur/view_task.php?id=226', 0, '2025-07-10 12:19:01'),
+(961, 9, 'Task telah disetujui: dfsghd', '../production/view_task.php?id=226', 0, '2025-07-10 12:19:22'),
+(962, 9, 'Task telah disetujui: Eks Menteri *BUMN Dahlan Iskan Jadi Tersangka* Pemalsuan Surat dan Penggelapan', '../production/view_task.php?id=218', 0, '2025-07-10 14:10:35'),
+(963, 9, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=227', 0, '2025-07-10 14:11:22'),
+(964, 20, 'Task siap untuk diverifikasi: sadgas', '../redaktur/view_task.php?id=227', 0, '2025-07-10 14:11:41'),
+(965, 21, 'Task siap untuk diverifikasi: sadgas', '../redaktur/view_task.php?id=227', 0, '2025-07-10 14:11:41'),
+(967, 9, 'Task telah disetujui: sadgas', '../production/view_task.php?id=227', 0, '2025-07-10 14:14:41'),
+(968, 9, 'Anda mendapat task baru yang perlu dikerjakan dengan deadline 10/07/2025', '../production/view_task.php?id=225', 0, '2025-07-11 05:41:29'),
+(969, 9, 'Anda mendapat task baru yang perlu dikerjakan dengan deadline 10/07/2025', '../production/view_task.php?id=224', 0, '2025-07-11 05:41:44'),
+(970, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=228', 0, '2025-07-11 05:52:44'),
+(971, 8, 'Anda ditambahkan sebagai tim produksi tambahan untuk task: esadgtae', '../production/view_task.php?id=228', 0, '2025-07-11 05:53:18'),
+(972, 20, 'Task siap untuk diverifikasi: hahaha hiihihi', '../redaktur/view_task.php?id=228', 0, '2025-07-11 06:05:27'),
+(973, 21, 'Task siap untuk diverifikasi: hahaha hiihihi', '../redaktur/view_task.php?id=228', 0, '2025-07-11 06:05:27'),
+(975, 6, 'Task telah disetujui: hahaha hiihihi', '../production/view_task.php?id=228', 0, '2025-07-11 06:06:34'),
+(976, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=229', 0, '2025-07-11 06:07:29'),
+(977, 20, 'Task siap untuk diverifikasi: nyoba edit task', '../redaktur/view_task.php?id=229', 0, '2025-07-11 06:11:14'),
+(978, 21, 'Task siap untuk diverifikasi: nyoba edit task', '../redaktur/view_task.php?id=229', 0, '2025-07-11 06:11:14'),
+(980, 6, 'Task telah disetujui: nyoba edit task', '../production/view_task.php?id=229', 0, '2025-07-11 06:15:19'),
+(981, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=230', 0, '2025-07-11 06:16:53'),
+(982, 2, 'Anda mendapatkan 30.5 poin tambahan: bonus', 'points.php', 1, '2025-07-11 06:37:06'),
+(983, 6, 'Anda memiliki task baru yang menunggu konfirmasi', 'view_task.php?id=231', 0, '2025-07-11 07:00:58'),
+(984, 20, 'Task siap untuk diverifikasi: sdagasg', '../redaktur/view_task.php?id=230', 0, '2025-07-11 07:01:27'),
+(985, 21, 'Task siap untuk diverifikasi: sdagasg', '../redaktur/view_task.php?id=230', 0, '2025-07-11 07:01:27'),
+(987, 20, 'Task publikasi baru dari marketing memerlukan persetujuan Anda', '../redaktur/view_task.php?id=232', 0, '2025-07-11 07:07:16'),
+(988, 21, 'Task publikasi baru dari marketing memerlukan persetujuan Anda', '../redaktur/view_task.php?id=232', 0, '2025-07-11 07:07:17');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `platforms`
+-- Table structure for table `platforms`
 --
 
 CREATE TABLE `platforms` (
@@ -1361,7 +1444,7 @@ CREATE TABLE `platforms` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `platforms`
+-- Dumping data for table `platforms`
 --
 
 INSERT INTO `platforms` (`id`, `name`, `icon`, `created_at`) VALUES
@@ -1375,7 +1458,7 @@ INSERT INTO `platforms` (`id`, `name`, `icon`, `created_at`) VALUES
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `point_settings`
+-- Table structure for table `point_settings`
 --
 
 CREATE TABLE `point_settings` (
@@ -1389,7 +1472,7 @@ CREATE TABLE `point_settings` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `program_schedules`
+-- Table structure for table `program_schedules`
 --
 
 CREATE TABLE `program_schedules` (
@@ -1403,20 +1486,18 @@ CREATE TABLE `program_schedules` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `program_schedules`
+-- Dumping data for table `program_schedules`
 --
 
 INSERT INTO `program_schedules` (`id`, `program_id`, `day_of_week`, `target_count`, `pic_id`, `editor_id`, `created_at`) VALUES
-(1, 18, 'Monday', 1, 2, 6, '2025-06-27 03:32:43'),
-(2, 12, 'Tuesday', 1, 2, 11, '2025-06-27 03:32:54'),
-(3, 3, 'Tuesday', 1, 5, 11, '2025-06-27 03:33:10'),
-(4, 19, 'Wednesday', 1, 4, 6, '2025-06-27 03:33:27'),
-(5, 3, 'Friday', 2, 2, 6, '2025-06-27 03:34:18');
+(6, 18, 'Monday', 1, 22, 10, '2025-07-09 06:20:23'),
+(7, 19, 'Wednesday', 1, 22, 10, '2025-07-09 06:20:54'),
+(8, 5, 'Monday', 1, 3, NULL, '2025-07-09 06:21:29');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `resources`
+-- Table structure for table `resources`
 --
 
 CREATE TABLE `resources` (
@@ -1429,16 +1510,17 @@ CREATE TABLE `resources` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `resources`
+-- Dumping data for table `resources`
 --
 
 INSERT INTO `resources` (`id`, `name`, `file_path`, `type`, `uploaded_by`, `created_at`) VALUES
-(1, 'Bank BCA', '684bc417d1f4c.png', 'Logo', 1, '2025-06-13 06:24:23');
+(1, 'Bank BCA', '684bc417d1f4c.png', 'Logo', 1, '2025-06-13 06:24:23'),
+(2, 'cvxbvzbv', '6870b7a49cd51.png', 'Logo', 1, '2025-07-11 07:05:08');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `revisions`
+-- Table structure for table `revisions`
 --
 
 CREATE TABLE `revisions` (
@@ -1450,7 +1532,7 @@ CREATE TABLE `revisions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `revisions`
+-- Dumping data for table `revisions`
 --
 
 INSERT INTO `revisions` (`id`, `task_id`, `note`, `revised_by`, `created_at`) VALUES
@@ -1466,7 +1548,7 @@ INSERT INTO `revisions` (`id`, `task_id`, `note`, `revised_by`, `created_at`) VA
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `shifts`
+-- Table structure for table `shifts`
 --
 
 CREATE TABLE `shifts` (
@@ -1480,7 +1562,7 @@ CREATE TABLE `shifts` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `shifts`
+-- Dumping data for table `shifts`
 --
 
 INSERT INTO `shifts` (`id`, `user_id`, `shift_date`, `shift_type`, `created_by`, `created_at`, `updated_at`) VALUES
@@ -1541,7 +1623,7 @@ INSERT INTO `shifts` (`id`, `user_id`, `shift_date`, `shift_type`, `created_by`,
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `target_schedule`
+-- Table structure for table `target_schedule`
 --
 
 CREATE TABLE `target_schedule` (
@@ -1557,7 +1639,7 @@ CREATE TABLE `target_schedule` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `target_settings`
+-- Table structure for table `target_settings`
 --
 
 CREATE TABLE `target_settings` (
@@ -1570,7 +1652,7 @@ CREATE TABLE `target_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `target_settings`
+-- Dumping data for table `target_settings`
 --
 
 INSERT INTO `target_settings` (`id`, `target_type`, `setting_key`, `setting_value`, `updated_at`, `updated_by`) VALUES
@@ -1584,7 +1666,7 @@ INSERT INTO `target_settings` (`id`, `target_type`, `setting_key`, `setting_valu
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `tasks`
+-- Table structure for table `tasks`
 --
 
 CREATE TABLE `tasks` (
@@ -1616,7 +1698,7 @@ CREATE TABLE `tasks` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `tasks`
+-- Dumping data for table `tasks`
 --
 
 INSERT INTO `tasks` (`id`, `title`, `description`, `category_id`, `content_type_id`, `content_pillar_id`, `account_id`, `status`, `priority`, `points`, `created_by`, `assigned_to`, `deadline`, `uploaded_link`, `notes`, `rejection_reason`, `is_verified`, `rating`, `created_at`, `updated_at`, `file_path`, `verified_at`, `client_name`, `platform_count`, `source_link`) VALUES
@@ -1822,12 +1904,30 @@ INSERT INTO `tasks` (`id`, `title`, `description`, `category_id`, `content_type_
 (211, 'Nyoba lagi', 'saddsg', 3, 16, 7, 1, 'completed', 'medium', NULL, 13, 9, '2025-07-02 21:00:00', '', '', NULL, 1, 5, '2025-07-02 13:43:28', '2025-07-03 04:56:26', '[\"tasks\\/task_6865379fbde0c_211_0.png\",\"tasks\\/task_6865379fbe0bb_211_1.jpg\",\"tasks\\/task_6865379fbe2f9_211_2.jpg\"]', '2025-07-03 11:56:26', NULL, 0, NULL),
 (212, 'dzgsdg', 'asdgsadga', 1, 1, 1, 1, 'waiting_confirmation', 'medium', NULL, 2, 9, '2025-07-03 15:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-03 07:54:46', '2025-07-03 07:54:46', NULL, NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
 (213, 'dsgsasg', 'sagsdag', 1, 1, 1, 1, 'waiting_confirmation', 'medium', NULL, 2, 9, '2025-07-03 15:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-03 08:03:23', '2025-07-03 08:03:23', NULL, NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
-(214, 'sdagsad', NULL, 1, 1, 2, 1, 'uploaded', 'medium', NULL, 2, 9, '2025-07-03 17:30:00', '', '', NULL, 0, NULL, '2025-07-03 09:48:29', '2025-07-04 06:37:02', '[\"tasks\\/task_68667faca6743_214_0.jpg\",\"tasks\\/task_68667faca69b1_214_1.png\",\"tasks\\/task_68667faca6bb0_214_2.png\"]', NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan');
+(214, 'sdagsad', NULL, 1, 1, 2, 1, 'uploaded', 'medium', NULL, 2, 9, '2025-07-03 17:30:00', '', '', NULL, 0, NULL, '2025-07-03 09:48:29', '2025-07-04 06:37:02', '[\"tasks\\/task_68667faca6743_214_0.jpg\",\"tasks\\/task_68667faca69b1_214_1.png\",\"tasks\\/task_68667faca6bb0_214_2.png\"]', NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(215, 'Ongkos Perawatannya *Setinggi Langit, Seluruh Aset*di IKN Harus Segera Dimanfaatkan!', NULL, 1, 1, 1, 1, 'completed', 'medium', NULL, 2, 9, '2025-07-08 18:00:00', '', '', NULL, 1, 5, '2025-07-08 09:18:51', '2025-07-08 09:25:42', '[\"tasks\\/task_686ce3d0ed8d8_215_0.png\",\"tasks\\/task_686ce3d0edb29_215_1.png\"]', '2025-07-08 16:25:42', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(216, 'Putusan MK soal *Pemilu Buat Pusing Elite Politik* dan DPR: \'Maju Kena Mundur Kena\'', NULL, 1, 1, 1, 1, 'ready_for_review', 'medium', NULL, 2, 9, '2025-07-08 21:00:00', '', '', NULL, 0, NULL, '2025-07-08 13:18:01', '2025-07-08 14:13:33', '[\"tasks\\/task_686d278dceeb0_216_0.png\"]', NULL, NULL, 0, 'https://www.inilah.com/putusan-mk-soal-pemilu-buat-pusing-elite-politik-dan-dpr-maju-kena-mundur-kena'),
+(217, 'Tarif Impor AS Tetap 32 Persen: Bukti *Kegagalan Airlangga dan Sri Mulyani* Cs Amankan Kepentingan Nasional', NULL, 1, 1, 1, 1, 'ready_for_review', 'medium', NULL, 2, 9, '2025-07-08 21:30:00', '', '', NULL, 0, NULL, '2025-07-08 14:05:43', '2025-07-08 14:13:53', '[\"tasks\\/task_686d27a117212_217_0.png\"]', NULL, NULL, 0, 'https://www.inilah.com/tarif-impor-as-32-persen-bukti-kegagalan-airlangga-dan-sri-mulyani-cs-amankan-kepentingan-nasional'),
+(218, 'Eks Menteri *BUMN Dahlan Iskan Jadi Tersangka* Pemalsuan Surat dan Penggelapan', NULL, 1, 1, 2, 1, 'uploaded', 'medium', NULL, 2, 9, '2025-07-08 22:00:00', '', '', NULL, 0, NULL, '2025-07-08 14:21:29', '2025-07-10 14:10:35', '[\"tasks\\/task_686d2b61456bf_218_0.png\"]', NULL, NULL, 0, 'https://www.inilah.com/eks-menteri-bumn-dahlan-iskan-ditetapkan-tersangka-penggelapan-hingga-tppu'),
+(219, 'Mengenal Pemilik CFC yang Ternyata Bukan Sembarang Orang', NULL, 2, 24, 18, 1, 'completed', 'medium', NULL, 2, 6, '2025-07-08 22:00:00', '', '', NULL, 1, 5, '2025-07-08 14:24:40', '2025-07-10 07:45:35', '[\"tasks\\/task_686f6f266c43c_219_0.png\",\"tasks\\/task_686f6f266c828_219_1.mp4\"]', '2025-07-10 14:45:35', NULL, 0, 'https://www.inilah.com/sosok-pemilik-cfc-indonesia'),
+(220, 'Bikinin deck dong', 'sadgsag', 4, 18, 13, 1, 'completed', 'medium', NULL, 13, 2, '2025-07-10 16:30:00', NULL, NULL, NULL, 1, 5, '2025-07-10 07:50:08', '2025-07-10 07:51:52', '[{\"original_name\":\"task_686ce3d0ed8d8_215_0.png\",\"file_path\":\"tasks\\/686f70aa29b7f_1752133802.png\",\"file_size\":1185827,\"file_type\":\"image\\/png\"},{\"original_name\":\"task_6865379fbde0c_211_0.png\",\"file_path\":\"tasks\\/686f70af20c8f_1752133807.png\",\"file_size\":', '2025-07-10 14:51:52', 'MVP', 3, NULL),
+(221, 'Mayat Tanpa Kepala Ditemukan di Pancoran, Polisi Kesulitan Identifikasi', NULL, 2, 22, 3, 1, 'completed', 'medium', NULL, 2, 6, '2025-07-10 16:00:00', '', '', NULL, 1, 5, '2025-07-10 08:26:09', '2025-07-10 14:10:49', '[\"tasks\\/task_686f7a913b500_221_0.mp4\"]', '2025-07-10 21:10:49', NULL, 0, 'https://www.inilah.com/mayat-tanpa-kepala-ditemukan-di-pancoran-polisi-kesulitan-identifikasi'),
+(222, 'Fabian Ruiz Tampil Superior, Bikin Lini Tengah Real Madrid tak Berdaya', NULL, 1, 5, 1, 1, 'completed', 'medium', NULL, 2, 6, '2025-07-10 16:00:00', '', '', NULL, 1, 5, '2025-07-10 08:31:04', '2025-07-10 12:16:59', '[\"tasks\\/task_686faa4164560_222_0.mp4\"]', '2025-07-10 19:16:59', NULL, 0, 'https://www.inilah.com/fabian-ruiz-tampil-superior-bikin-lini-tengah-real-madrid-tak-berdaya'),
+(223, 'Syuting Jurnalisik', NULL, 2, 30, 18, 1, 'completed', 'medium', NULL, 2, 10, '2025-07-10 16:30:00', '', '', NULL, 1, 5, '2025-07-10 08:45:40', '2025-07-10 12:16:06', '[\"tasks\\/task_686f7e373f424_223_0.png\"]', '2025-07-10 19:16:06', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(224, 'dfsgsd', 'fgsfdhds', 3, 15, 7, 1, 'waiting_confirmation', 'medium', NULL, 13, 9, '2025-07-10 18:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-10 11:11:03', '2025-07-11 05:41:44', NULL, NULL, NULL, 0, NULL),
+(225, 'dsfgsh', 'sdhsdh', 3, 17, 7, 1, 'waiting_confirmation', 'medium', NULL, 13, 9, '2025-07-10 18:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-10 11:11:16', '2025-07-11 05:41:29', NULL, NULL, NULL, 0, NULL),
+(226, 'dfsghd', 'shdshsd', 1, 1, 2, 1, 'completed', 'medium', NULL, 2, 9, '2025-07-10 20:00:00', '', '', NULL, 1, 5, '2025-07-10 12:18:03', '2025-07-10 12:19:32', '[\"tasks\\/task_686fafb5ecf35_226_0.png\"]', '2025-07-10 19:19:32', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(227, 'sadgas', 'gasgsaz', 1, 1, 1, 1, 'completed', 'medium', NULL, 2, 9, '2025-07-10 21:30:00', '', '', NULL, 1, 5, '2025-07-10 14:11:22', '2025-07-10 14:14:56', '[\"tasks\\/task_686fca1d7c232_227_0.png\",\"tasks\\/task_686fca1d7c5c9_227_1.png\"]', '2025-07-10 21:14:56', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(228, 'hahaha hiihihi', 'reqwrywe', 1, 5, 1, 1, 'completed', 'medium', NULL, 2, 6, '2025-07-11 13:30:00', '', '', NULL, 1, 5, '2025-07-11 05:52:44', '2025-07-11 06:20:14', '[\"tasks\\/task_6870a9a7b4381_228_0.png\"]', '2025-07-11 13:20:14', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(229, 'nyoba edit task', '', 1, 1, 2, 1, 'completed', 'medium', NULL, 2, 6, '2025-07-11 13:30:00', '', '', NULL, 1, 5, '2025-07-11 06:07:28', '2025-07-11 06:20:08', '[\"tasks\\/task_6870ab022d8e7_229_0.png\"]', '2025-07-11 13:20:08', NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(230, 'sdagasg', NULL, 1, 3, 2, 1, 'ready_for_review', 'medium', NULL, 2, 6, '2025-07-11 14:00:00', '', '', NULL, 0, NULL, '2025-07-11 06:16:53', '2025-07-11 07:01:27', '[\"tasks\\/task_6870b6c7bf16d_230_0.mp4\"]', NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(231, 'zcxbzxbzxb', 'xzcbzxbzx', 1, 5, 1, 1, 'waiting_confirmation', 'medium', NULL, 2, 6, '2025-07-11 14:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-11 07:00:58', '2025-07-11 07:00:58', NULL, NULL, NULL, 0, 'https://www.inilah.com/polda-sumut-buru-dua-orang-pengendali-pabrik-liquid-narkoba-di-medan'),
+(232, 'Tolong artikel', 'sfdasf', 5, 28, 20, 1, 'waiting_redaktur_confirmation', 'medium', NULL, 13, 13, '2025-07-11 14:30:00', NULL, NULL, NULL, 0, NULL, '2025-07-11 07:07:16', '2025-07-11 07:07:16', '[{\"original_name\":\"Draft pekerjaan publik.docx\",\"file_path\":\"tasks\\/6870b810d6145_1752217616.docx\",\"file_size\":127432,\"file_type\":\"application\\/vnd.openxmlformats-officedocument.wordprocessingml.document\"},{\"original_name\":\"IMG-20250107-WA0020.jpg\",\"file_', NULL, 'Garuda', 0, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_assistance`
+-- Table structure for table `task_assistance`
 --
 
 CREATE TABLE `task_assistance` (
@@ -1840,18 +1940,26 @@ CREATE TABLE `task_assistance` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_assistance`
+-- Dumping data for table `task_assistance`
 --
 
 INSERT INTO `task_assistance` (`id`, `task_id`, `user_id`, `added_by`, `note`, `created_at`) VALUES
 (1, 167, 6, 9, 'buat bantuin syuting', '2025-06-26 06:20:59'),
 (2, 168, 11, 6, 'bantu syuting', '2025-06-27 03:35:19'),
-(3, 182, 6, 9, 'desain cover', '2025-06-30 14:11:29');
+(3, 182, 6, 9, 'desain cover', '2025-06-30 14:11:29'),
+(4, 215, 8, 9, 'Ngerjain cover', '2025-07-08 09:22:44'),
+(5, 221, 9, 6, 'Desain cover', '2025-07-10 08:26:45'),
+(6, 221, 10, 6, 'Voice Over', '2025-07-10 08:30:32'),
+(7, 223, 6, 10, 'bantuin syuting', '2025-07-10 08:48:19'),
+(8, 223, 8, 10, 'scroll2 doang', '2025-07-10 08:49:22'),
+(9, 222, 22, 6, 'Voice Over', '2025-07-10 11:49:05'),
+(10, 222, 10, 6, 'bantuin syuting', '2025-07-10 11:49:19'),
+(11, 228, 8, 6, 'Bantuin syuting', '2025-07-11 05:53:18');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_comments`
+-- Table structure for table `task_comments`
 --
 
 CREATE TABLE `task_comments` (
@@ -1865,7 +1973,7 @@ CREATE TABLE `task_comments` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_links`
+-- Table structure for table `task_links`
 --
 
 CREATE TABLE `task_links` (
@@ -1878,7 +1986,7 @@ CREATE TABLE `task_links` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_links`
+-- Dumping data for table `task_links`
 --
 
 INSERT INTO `task_links` (`id`, `task_id`, `platform`, `link`, `added_by`, `created_at`) VALUES
@@ -2340,12 +2448,63 @@ INSERT INTO `task_links` (`id`, `task_id`, `platform`, `link`, `added_by`, `crea
 (474, 214, 'tiktok', 'https://www.instagram.com', 2, '2025-07-04 06:37:02'),
 (475, 214, 'facebook', 'https://www.instagram.com', 2, '2025-07-04 06:37:02'),
 (476, 214, 'twitter', 'https://www.instagram.com', 2, '2025-07-04 06:37:02'),
-(477, 214, 'threads', 'https://www.instagram.com', 2, '2025-07-04 06:37:02');
+(477, 214, 'threads', 'https://www.instagram.com', 2, '2025-07-04 06:37:02'),
+(478, 215, 'instagram', 'https://instagram.com/', 2, '2025-07-08 09:25:15'),
+(479, 215, 'tiktok', 'https://instagram.com/', 2, '2025-07-08 09:25:15'),
+(480, 215, 'facebook', 'https://instagram.com/', 2, '2025-07-08 09:25:15'),
+(481, 215, 'twitter', 'https://instagram.com/', 2, '2025-07-08 09:25:15'),
+(482, 215, 'threads', 'https://instagram.com/', 2, '2025-07-08 09:25:15'),
+(483, 219, 'instagram', 'https://instagram.com/', 2, '2025-07-10 07:44:53'),
+(484, 219, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 07:44:53'),
+(485, 219, 'facebook', 'https://instagram.com/', 2, '2025-07-10 07:44:53'),
+(486, 219, 'twitter', 'https://instagram.com/', 2, '2025-07-10 07:44:53'),
+(487, 219, 'threads', 'https://instagram.com/', 2, '2025-07-10 07:44:53'),
+(488, 220, 'instagram', 'https://instagram.com/', 2, '2025-07-10 07:51:10'),
+(489, 220, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 07:51:10'),
+(490, 220, 'facebook', 'https://instagram.com/', 2, '2025-07-10 07:51:10'),
+(491, 220, 'twitter', 'https://instagram.com/', 2, '2025-07-10 07:51:10'),
+(492, 221, 'instagram', 'https://instagram.com/', 2, '2025-07-10 08:32:37'),
+(493, 221, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 08:32:37'),
+(494, 223, 'instagram', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(495, 223, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(496, 223, 'facebook', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(497, 223, 'twitter', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(498, 223, 'threads', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(499, 223, 'youtube', 'https://instagram.com/', 2, '2025-07-10 12:15:42'),
+(500, 222, 'instagram', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(501, 222, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(502, 222, 'facebook', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(503, 222, 'twitter', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(504, 222, 'threads', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(505, 222, 'youtube', 'https://instagram.com/', 2, '2025-07-10 12:16:40'),
+(506, 226, 'instagram', 'https://instagram.com/', 2, '2025-07-10 12:19:22'),
+(507, 226, 'tiktok', 'https://instagram.com/', 2, '2025-07-10 12:19:22'),
+(508, 226, 'facebook', 'https://instagram.com/', 2, '2025-07-10 12:19:22'),
+(509, 226, 'twitter', 'https://instagram.com/', 2, '2025-07-10 12:19:22'),
+(510, 226, 'threads', 'https://instagram.com/', 2, '2025-07-10 12:19:22'),
+(511, 218, 'tiktok', 'https://www.tiktok.com', 2, '2025-07-10 14:10:35'),
+(512, 218, 'facebook', 'https://www.tiktok.com', 2, '2025-07-10 14:10:35'),
+(513, 218, 'twitter', 'https://www.tiktok.com', 2, '2025-07-10 14:10:35'),
+(514, 218, 'threads', 'https://www.tiktok.com', 2, '2025-07-10 14:10:35'),
+(515, 218, 'youtube', 'https://www.tiktok.com', 2, '2025-07-10 14:10:35'),
+(516, 227, 'instagram', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(517, 227, 'tiktok', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(518, 227, 'facebook', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(519, 227, 'twitter', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(520, 227, 'threads', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(521, 227, 'youtube', 'https://www.tiktok.com', 2, '2025-07-10 14:14:41'),
+(522, 228, 'instagram', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(523, 228, 'tiktok', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(524, 228, 'facebook', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(525, 228, 'twitter', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(526, 228, 'threads', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(527, 228, 'youtube', 'https://www.tiktok.com', 2, '2025-07-11 06:06:34'),
+(528, 229, 'youtube', 'https://www.tiktok.com', 2, '2025-07-11 06:15:19');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_point_settings`
+-- Table structure for table `task_point_settings`
 --
 
 CREATE TABLE `task_point_settings` (
@@ -2359,28 +2518,28 @@ CREATE TABLE `task_point_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_point_settings`
+-- Dumping data for table `task_point_settings`
 --
 
 INSERT INTO `task_point_settings` (`id`, `team`, `category`, `task_type`, `points`, `created_at`, `updated_at`) VALUES
-(1, 'production_team', 'Daily Content', 'Carousel', 1.50, '2025-06-11 14:40:11', '2025-06-11 14:40:23'),
-(2, 'production_team', 'Daily Content', 'Ilustrasi', 1.50, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
-(3, 'production_team', 'Daily Content', 'Infografis', 2.00, '2025-06-11 14:40:11', '2025-06-11 14:40:39'),
-(4, 'production_team', 'Daily Content', 'Reels', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(5, 'production_team', 'Daily Content', 'Single Images', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(6, 'production_team', 'Daily Content', 'Story', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(7, 'production_team', 'Produksi', 'Ilustrasi', 3.00, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
-(8, 'production_team', 'Produksi', 'Images', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(9, 'production_team', 'Produksi', 'Infografis', 2.00, '2025-06-11 14:40:11', '2025-06-11 15:18:11'),
-(10, 'production_team', 'Produksi', 'Pitchdeck', 3.00, '2025-06-11 14:40:11', '2025-06-11 15:18:11'),
+(1, 'production_team', 'Daily Content', 'Carousel', 2.50, '2025-06-11 14:40:11', '2025-07-10 08:20:18'),
+(2, 'production_team', 'Daily Content', 'Ilustrasi', 3.00, '2025-06-11 14:40:11', '2025-07-10 08:20:18'),
+(3, 'production_team', 'Daily Content', 'Infografis', 3.00, '2025-06-11 14:40:11', '2025-07-10 07:57:54'),
+(4, 'production_team', 'Daily Content', 'Reels', 3.00, '2025-06-11 14:40:11', '2025-07-10 08:20:18'),
+(5, 'production_team', 'Daily Content', 'Single Images', 2.00, '2025-06-11 14:40:11', '2025-07-10 08:20:18'),
+(6, 'production_team', 'Daily Content', 'Story', 2.00, '2025-06-11 14:40:11', '2025-07-10 08:20:18'),
+(7, 'production_team', 'Produksi', 'Ilustrasi', 5.00, '2025-06-11 14:40:11', '2025-07-10 08:24:04'),
+(8, 'production_team', 'Produksi', 'Images', 3.00, '2025-06-11 14:40:11', '2025-07-10 08:24:04'),
+(9, 'production_team', 'Produksi', 'Infografis', 4.00, '2025-06-11 14:40:11', '2025-07-10 08:24:04'),
+(10, 'production_team', 'Produksi', 'Pitchdeck', 4.00, '2025-06-11 14:40:11', '2025-07-10 08:24:04'),
 (11, 'production_team', 'Produksi', 'Video', 3.00, '2025-06-11 14:40:11', '2025-06-11 15:18:11'),
-(12, 'production_team', 'Program', 'Carousel', 2.00, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
+(12, 'production_team', 'Program', 'Carousel', 2.50, '2025-06-11 14:40:11', '2025-07-10 08:24:18'),
 (13, 'production_team', 'Program', 'Ilustrasi', 2.00, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
 (14, 'production_team', 'Program', 'Infografis', 3.00, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
-(15, 'production_team', 'Program', 'Reels', 2.00, '2025-06-11 14:40:11', '2025-06-12 14:50:09'),
-(16, 'production_team', 'Program', 'Single Images', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(17, 'production_team', 'Program', 'Story', 1.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
-(18, 'content_team', 'Daily Content', 'Carousel', 1.50, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
+(15, 'production_team', 'Program', 'Reels', 5.00, '2025-06-11 14:40:11', '2025-07-10 08:36:54'),
+(16, 'production_team', 'Program', 'Single Images', 2.00, '2025-06-11 14:40:11', '2025-07-10 08:35:54'),
+(17, 'production_team', 'Program', 'Story', 2.00, '2025-06-11 14:40:11', '2025-07-10 08:35:54'),
+(18, 'content_team', 'Daily Content', 'Carousel', 2.00, '2025-06-11 14:40:11', '2025-07-08 09:30:54'),
 (19, 'content_team', 'Daily Content', 'Ilustrasi', 2.50, '2025-06-11 14:40:11', '2025-06-11 15:17:37'),
 (20, 'content_team', 'Daily Content', 'Infografis', 2.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
 (21, 'content_team', 'Daily Content', 'Reels', 2.00, '2025-06-11 14:40:11', '2025-06-11 14:40:11'),
@@ -2403,12 +2562,14 @@ INSERT INTO `task_point_settings` (`id`, `team`, `category`, `task_type`, `point
 (38, 'content_team', 'Program', 'Ucapan Hari Besar', 2.00, '2025-06-12 14:54:43', '2025-06-12 14:54:43'),
 (39, 'content_team', 'Program', 'Reels', 3.00, '2025-06-12 14:57:09', '2025-06-12 14:57:09'),
 (40, 'content_team', 'Program', 'Single Images', 1.00, '2025-06-12 14:57:09', '2025-06-12 14:57:36'),
-(41, 'content_team', 'Program', 'Ilustrasi', 2.00, '2025-06-12 14:57:09', '2025-06-12 14:57:09');
+(41, 'content_team', 'Program', 'Ilustrasi', 2.00, '2025-06-12 14:57:09', '2025-06-12 14:57:09'),
+(42, 'production_team', 'Program', 'Video Youtube', 15.00, '2025-06-11 14:40:11', '2025-07-10 08:37:16'),
+(43, 'production_team', 'Program', 'Produksi', 3.00, '2025-06-11 14:40:11', '2025-07-10 08:35:54');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_rejections`
+-- Table structure for table `task_rejections`
 --
 
 CREATE TABLE `task_rejections` (
@@ -2420,7 +2581,7 @@ CREATE TABLE `task_rejections` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_rejections`
+-- Dumping data for table `task_rejections`
 --
 
 INSERT INTO `task_rejections` (`id`, `task_id`, `rejected_by`, `reason`, `created_at`) VALUES
@@ -2430,7 +2591,7 @@ INSERT INTO `task_rejections` (`id`, `task_id`, `rejected_by`, `reason`, `create
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_revisions`
+-- Table structure for table `task_revisions`
 --
 
 CREATE TABLE `task_revisions` (
@@ -2442,7 +2603,7 @@ CREATE TABLE `task_revisions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_revisions`
+-- Dumping data for table `task_revisions`
 --
 
 INSERT INTO `task_revisions` (`id`, `task_id`, `note`, `revised_by`, `created_at`) VALUES
@@ -2461,12 +2622,13 @@ INSERT INTO `task_revisions` (`id`, `task_id`, `note`, `revised_by`, `created_at
 (13, 35, 'perbaiki lagi', 1, '2025-06-09 07:12:50'),
 (14, 50, 'upload ulang', 1, '2025-06-10 14:57:37'),
 (15, 63, 'ada revisi salah konten, upload ulang', 1, '2025-06-12 06:24:43'),
-(16, 156, 'benerin lagi', 1, '2025-06-19 11:25:07');
+(16, 156, 'benerin lagi', 1, '2025-06-19 11:25:07'),
+(17, 215, 'jelek', 2, '2025-07-08 09:24:06');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `task_status_logs`
+-- Table structure for table `task_status_logs`
 --
 
 CREATE TABLE `task_status_logs` (
@@ -2479,7 +2641,7 @@ CREATE TABLE `task_status_logs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `task_status_logs`
+-- Dumping data for table `task_status_logs`
 --
 
 INSERT INTO `task_status_logs` (`id`, `task_id`, `status`, `updated_by`, `notes`, `timestamp`) VALUES
@@ -3250,12 +3412,69 @@ INSERT INTO `task_status_logs` (`id`, `task_id`, `status`, `updated_by`, `notes`
 (797, 213, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-03 08:03:23'),
 (798, 214, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-03 09:48:29'),
 (799, 214, 'ready_for_review', 9, NULL, '2025-07-03 13:03:40'),
-(800, 214, 'uploaded', 2, NULL, '2025-07-04 06:37:02');
+(800, 214, 'uploaded', 2, NULL, '2025-07-04 06:37:02'),
+(801, 215, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-08 09:18:51'),
+(802, 215, 'ready_for_review', 9, NULL, '2025-07-08 09:23:37'),
+(803, 215, 'revision', 2, NULL, '2025-07-08 09:24:06'),
+(804, 215, 'ready_for_review', 9, NULL, '2025-07-08 09:24:32'),
+(805, 215, 'uploaded', 2, NULL, '2025-07-08 09:25:15'),
+(806, 215, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-08 09:25:42'),
+(807, 216, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-08 13:18:02'),
+(808, 217, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-08 14:05:43'),
+(809, 216, 'ready_for_review', 9, NULL, '2025-07-08 14:13:33'),
+(810, 217, 'ready_for_review', 9, NULL, '2025-07-08 14:13:53'),
+(811, 218, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-08 14:21:29'),
+(812, 219, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-08 14:24:40'),
+(813, 218, 'ready_for_review', 9, NULL, '2025-07-08 14:29:53'),
+(814, 219, 'ready_for_review', 6, NULL, '2025-07-10 07:43:34'),
+(815, 219, 'uploaded', 2, NULL, '2025-07-10 07:44:53'),
+(816, 219, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 07:45:35'),
+(817, 220, 'waiting_head_confirmation', 13, 'Task dikirim untuk persetujuan', '2025-07-10 07:50:08'),
+(818, 220, 'waiting_confirmation', 1, 'Task disetujui oleh Creative Director dengan deadline disesuaikan menjadi 10/07/2025', '2025-07-10 07:50:45'),
+(819, 220, 'uploaded', 2, 'Link distribusi telah diupload', '2025-07-10 07:51:10'),
+(820, 220, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 07:51:52'),
+(821, 221, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-10 08:26:09'),
+(822, 222, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-10 08:31:04'),
+(823, 221, 'ready_for_review', 6, NULL, '2025-07-10 08:32:17'),
+(824, 221, 'uploaded', 2, NULL, '2025-07-10 08:32:37'),
+(825, 223, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-10 08:45:40'),
+(826, 223, 'ready_for_review', 10, NULL, '2025-07-10 08:47:51'),
+(827, 224, 'waiting_head_confirmation', 13, 'Task dikirim untuk persetujuan', '2025-07-10 11:11:03'),
+(828, 225, 'waiting_head_confirmation', 13, 'Task dikirim untuk persetujuan', '2025-07-10 11:11:16'),
+(829, 222, 'ready_for_review', 6, NULL, '2025-07-10 11:55:45'),
+(830, 223, 'uploaded', 2, NULL, '2025-07-10 12:15:42'),
+(831, 223, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 12:16:06'),
+(832, 222, 'uploaded', 2, NULL, '2025-07-10 12:16:40'),
+(833, 222, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 12:16:59'),
+(834, 226, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-10 12:18:03'),
+(835, 226, 'ready_for_review', 9, NULL, '2025-07-10 12:19:01'),
+(836, 226, 'uploaded', 2, NULL, '2025-07-10 12:19:22'),
+(837, 226, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 12:19:32'),
+(838, 218, 'uploaded', 2, NULL, '2025-07-10 14:10:35'),
+(839, 221, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 14:10:49'),
+(840, 227, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-10 14:11:22'),
+(841, 227, 'ready_for_review', 9, NULL, '2025-07-10 14:11:41'),
+(842, 227, 'uploaded', 2, NULL, '2025-07-10 14:14:41'),
+(843, 227, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-10 14:14:56'),
+(844, 225, 'waiting_confirmation', 1, 'Task disetujui oleh Creative Director dengan deadline disesuaikan menjadi 10/07/2025', '2025-07-11 05:41:29'),
+(845, 224, 'waiting_confirmation', 1, 'Task disetujui oleh Creative Director dengan deadline disesuaikan menjadi 10/07/2025', '2025-07-11 05:41:44'),
+(846, 228, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-11 05:52:44'),
+(847, 228, 'ready_for_review', 6, NULL, '2025-07-11 06:05:27'),
+(848, 228, 'uploaded', 2, NULL, '2025-07-11 06:06:34'),
+(849, 229, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-11 06:07:28'),
+(850, 229, 'ready_for_review', 6, NULL, '2025-07-11 06:11:14'),
+(851, 229, 'uploaded', 2, NULL, '2025-07-11 06:15:19'),
+(852, 230, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-11 06:16:53'),
+(853, 229, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-11 06:20:08'),
+(854, 228, 'completed', 1, 'Task diverifikasi dengan rating: 5/5', '2025-07-11 06:20:14'),
+(855, 231, 'waiting_confirmation', 2, 'Task dibuat dan menunggu konfirmasi', '2025-07-11 07:00:58'),
+(856, 230, 'ready_for_review', 6, NULL, '2025-07-11 07:01:27'),
+(857, 232, 'waiting_redaktur_confirmation', 13, 'Task dikirim untuk persetujuan', '2025-07-11 07:07:16');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `templates`
+-- Table structure for table `templates`
 --
 
 CREATE TABLE `templates` (
@@ -3272,7 +3491,7 @@ CREATE TABLE `templates` (
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `time_tracking`
+-- Table structure for table `time_tracking`
 --
 
 CREATE TABLE `time_tracking` (
@@ -3286,7 +3505,7 @@ CREATE TABLE `time_tracking` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `time_tracking`
+-- Dumping data for table `time_tracking`
 --
 
 INSERT INTO `time_tracking` (`id`, `task_id`, `start_time`, `end_time`, `user_id`, `is_auto`, `notes`) VALUES
@@ -3462,12 +3681,26 @@ INSERT INTO `time_tracking` (`id`, `task_id`, `start_time`, `end_time`, `user_id
 (216, 211, '2025-07-02 20:43:42', '2025-07-02 20:43:59', 9, 0, 'Started manually'),
 (217, 206, '2025-07-02 21:25:54', '2025-07-02 21:26:01', 9, 0, 'Started manually'),
 (218, 178, '2025-07-02 21:49:45', '2025-07-02 21:49:58', 9, 0, 'Started manually'),
-(219, 214, '2025-07-03 19:59:20', '2025-07-03 20:03:40', 9, 0, 'Started manually');
+(219, 214, '2025-07-03 19:59:20', '2025-07-03 20:03:40', 9, 0, 'Started manually'),
+(220, 215, '2025-07-08 16:21:56', '2025-07-08 16:23:37', 9, 0, 'Started manually'),
+(221, 215, '2025-07-08 16:24:24', '2025-07-08 16:24:32', 9, 1, NULL),
+(222, 216, '2025-07-08 20:18:20', '2025-07-08 21:13:33', 9, 0, 'Started manually'),
+(223, 217, '2025-07-08 21:05:51', '2025-07-08 21:13:53', 9, 0, 'Started manually'),
+(224, 218, '2025-07-08 21:21:35', '2025-07-08 21:29:53', 9, 0, 'Started manually'),
+(225, 219, '2025-07-08 21:24:48', '2025-07-10 14:43:34', 6, 0, 'Started manually'),
+(226, 221, '2025-07-10 15:26:37', '2025-07-10 15:32:17', 6, 0, 'Started manually'),
+(227, 222, '2025-07-10 15:31:15', '2025-07-10 18:55:45', 6, 0, 'Started manually'),
+(228, 223, '2025-07-10 15:47:42', '2025-07-10 15:47:51', 10, 0, 'Started manually'),
+(229, 226, '2025-07-10 19:18:52', '2025-07-10 19:19:01', 9, 0, 'Started manually'),
+(230, 227, '2025-07-10 21:11:30', '2025-07-10 21:11:41', 9, 0, 'Started manually'),
+(231, 228, '2025-07-11 12:52:54', '2025-07-11 13:05:27', 6, 0, 'Started manually'),
+(232, 229, '2025-07-11 13:07:44', '2025-07-11 13:11:14', 6, 0, 'Started manually'),
+(233, 230, '2025-07-11 14:01:07', '2025-07-11 14:01:27', 6, 0, 'Started manually');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `typing_indicators`
+-- Table structure for table `typing_indicators`
 --
 
 CREATE TABLE `typing_indicators` (
@@ -3478,18 +3711,18 @@ CREATE TABLE `typing_indicators` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `typing_indicators`
+-- Dumping data for table `typing_indicators`
 --
 
 INSERT INTO `typing_indicators` (`user_id`, `receiver_id`, `is_typing`, `updated_at`) VALUES
-(1, 2, 0, '2025-07-04 13:31:48'),
+(1, 2, 0, '2025-07-11 14:14:53'),
 (1, 3, 0, '2025-06-23 14:59:16'),
 (1, 6, 0, '2025-06-23 16:24:06'),
 (1, 8, 0, '2025-06-23 16:09:26'),
 (1, 9, 0, '2025-06-25 13:44:49'),
 (1, 13, 0, '2025-06-25 12:27:38'),
 (2, 1, 0, '2025-07-04 13:31:37'),
-(2, 9, 0, '2025-06-25 12:44:14'),
+(2, 9, 0, '2025-07-08 16:32:29'),
 (2, 20, 0, '2025-07-01 17:50:23'),
 (3, 8, 0, '2025-06-23 14:52:01'),
 (4, 9, 0, '2025-06-23 07:38:21'),
@@ -3499,7 +3732,7 @@ INSERT INTO `typing_indicators` (`user_id`, `receiver_id`, `is_typing`, `updated
 (8, 3, 0, '2025-06-23 14:52:15'),
 (8, 6, 0, '2025-06-23 16:26:51'),
 (9, 1, 0, '2025-06-25 13:44:42'),
-(9, 2, 0, '2025-06-23 07:48:21'),
+(9, 2, 0, '2025-07-08 16:32:22'),
 (9, 4, 0, '2025-06-23 07:39:31'),
 (9, 6, 0, '2025-06-23 16:26:17'),
 (13, 1, 0, '2025-06-25 12:27:41'),
@@ -3508,7 +3741,7 @@ INSERT INTO `typing_indicators` (`user_id`, `receiver_id`, `is_typing`, `updated
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `users`
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -3530,31 +3763,32 @@ CREATE TABLE `users` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `password`, `role`, `active`, `created_at`, `updated_at`, `profile_photo`, `bio`, `reset_token`, `reset_expires`, `remember_token`, `last_activity`, `whatsapp_number`) VALUES
-(1, 'Rebby Noviar', 'rebby@inilah.com', '$2y$10$sb2DMNnv7lS.2Aa6n6AAAu.ylAQMOy/gJcjTfeLr2t/DBnpc9YBJ6', 'creative_director', 1, '2025-06-04 10:48:47', '2025-07-05 02:43:53', 'profile_1_1750326526.png', 'Aduh pusing', NULL, NULL, '5f64f2bb4bf4f37170dc3748984fa22b6ced95150781eae0569108d7e07403da', '2025-07-05 09:43:53', '+6285855636636'),
-(2, 'Rindu', 'rindu@inilah.com', '$2y$10$txxw3xqtS405PVXj93y5t.jCaPuKweo7J2lxIdWItCHQ/CvMc7U8K', 'content_team', 1, '2025-06-04 11:10:51', '2025-07-04 12:18:23', 'profile_2_1750832606.png', '', '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', '16d8d9570f8451cca0f1b39be1e8cfea188c63c6e71de02d9c76391ab57756f8', '2025-07-04 19:18:23', '+6281214965263'),
-(3, 'Wahyu', 'wahyu@inilah.com', '$2y$10$uSA.aRL/VBz.oZecHF/qKeE6QORaEs7cXEL8SMRQb55nwGvLZ1avy', 'content_team', 1, '2025-06-04 11:11:06', '2025-06-23 09:08:32', NULL, NULL, NULL, NULL, '8c08df250ae77a9a06b81860395b36c1a4b1153eb56a3a3caff54357dca6e183', '2025-06-23 16:08:32', NULL),
-(4, 'Adrika', 'adrika@inilah.com', '$2y$10$4234NhqvQS1KsJB3LUNGK.5a4GvIpcCdrYRDNaLvjX0fUEEsTUI6i', 'content_team', 1, '2025-06-04 11:11:25', '2025-06-23 00:56:51', NULL, NULL, NULL, NULL, NULL, '2025-06-23 07:56:51', NULL),
-(5, 'Irma', 'irma@inilah.com', '$2y$10$eALAre2wjk1vGF5Dm3wpneWWvbMapTgPKHClZtXKeLfpemaFIu9R6', 'content_team', 1, '2025-06-04 11:11:37', '2025-06-17 05:03:20', 'profile_5_1750136600.png', NULL, NULL, NULL, NULL, NULL, NULL),
-(6, 'Taufan', 'taufan@inilah.com', '$2y$10$v4KebPHDBKnh/4QiqWRH0OgkrbGfvRXX7CTe4W7hCDf3cSMiNf6oO', 'production_team', 1, '2025-06-04 11:11:53', '2025-06-27 04:51:06', 'profile_6_1749480249.jpg', 'Gadis koleris yang suka berimajinasi, terangi harimu dengan senyuman karamelku. Halo, aku Taufan! ', NULL, NULL, '87e8a9fdf6f6c2fcf5358466d89ce5411c14fe4097ec80a9ed4f52f31d720154', '2025-06-27 11:51:06', NULL),
-(7, 'Axel', 'axel@inilah.com', '$2y$10$qksykbhd/gdezQ3kMFrNl.LsmwjQ0DwIvI4VT3QGEgVNjqIan4XiC', 'production_team', 1, '2025-06-04 11:12:07', '2025-06-19 10:55:06', 'profile_7_1750330506.png', NULL, NULL, NULL, NULL, NULL, NULL),
-(8, 'Lukman', 'lukman@inilah.com', '$2y$10$y48AjploppCXJNGdJjQ.x.8pE7AXb2nvxZckT7rE27TBLO6fxerF6', 'production_team', 1, '2025-06-04 11:12:23', '2025-06-24 13:55:15', NULL, NULL, NULL, NULL, NULL, '2025-06-24 20:55:15', NULL),
-(9, 'Febry', 'febry@inilah.com', '$2y$10$swhfo5H5WynOejlZdnL/4OFJzbTCYIHtHEy327ZylxwU223ystnGu', 'production_team', 1, '2025-06-04 11:12:37', '2025-07-03 13:03:48', 'profile_9_1749066837.jpg', 'yang tiba-tiba suka Gala Premiere.', NULL, NULL, NULL, '2025-07-03 20:03:48', '+6281222333444'),
-(10, 'Dede', 'dede@inilah.com', '$2y$10$qDyzVdcYCscBbMHdEW/BT.D29IgKdE1BDaRjffXhM14NPfOp3A2/y', 'production_team', 1, '2025-06-04 11:12:51', '2025-06-04 11:12:51', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(11, 'Rizky', 'rizky@inilah.com', '$2y$10$qzhdFM8AVHj49D1JQ2M2KONf5sdjdeFPTS11n/1ypo8MsInlKTc6e', 'production_team', 1, '2025-06-04 11:13:03', '2025-06-04 11:13:03', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(13, 'Talita', 'talita@inilah.com', '$2y$10$tDZpSj1mgvGXK8NLgCQQzOCqNs408HH0QZbuzQFfh4PZRBSV0V7XS', 'marketing_team', 1, '2025-06-08 19:38:47', '2025-07-02 15:08:04', 'profile_13_1750832579.png', 'yang cantik jelita.', NULL, NULL, NULL, '2025-07-02 22:08:04', NULL),
+(1, 'Rebby Noviar', 'rebby@inilah.com', '$2y$10$sb2DMNnv7lS.2Aa6n6AAAu.ylAQMOy/gJcjTfeLr2t/DBnpc9YBJ6', 'creative_director', 1, '2025-06-04 10:48:47', '2025-07-11 07:17:29', 'avatar/rebby.jpg', 'Aduh pusing', NULL, NULL, 'a0e71210ab0e9701aad43456cec988a46ff4ede18b4ceae1cafc96114e1b8293', '2025-07-11 14:17:29', '+6285855636636'),
+(2, 'Rindu', 'rindu@inilah.com', '$2y$10$txxw3xqtS405PVXj93y5t.jCaPuKweo7J2lxIdWItCHQ/CvMc7U8K', 'content_team', 1, '2025-06-04 11:10:51', '2025-07-11 07:17:51', 'avatar/rindu.jpg', '', '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', '25f5afb80cb3f678c06868ab25e4563d6895813069d7b7c36d8223f18e11c744', '2025-07-11 14:17:51', '+6281214965263'),
+(3, 'Wahyu', 'wahyu@inilah.com', '$2y$10$uSA.aRL/VBz.oZecHF/qKeE6QORaEs7cXEL8SMRQb55nwGvLZ1avy', 'content_team', 1, '2025-06-04 11:11:06', '2025-07-07 09:58:18', 'avatar/wahyu.jpg', NULL, NULL, NULL, '8c08df250ae77a9a06b81860395b36c1a4b1153eb56a3a3caff54357dca6e183', '2025-06-23 16:08:32', NULL),
+(4, 'Adrika', 'adrika@inilah.com', '$2y$10$4234NhqvQS1KsJB3LUNGK.5a4GvIpcCdrYRDNaLvjX0fUEEsTUI6i', 'content_team', 1, '2025-06-04 11:11:25', '2025-07-07 09:58:27', 'avatar/adrika.jpg', NULL, NULL, NULL, NULL, '2025-06-23 07:56:51', NULL),
+(5, 'Irma', 'irma@inilah.com', '$2y$10$eALAre2wjk1vGF5Dm3wpneWWvbMapTgPKHClZtXKeLfpemaFIu9R6', 'content_team', 1, '2025-06-04 11:11:37', '2025-07-07 09:58:34', 'avatar/irma.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(6, 'Taufan', 'taufan@inilah.com', '$2y$10$v4KebPHDBKnh/4QiqWRH0OgkrbGfvRXX7CTe4W7hCDf3cSMiNf6oO', 'production_team', 1, '2025-06-04 11:11:53', '2025-07-11 07:01:27', 'avatar/taufan.jpg', 'Gadis koleris yang suka berimajinasi, terangi harimu dengan senyuman karamelku. Halo, aku Taufan! ', NULL, NULL, 'a937955f7ac4e316dacc29089877074e14c9ec0638b00d115106220a5f131a7f', '2025-07-11 14:01:27', '+6287885281593'),
+(7, 'Axel', 'axel@inilah.com', '$2y$10$qksykbhd/gdezQ3kMFrNl.LsmwjQ0DwIvI4VT3QGEgVNjqIan4XiC', 'production_team', 1, '2025-06-04 11:12:07', '2025-07-07 09:58:45', 'avatar/axel.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(8, 'Lukman', 'lukman@inilah.com', '$2y$10$y48AjploppCXJNGdJjQ.x.8pE7AXb2nvxZckT7rE27TBLO6fxerF6', 'production_team', 1, '2025-06-04 11:12:23', '2025-07-07 09:58:51', 'avatar/lukman.jpg', NULL, NULL, NULL, NULL, '2025-06-24 20:55:15', NULL),
+(9, 'Febry', 'febry@inilah.com', '$2y$10$swhfo5H5WynOejlZdnL/4OFJzbTCYIHtHEy327ZylxwU223ystnGu', 'production_team', 1, '2025-06-04 11:12:37', '2025-07-10 14:11:41', 'avatar/febry.jpg', 'yang tiba-tiba suka Gala Premiere.', NULL, NULL, '9b75d1b99322d82cab1225b70d2a1927df51dd338a2c1a23385e5f3d2e65e41e', '2025-07-10 21:11:41', '+6281282229668'),
+(10, 'Bagas', 'bagas@inilah.com', '$2y$10$qDyzVdcYCscBbMHdEW/BT.D29IgKdE1BDaRjffXhM14NPfOp3A2/y', 'production_team', 1, '2025-06-04 11:12:51', '2025-07-10 08:52:21', 'avatar/bagas.jpg', NULL, NULL, NULL, NULL, '2025-07-10 15:52:21', '+6281222444333'),
+(11, 'Rizky', 'rizky@inilah.com', '$2y$10$qzhdFM8AVHj49D1JQ2M2KONf5sdjdeFPTS11n/1ypo8MsInlKTc6e', 'production_team', 1, '2025-06-04 11:13:03', '2025-07-07 09:59:09', 'avatar/rizky.jpg', NULL, NULL, NULL, NULL, NULL, NULL),
+(13, 'Talita', 'talita@inilah.com', '$2y$10$tDZpSj1mgvGXK8NLgCQQzOCqNs408HH0QZbuzQFfh4PZRBSV0V7XS', 'marketing_team', 1, '2025-06-08 19:38:47', '2025-07-11 07:14:10', 'profile_13_1750832579.png', 'yang cantik jelita.', NULL, NULL, NULL, '2025-07-11 14:14:10', '+6281222333666'),
 (18, 'Nebby', 'nebby@inilah.com', '$2y$10$oU5YBu33i83bJRsgTYf7P.ewT7cRb0T.3jzqA0HOe914NMugK1Qie', 'redaksi', 1, '2025-06-30 08:42:01', '2025-07-04 07:02:39', 'profile_18_1751290770.png', '', '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', NULL, NULL, '+6281214965263'),
 (19, 'ivan@inilah.com', 'ivan@inilah.com', '$2y$10$EMIjlyIwMtyilqZj1REvIu5d8.TrDSGsbUc9g10Lyr3tgkYFrtGGy', 'redaksi', 1, '2025-06-30 08:42:23', '2025-06-30 08:42:23', NULL, NULL, NULL, NULL, NULL, NULL, NULL),
-(20, 'Ibnu', 'ibnu@inilah.com', '$2y$10$irk0fWTFcdbzoj/155oTXuwwhADVjuASvQ3qrZD6wKxkA6akMUeu6', 'redaktur_pelaksana', 1, '2025-06-30 08:42:45', '2025-07-04 07:02:39', 'profile_20_1751285536.png', '', '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', NULL, NULL, '+6281214965263'),
-(21, 'Obes', 'obes@inilah.com', '$2y$10$V2m0PSDyUsSxBzciFtfkFe3VG4ENPejQ4qcpHqDWGCEHGA/p65ZZS', 'redaktur_pelaksana', 1, '2025-07-01 07:17:14', '2025-07-04 07:02:39', NULL, NULL, '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', NULL, NULL, '+6281214965263');
+(20, 'Ibnu', 'ibnu@inilah.com', '$2y$10$irk0fWTFcdbzoj/155oTXuwwhADVjuASvQ3qrZD6wKxkA6akMUeu6', 'redaktur_pelaksana', 1, '2025-06-30 08:42:45', '2025-07-11 07:08:52', 'profile_20_1751285536.png', '', '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', NULL, '2025-07-11 14:08:52', '+628222888111'),
+(21, 'Obes', 'obes@inilah.com', '$2y$10$V2m0PSDyUsSxBzciFtfkFe3VG4ENPejQ4qcpHqDWGCEHGA/p65ZZS', 'redaktur_pelaksana', 1, '2025-07-01 07:17:14', '2025-07-04 07:02:39', NULL, NULL, '323391997a64e0157b830719a8fd815fcc19f1c66f1d780208fd113d3a578f63', '2025-07-04 10:02:39', NULL, NULL, '+6281214965263'),
+(22, 'Dilla', 'dilla@inilah.com', '$2y$10$8OlUBd0UvLbmN5U01DXRFe8hE1MrLgnDGJ4G8kgOlrKuDVzRlC5bS', 'content_team', 1, '2025-07-08 12:20:31', '2025-07-08 12:20:53', 'avatar/dilla.jpg', NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_points`
+-- Table structure for table `user_points`
 --
 
 CREATE TABLE `user_points` (
@@ -3568,7 +3802,7 @@ CREATE TABLE `user_points` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_points`
+-- Dumping data for table `user_points`
 --
 
 INSERT INTO `user_points` (`id`, `user_id`, `task_id`, `points`, `earned_at`, `added_by`, `description`) VALUES
@@ -3794,12 +4028,45 @@ INSERT INTO `user_points` (`id`, `user_id`, `task_id`, `points`, `earned_at`, `a
 (221, 2, 183, 3.50, '2025-07-03 06:44:39', NULL, NULL),
 (222, 2, 184, 3.50, '2025-07-03 06:44:45', NULL, NULL),
 (223, 2, 186, 3.50, '2025-07-03 06:44:51', NULL, NULL),
-(224, 2, NULL, 10.00, '2025-07-03 07:56:14', 1, 'bonus');
+(224, 2, NULL, 10.00, '2025-07-03 07:56:14', 1, 'bonus'),
+(225, 2, NULL, 10.00, '2025-07-05 04:31:11', 1, 'bonus'),
+(226, 2, NULL, 21.00, '2025-07-05 04:32:20', 1, 'bonus'),
+(227, 9, 212, 1.00, '2025-07-05 04:40:14', NULL, NULL),
+(228, 2, 212, 1.00, '2025-07-05 04:40:14', NULL, NULL),
+(229, 9, 215, 1.00, '2025-07-08 09:25:39', NULL, NULL),
+(230, 2, 215, 3.00, '2025-07-08 09:25:39', NULL, NULL),
+(231, 6, 219, 1.00, '2025-07-10 07:45:03', NULL, NULL),
+(232, 2, 219, 3.00, '2025-07-10 07:45:03', NULL, NULL),
+(233, 13, 220, 1.00, '2025-07-10 07:50:23', NULL, NULL),
+(234, 2, 220, 3.00, '2025-07-10 07:51:49', NULL, NULL),
+(235, 6, NULL, 30.00, '2025-07-10 07:54:03', 1, 'bonus'),
+(236, 6, 222, 3.00, '2025-07-10 08:32:43', NULL, NULL),
+(237, 2, 222, 2.00, '2025-07-10 08:32:43', NULL, NULL),
+(238, 9, NULL, 1.50, '2025-07-10 08:33:37', 1, 'desain cover'),
+(239, 10, NULL, 2.00, '2025-07-10 08:33:54', 1, 'voice over'),
+(240, 10, 223, 3.00, '2025-07-10 08:47:55', NULL, NULL),
+(241, 2, 223, 1.00, '2025-07-10 08:47:55', NULL, NULL),
+(242, 13, 225, 1.00, '2025-07-10 11:11:25', NULL, NULL),
+(243, 9, 226, 2.00, '2025-07-10 12:19:28', NULL, NULL),
+(244, 2, 226, 3.00, '2025-07-10 12:19:28', NULL, NULL),
+(245, 6, 221, 5.00, '2025-07-10 14:10:46', NULL, NULL),
+(246, 2, 221, 3.50, '2025-07-10 14:10:46', NULL, NULL),
+(247, 9, 227, 2.00, '2025-07-10 14:14:53', NULL, NULL),
+(248, 2, 227, 3.50, '2025-07-10 14:14:53', NULL, NULL),
+(249, 13, 224, 1.00, '2025-07-11 05:41:39', NULL, NULL),
+(250, 6, 230, 3.00, '2025-07-11 06:19:59', NULL, NULL),
+(251, 2, 230, 2.00, '2025-07-11 06:19:59', NULL, NULL),
+(252, 6, 229, 2.00, '2025-07-11 06:20:03', NULL, NULL),
+(253, 2, 229, 1.00, '2025-07-11 06:20:03', NULL, NULL),
+(254, 6, 228, 3.00, '2025-07-11 06:20:10', NULL, NULL),
+(255, 2, 228, 4.50, '2025-07-11 06:20:10', NULL, NULL),
+(256, 2, NULL, 30.50, '2025-07-11 06:37:06', 1, 'bonus'),
+(257, 13, 232, 1.00, '2025-07-11 07:08:38', NULL, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_sessions`
+-- Table structure for table `user_sessions`
 --
 
 CREATE TABLE `user_sessions` (
@@ -3811,148 +4078,1870 @@ CREATE TABLE `user_sessions` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_sessions`
+-- Dumping data for table `user_sessions`
 --
 
 INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `last_activity`, `session_status`) VALUES
-(66774, 1, 'ga3s67l4eld5sq5t06666r5aik', '2025-07-04 12:28:35', 'active'),
-(66775, 1, '', '0000-00-00 00:00:00', 'active'),
-(66776, 2, 'fm6qtms8b5c99lb5uo0c52efee', '2025-07-04 12:28:39', 'active'),
-(66777, 2, '', '0000-00-00 00:00:00', 'active'),
-(66778, 1, '', '0000-00-00 00:00:00', 'active'),
-(66779, 2, '', '0000-00-00 00:00:00', 'active'),
-(66780, 1, '', '0000-00-00 00:00:00', 'active'),
-(66781, 1, '', '0000-00-00 00:00:00', 'active'),
-(66782, 2, '', '0000-00-00 00:00:00', 'active'),
-(66783, 1, '', '0000-00-00 00:00:00', 'active'),
-(66784, 2, '', '0000-00-00 00:00:00', 'active'),
-(66785, 1, '', '0000-00-00 00:00:00', 'active'),
-(66786, 2, '', '0000-00-00 00:00:00', 'active'),
-(66787, 1, '', '0000-00-00 00:00:00', 'active'),
-(66788, 2, '', '0000-00-00 00:00:00', 'active'),
-(66789, 1, '', '0000-00-00 00:00:00', 'active'),
-(66790, 2, '', '0000-00-00 00:00:00', 'active'),
-(66791, 1, '', '0000-00-00 00:00:00', 'active'),
-(66792, 2, '', '0000-00-00 00:00:00', 'active'),
-(66793, 1, '', '0000-00-00 00:00:00', 'active'),
-(66794, 2, '', '0000-00-00 00:00:00', 'active'),
-(66795, 1, '', '0000-00-00 00:00:00', 'active'),
-(66796, 2, '', '0000-00-00 00:00:00', 'active'),
-(66797, 1, '', '0000-00-00 00:00:00', 'active'),
-(66798, 2, '', '0000-00-00 00:00:00', 'active'),
-(66799, 1, '', '0000-00-00 00:00:00', 'active'),
-(66800, 2, '', '0000-00-00 00:00:00', 'active'),
-(66801, 1, '', '0000-00-00 00:00:00', 'active'),
-(66802, 2, '', '0000-00-00 00:00:00', 'active'),
-(66803, 1, '', '0000-00-00 00:00:00', 'active'),
-(66804, 2, '', '0000-00-00 00:00:00', 'active'),
-(66805, 1, '', '0000-00-00 00:00:00', 'active'),
-(66806, 2, '', '0000-00-00 00:00:00', 'active'),
-(66807, 1, '', '0000-00-00 00:00:00', 'active'),
-(66808, 2, '', '0000-00-00 00:00:00', 'active'),
-(66809, 1, '', '0000-00-00 00:00:00', 'active'),
-(66810, 2, '', '0000-00-00 00:00:00', 'active'),
-(66811, 1, '', '0000-00-00 00:00:00', 'active'),
-(66812, 2, '', '0000-00-00 00:00:00', 'active'),
-(66813, 1, '', '0000-00-00 00:00:00', 'active'),
-(66814, 2, '', '0000-00-00 00:00:00', 'active'),
-(66815, 1, '', '0000-00-00 00:00:00', 'active'),
-(66816, 2, '', '0000-00-00 00:00:00', 'active'),
-(66817, 1, '', '0000-00-00 00:00:00', 'active'),
-(66818, 2, '', '0000-00-00 00:00:00', 'active'),
-(66819, 1, '', '0000-00-00 00:00:00', 'active'),
-(66820, 2, '', '0000-00-00 00:00:00', 'active'),
-(66821, 1, '', '0000-00-00 00:00:00', 'active'),
-(66822, 2, '', '0000-00-00 00:00:00', 'active'),
-(66823, 1, '', '0000-00-00 00:00:00', 'active'),
-(66824, 2, '', '0000-00-00 00:00:00', 'active'),
-(66825, 1, '', '0000-00-00 00:00:00', 'active'),
-(66826, 2, '', '0000-00-00 00:00:00', 'active'),
-(66827, 1, '', '0000-00-00 00:00:00', 'active'),
-(66828, 2, '', '0000-00-00 00:00:00', 'active'),
-(66829, 1, '', '0000-00-00 00:00:00', 'active'),
-(66830, 2, '', '0000-00-00 00:00:00', 'active'),
-(66831, 1, '', '0000-00-00 00:00:00', 'active'),
-(66832, 2, '', '0000-00-00 00:00:00', 'active'),
-(66833, 1, '', '0000-00-00 00:00:00', 'active'),
-(66834, 2, '', '0000-00-00 00:00:00', 'active'),
-(66835, 1, '', '0000-00-00 00:00:00', 'active'),
-(66836, 2, '', '0000-00-00 00:00:00', 'active'),
-(66837, 1, '', '0000-00-00 00:00:00', 'active'),
-(66838, 2, '', '0000-00-00 00:00:00', 'active'),
-(66839, 1, '', '0000-00-00 00:00:00', 'active'),
-(66840, 2, '', '0000-00-00 00:00:00', 'active'),
-(66841, 1, '', '0000-00-00 00:00:00', 'active'),
-(66842, 2, '', '0000-00-00 00:00:00', 'active'),
-(66843, 1, '', '0000-00-00 00:00:00', 'active'),
-(66844, 2, '', '0000-00-00 00:00:00', 'active'),
-(66845, 1, '', '0000-00-00 00:00:00', 'active'),
-(66846, 2, '', '0000-00-00 00:00:00', 'active'),
-(66847, 1, '', '0000-00-00 00:00:00', 'active'),
-(66848, 2, '', '0000-00-00 00:00:00', 'active'),
-(66849, 1, '', '0000-00-00 00:00:00', 'active'),
-(66850, 2, '', '0000-00-00 00:00:00', 'active'),
-(66851, 1, '', '0000-00-00 00:00:00', 'active'),
-(66852, 2, '', '0000-00-00 00:00:00', 'active'),
-(66853, 1, '', '0000-00-00 00:00:00', 'active'),
-(66854, 2, '', '0000-00-00 00:00:00', 'active'),
-(66855, 1, '', '0000-00-00 00:00:00', 'active'),
-(66856, 2, '', '0000-00-00 00:00:00', 'active'),
-(66857, 1, '', '0000-00-00 00:00:00', 'active'),
-(66858, 2, '', '0000-00-00 00:00:00', 'active'),
-(66859, 1, '', '0000-00-00 00:00:00', 'active'),
-(66860, 2, '', '0000-00-00 00:00:00', 'active'),
-(66861, 1, '', '0000-00-00 00:00:00', 'active'),
-(66862, 2, '', '0000-00-00 00:00:00', 'active'),
-(66863, 1, '', '0000-00-00 00:00:00', 'active'),
-(66864, 2, '', '0000-00-00 00:00:00', 'active'),
-(66865, 1, '', '0000-00-00 00:00:00', 'active'),
-(66866, 2, '', '0000-00-00 00:00:00', 'active'),
-(66867, 1, '', '0000-00-00 00:00:00', 'active'),
-(66868, 2, '', '0000-00-00 00:00:00', 'active'),
-(66869, 1, '', '0000-00-00 00:00:00', 'active'),
-(66870, 2, '', '0000-00-00 00:00:00', 'active'),
-(66871, 1, '', '0000-00-00 00:00:00', 'active'),
-(66872, 2, '', '0000-00-00 00:00:00', 'active'),
-(66873, 1, '', '0000-00-00 00:00:00', 'active'),
-(66874, 2, '', '0000-00-00 00:00:00', 'active'),
-(66875, 1, '', '0000-00-00 00:00:00', 'active'),
-(66876, 2, '', '0000-00-00 00:00:00', 'active'),
-(66877, 1, '', '0000-00-00 00:00:00', 'active'),
-(66878, 2, '', '0000-00-00 00:00:00', 'active'),
-(66879, 1, '', '0000-00-00 00:00:00', 'active'),
-(66880, 2, '', '0000-00-00 00:00:00', 'active'),
-(66881, 1, '', '0000-00-00 00:00:00', 'active'),
-(66882, 2, '', '0000-00-00 00:00:00', 'active'),
-(66883, 1, '', '0000-00-00 00:00:00', 'active'),
-(66884, 2, '', '0000-00-00 00:00:00', 'active'),
-(66885, 1, '', '0000-00-00 00:00:00', 'active'),
-(66886, 2, '', '0000-00-00 00:00:00', 'active'),
-(66887, 1, '', '0000-00-00 00:00:00', 'active'),
-(66888, 2, '', '0000-00-00 00:00:00', 'active'),
-(66889, 1, '', '0000-00-00 00:00:00', 'active'),
-(66890, 2, '', '0000-00-00 00:00:00', 'active'),
-(66891, 1, '', '0000-00-00 00:00:00', 'active'),
-(66892, 2, '', '0000-00-00 00:00:00', 'active'),
-(66893, 1, '', '0000-00-00 00:00:00', 'active'),
-(66894, 2, '', '0000-00-00 00:00:00', 'active'),
-(66895, 1, '', '0000-00-00 00:00:00', 'active'),
-(66896, 2, '', '0000-00-00 00:00:00', 'active'),
-(66897, 2, '', '0000-00-00 00:00:00', 'active'),
-(66898, 1, 'eo7es0l3hgal1jfa9oj3q3drsg', '2025-07-05 02:44:14', 'active'),
-(66899, 1, '', '0000-00-00 00:00:00', 'active'),
-(66900, 1, '', '0000-00-00 00:00:00', 'active'),
-(66901, 1, '', '0000-00-00 00:00:00', 'active'),
-(66902, 1, '', '0000-00-00 00:00:00', 'active'),
-(66903, 1, '', '0000-00-00 00:00:00', 'active'),
-(66904, 1, '', '0000-00-00 00:00:00', 'active'),
-(66905, 1, '', '0000-00-00 00:00:00', 'active'),
-(66906, 1, '', '0000-00-00 00:00:00', 'active');
+(94552, 1, 'b3smv4ktc8l2o5iujch4dftr9c', '2025-07-11 08:34:00', 'active'),
+(94553, 6, 'jfppdp50t9ot7plf9b83sutqg3', '2025-07-11 08:34:00', 'active'),
+(94554, 1, '', '0000-00-00 00:00:00', 'active'),
+(94555, 2, 'dsb4teclo253islu101lsk8tr8', '2025-07-11 08:34:04', 'active'),
+(94556, 2, '', '0000-00-00 00:00:00', 'active'),
+(94557, 6, '', '0000-00-00 00:00:00', 'active'),
+(94558, 2, '', '0000-00-00 00:00:00', 'active'),
+(94559, 1, '', '0000-00-00 00:00:00', 'active'),
+(94560, 6, '', '0000-00-00 00:00:00', 'active'),
+(94561, 2, '', '0000-00-00 00:00:00', 'active'),
+(94562, 1, '', '0000-00-00 00:00:00', 'active'),
+(94563, 6, '', '0000-00-00 00:00:00', 'active'),
+(94564, 2, '', '0000-00-00 00:00:00', 'active'),
+(94565, 1, '', '0000-00-00 00:00:00', 'active'),
+(94566, 6, '', '0000-00-00 00:00:00', 'active'),
+(94567, 2, '', '0000-00-00 00:00:00', 'active'),
+(94568, 1, '', '0000-00-00 00:00:00', 'active'),
+(94569, 6, '', '0000-00-00 00:00:00', 'active'),
+(94570, 1, '', '0000-00-00 00:00:00', 'active'),
+(94571, 2, '', '0000-00-00 00:00:00', 'active'),
+(94572, 6, '', '0000-00-00 00:00:00', 'active'),
+(94573, 6, '', '0000-00-00 00:00:00', 'active'),
+(94574, 1, '', '0000-00-00 00:00:00', 'active'),
+(94575, 2, '', '0000-00-00 00:00:00', 'active'),
+(94576, 6, '', '0000-00-00 00:00:00', 'active'),
+(94577, 1, '', '0000-00-00 00:00:00', 'active'),
+(94578, 2, '', '0000-00-00 00:00:00', 'active'),
+(94579, 2, '', '0000-00-00 00:00:00', 'active'),
+(94580, 6, '', '0000-00-00 00:00:00', 'active'),
+(94581, 1, '', '0000-00-00 00:00:00', 'active'),
+(94582, 2, '', '0000-00-00 00:00:00', 'active'),
+(94583, 6, '', '0000-00-00 00:00:00', 'active'),
+(94584, 1, '', '0000-00-00 00:00:00', 'active'),
+(94585, 2, '', '0000-00-00 00:00:00', 'active'),
+(94586, 6, '', '0000-00-00 00:00:00', 'active'),
+(94587, 1, '', '0000-00-00 00:00:00', 'active'),
+(94588, 2, '', '0000-00-00 00:00:00', 'active'),
+(94589, 6, '', '0000-00-00 00:00:00', 'active'),
+(94590, 1, '', '0000-00-00 00:00:00', 'active'),
+(94591, 2, '', '0000-00-00 00:00:00', 'active'),
+(94592, 6, '', '0000-00-00 00:00:00', 'active'),
+(94593, 1, '', '0000-00-00 00:00:00', 'active'),
+(94594, 2, '', '0000-00-00 00:00:00', 'active'),
+(94595, 6, '', '0000-00-00 00:00:00', 'active'),
+(94596, 1, '', '0000-00-00 00:00:00', 'active'),
+(94597, 2, '', '0000-00-00 00:00:00', 'active'),
+(94598, 6, '', '0000-00-00 00:00:00', 'active'),
+(94599, 1, '', '0000-00-00 00:00:00', 'active'),
+(94600, 2, '', '0000-00-00 00:00:00', 'active'),
+(94601, 6, '', '0000-00-00 00:00:00', 'active'),
+(94602, 2, '', '0000-00-00 00:00:00', 'active'),
+(94603, 1, '', '0000-00-00 00:00:00', 'active'),
+(94604, 6, '', '0000-00-00 00:00:00', 'active'),
+(94605, 1, '', '0000-00-00 00:00:00', 'active'),
+(94606, 2, '', '0000-00-00 00:00:00', 'active'),
+(94607, 6, '', '0000-00-00 00:00:00', 'active'),
+(94608, 6, '', '0000-00-00 00:00:00', 'active'),
+(94609, 1, '', '0000-00-00 00:00:00', 'active'),
+(94610, 2, '', '0000-00-00 00:00:00', 'active'),
+(94611, 6, '', '0000-00-00 00:00:00', 'active'),
+(94612, 6, '', '0000-00-00 00:00:00', 'active'),
+(94613, 2, '', '0000-00-00 00:00:00', 'active'),
+(94614, 1, '', '0000-00-00 00:00:00', 'active'),
+(94615, 6, '', '0000-00-00 00:00:00', 'active'),
+(94616, 2, '', '0000-00-00 00:00:00', 'active'),
+(94617, 1, '', '0000-00-00 00:00:00', 'active'),
+(94618, 6, '', '0000-00-00 00:00:00', 'active'),
+(94619, 2, '', '0000-00-00 00:00:00', 'active'),
+(94620, 1, '', '0000-00-00 00:00:00', 'active'),
+(94621, 6, '', '0000-00-00 00:00:00', 'active'),
+(94622, 2, '', '0000-00-00 00:00:00', 'active'),
+(94623, 1, '', '0000-00-00 00:00:00', 'active'),
+(94624, 6, '', '0000-00-00 00:00:00', 'active'),
+(94625, 2, '', '0000-00-00 00:00:00', 'active'),
+(94626, 1, '', '0000-00-00 00:00:00', 'active'),
+(94627, 6, '', '0000-00-00 00:00:00', 'active'),
+(94628, 1, '', '0000-00-00 00:00:00', 'active'),
+(94629, 2, '', '0000-00-00 00:00:00', 'active'),
+(94630, 6, '', '0000-00-00 00:00:00', 'active'),
+(94631, 1, '', '0000-00-00 00:00:00', 'active'),
+(94632, 2, '', '0000-00-00 00:00:00', 'active'),
+(94633, 6, '', '0000-00-00 00:00:00', 'active'),
+(94634, 6, '', '0000-00-00 00:00:00', 'active'),
+(94635, 1, '', '0000-00-00 00:00:00', 'active'),
+(94636, 2, '', '0000-00-00 00:00:00', 'active'),
+(94637, 6, '', '0000-00-00 00:00:00', 'active'),
+(94638, 2, '', '0000-00-00 00:00:00', 'active'),
+(94639, 1, '', '0000-00-00 00:00:00', 'active'),
+(94640, 2, '', '0000-00-00 00:00:00', 'active'),
+(94641, 6, '', '0000-00-00 00:00:00', 'active'),
+(94642, 1, '', '0000-00-00 00:00:00', 'active'),
+(94643, 6, '', '0000-00-00 00:00:00', 'active'),
+(94644, 1, '', '0000-00-00 00:00:00', 'active'),
+(94645, 2, '', '0000-00-00 00:00:00', 'active'),
+(94646, 2, '', '0000-00-00 00:00:00', 'active'),
+(94647, 1, '', '0000-00-00 00:00:00', 'active'),
+(94648, 6, '', '0000-00-00 00:00:00', 'active'),
+(94649, 2, '', '0000-00-00 00:00:00', 'active'),
+(94650, 2, '', '0000-00-00 00:00:00', 'active'),
+(94651, 6, '', '0000-00-00 00:00:00', 'active'),
+(94652, 1, '', '0000-00-00 00:00:00', 'active'),
+(94653, 2, '', '0000-00-00 00:00:00', 'active'),
+(94654, 6, '', '0000-00-00 00:00:00', 'active'),
+(94655, 1, '', '0000-00-00 00:00:00', 'active'),
+(94656, 2, '', '0000-00-00 00:00:00', 'active'),
+(94657, 6, '', '0000-00-00 00:00:00', 'active'),
+(94658, 1, '', '0000-00-00 00:00:00', 'active'),
+(94659, 2, '', '0000-00-00 00:00:00', 'active'),
+(94660, 6, '', '0000-00-00 00:00:00', 'active'),
+(94661, 1, '', '0000-00-00 00:00:00', 'active'),
+(94662, 2, '', '0000-00-00 00:00:00', 'active'),
+(94663, 6, '', '0000-00-00 00:00:00', 'active'),
+(94664, 1, '', '0000-00-00 00:00:00', 'active'),
+(94665, 2, '', '0000-00-00 00:00:00', 'active'),
+(94666, 1, '', '0000-00-00 00:00:00', 'active'),
+(94667, 6, '', '0000-00-00 00:00:00', 'active'),
+(94668, 2, '', '0000-00-00 00:00:00', 'active'),
+(94669, 1, '', '0000-00-00 00:00:00', 'active'),
+(94670, 6, '', '0000-00-00 00:00:00', 'active'),
+(94671, 2, '', '0000-00-00 00:00:00', 'active'),
+(94672, 6, '', '0000-00-00 00:00:00', 'active'),
+(94673, 1, '', '0000-00-00 00:00:00', 'active'),
+(94674, 2, '', '0000-00-00 00:00:00', 'active'),
+(94675, 6, '', '0000-00-00 00:00:00', 'active'),
+(94676, 1, '', '0000-00-00 00:00:00', 'active'),
+(94677, 2, '', '0000-00-00 00:00:00', 'active'),
+(94678, 6, '', '0000-00-00 00:00:00', 'active'),
+(94679, 1, '', '0000-00-00 00:00:00', 'active'),
+(94680, 2, '', '0000-00-00 00:00:00', 'active'),
+(94681, 1, '', '0000-00-00 00:00:00', 'active'),
+(94682, 6, '', '0000-00-00 00:00:00', 'active'),
+(94683, 2, '', '0000-00-00 00:00:00', 'active'),
+(94684, 1, '', '0000-00-00 00:00:00', 'active'),
+(94685, 6, '', '0000-00-00 00:00:00', 'active'),
+(94686, 2, '', '0000-00-00 00:00:00', 'active'),
+(94687, 6, '', '0000-00-00 00:00:00', 'active'),
+(94688, 1, '', '0000-00-00 00:00:00', 'active'),
+(94689, 2, '', '0000-00-00 00:00:00', 'active'),
+(94690, 6, '', '0000-00-00 00:00:00', 'active'),
+(94691, 1, '', '0000-00-00 00:00:00', 'active'),
+(94692, 2, '', '0000-00-00 00:00:00', 'active'),
+(94693, 1, '', '0000-00-00 00:00:00', 'active'),
+(94694, 6, '', '0000-00-00 00:00:00', 'active'),
+(94695, 2, '', '0000-00-00 00:00:00', 'active'),
+(94696, 1, '', '0000-00-00 00:00:00', 'active'),
+(94697, 6, '', '0000-00-00 00:00:00', 'active'),
+(94698, 2, '', '0000-00-00 00:00:00', 'active'),
+(94699, 6, '', '0000-00-00 00:00:00', 'active'),
+(94700, 1, '', '0000-00-00 00:00:00', 'active'),
+(94701, 2, '', '0000-00-00 00:00:00', 'active'),
+(94702, 2, '', '0000-00-00 00:00:00', 'active'),
+(94703, 2, '', '0000-00-00 00:00:00', 'active'),
+(94704, 2, '', '0000-00-00 00:00:00', 'active'),
+(94705, 2, '', '0000-00-00 00:00:00', 'active'),
+(94706, 2, '', '0000-00-00 00:00:00', 'active'),
+(94707, 2, '', '0000-00-00 00:00:00', 'active'),
+(94708, 2, '', '0000-00-00 00:00:00', 'active'),
+(94709, 2, '', '0000-00-00 00:00:00', 'active'),
+(94710, 2, '', '0000-00-00 00:00:00', 'active'),
+(94711, 6, '', '0000-00-00 00:00:00', 'active'),
+(94712, 1, '', '0000-00-00 00:00:00', 'active'),
+(94713, 2, '', '0000-00-00 00:00:00', 'active'),
+(94714, 2, '', '0000-00-00 00:00:00', 'active'),
+(94715, 2, '', '0000-00-00 00:00:00', 'active'),
+(94716, 6, '', '0000-00-00 00:00:00', 'active'),
+(94717, 1, '', '0000-00-00 00:00:00', 'active'),
+(94718, 1, '', '0000-00-00 00:00:00', 'active'),
+(94719, 6, '', '0000-00-00 00:00:00', 'active'),
+(94720, 6, '', '0000-00-00 00:00:00', 'active'),
+(94721, 1, '', '0000-00-00 00:00:00', 'active'),
+(94722, 6, '', '0000-00-00 00:00:00', 'active'),
+(94723, 1, '', '0000-00-00 00:00:00', 'active'),
+(94724, 6, '', '0000-00-00 00:00:00', 'active'),
+(94725, 1, '', '0000-00-00 00:00:00', 'active'),
+(94726, 6, '', '0000-00-00 00:00:00', 'active'),
+(94727, 1, '', '0000-00-00 00:00:00', 'active'),
+(94728, 1, '', '0000-00-00 00:00:00', 'active'),
+(94729, 6, '', '0000-00-00 00:00:00', 'active'),
+(94730, 1, '', '0000-00-00 00:00:00', 'active'),
+(94731, 6, '', '0000-00-00 00:00:00', 'active'),
+(94732, 2, '', '0000-00-00 00:00:00', 'active'),
+(94733, 2, '', '0000-00-00 00:00:00', 'active'),
+(94734, 6, '', '0000-00-00 00:00:00', 'active'),
+(94735, 1, '', '0000-00-00 00:00:00', 'active'),
+(94736, 2, '', '0000-00-00 00:00:00', 'active'),
+(94737, 6, '', '0000-00-00 00:00:00', 'active'),
+(94738, 1, '', '0000-00-00 00:00:00', 'active'),
+(94739, 2, '', '0000-00-00 00:00:00', 'active'),
+(94740, 6, '', '0000-00-00 00:00:00', 'active'),
+(94741, 1, '', '0000-00-00 00:00:00', 'active'),
+(94742, 2, '', '0000-00-00 00:00:00', 'active'),
+(94743, 1, '', '0000-00-00 00:00:00', 'active'),
+(94744, 6, '', '0000-00-00 00:00:00', 'active'),
+(94745, 2, '', '0000-00-00 00:00:00', 'active'),
+(94746, 1, '', '0000-00-00 00:00:00', 'active'),
+(94747, 6, '', '0000-00-00 00:00:00', 'active'),
+(94748, 2, '', '0000-00-00 00:00:00', 'active'),
+(94749, 2, '', '0000-00-00 00:00:00', 'active'),
+(94750, 6, '', '0000-00-00 00:00:00', 'active'),
+(94751, 1, '', '0000-00-00 00:00:00', 'active'),
+(94752, 2, '', '0000-00-00 00:00:00', 'active'),
+(94753, 6, '', '0000-00-00 00:00:00', 'active'),
+(94754, 1, '', '0000-00-00 00:00:00', 'active'),
+(94755, 2, '', '0000-00-00 00:00:00', 'active'),
+(94756, 1, '', '0000-00-00 00:00:00', 'active'),
+(94757, 6, '', '0000-00-00 00:00:00', 'active'),
+(94758, 2, '', '0000-00-00 00:00:00', 'active'),
+(94759, 6, '', '0000-00-00 00:00:00', 'active'),
+(94760, 1, '', '0000-00-00 00:00:00', 'active'),
+(94761, 2, '', '0000-00-00 00:00:00', 'active'),
+(94762, 1, '', '0000-00-00 00:00:00', 'active'),
+(94763, 6, '', '0000-00-00 00:00:00', 'active'),
+(94764, 6, '', '0000-00-00 00:00:00', 'active'),
+(94765, 1, '', '0000-00-00 00:00:00', 'active'),
+(94766, 2, '', '0000-00-00 00:00:00', 'active'),
+(94767, 2, '', '0000-00-00 00:00:00', 'active'),
+(94768, 6, '', '0000-00-00 00:00:00', 'active'),
+(94769, 1, '', '0000-00-00 00:00:00', 'active'),
+(94770, 1, '', '0000-00-00 00:00:00', 'active'),
+(94771, 2, '', '0000-00-00 00:00:00', 'active'),
+(94772, 6, '', '0000-00-00 00:00:00', 'active'),
+(94773, 1, '', '0000-00-00 00:00:00', 'active'),
+(94774, 2, '', '0000-00-00 00:00:00', 'active'),
+(94775, 6, '', '0000-00-00 00:00:00', 'active'),
+(94776, 6, '', '0000-00-00 00:00:00', 'active'),
+(94777, 1, '', '0000-00-00 00:00:00', 'active'),
+(94778, 2, '', '0000-00-00 00:00:00', 'active'),
+(94779, 1, '', '0000-00-00 00:00:00', 'active'),
+(94780, 6, '', '0000-00-00 00:00:00', 'active'),
+(94781, 2, '', '0000-00-00 00:00:00', 'active'),
+(94782, 2, '', '0000-00-00 00:00:00', 'active'),
+(94783, 6, '', '0000-00-00 00:00:00', 'active'),
+(94784, 1, '', '0000-00-00 00:00:00', 'active'),
+(94785, 2, '', '0000-00-00 00:00:00', 'active'),
+(94786, 1, '', '0000-00-00 00:00:00', 'active'),
+(94787, 6, '', '0000-00-00 00:00:00', 'active'),
+(94788, 2, '', '0000-00-00 00:00:00', 'active'),
+(94789, 6, '', '0000-00-00 00:00:00', 'active'),
+(94790, 1, '', '0000-00-00 00:00:00', 'active'),
+(94791, 2, '', '0000-00-00 00:00:00', 'active'),
+(94792, 6, '', '0000-00-00 00:00:00', 'active'),
+(94793, 1, '', '0000-00-00 00:00:00', 'active'),
+(94794, 2, '', '0000-00-00 00:00:00', 'active'),
+(94795, 1, '', '0000-00-00 00:00:00', 'active'),
+(94796, 6, '', '0000-00-00 00:00:00', 'active'),
+(94797, 1, '', '0000-00-00 00:00:00', 'active'),
+(94798, 2, '', '0000-00-00 00:00:00', 'active'),
+(94799, 6, '', '0000-00-00 00:00:00', 'active'),
+(94800, 1, '', '0000-00-00 00:00:00', 'active'),
+(94801, 2, '', '0000-00-00 00:00:00', 'active'),
+(94802, 1, '', '0000-00-00 00:00:00', 'active'),
+(94803, 6, '', '0000-00-00 00:00:00', 'active'),
+(94804, 2, '', '0000-00-00 00:00:00', 'active'),
+(94805, 1, '', '0000-00-00 00:00:00', 'active'),
+(94806, 6, '', '0000-00-00 00:00:00', 'active'),
+(94807, 2, '', '0000-00-00 00:00:00', 'active'),
+(94808, 1, '', '0000-00-00 00:00:00', 'active'),
+(94809, 6, '', '0000-00-00 00:00:00', 'active'),
+(94810, 2, '', '0000-00-00 00:00:00', 'active'),
+(94811, 1, '', '0000-00-00 00:00:00', 'active'),
+(94812, 6, '', '0000-00-00 00:00:00', 'active'),
+(94813, 2, '', '0000-00-00 00:00:00', 'active'),
+(94814, 1, '', '0000-00-00 00:00:00', 'active'),
+(94815, 6, '', '0000-00-00 00:00:00', 'active'),
+(94816, 2, '', '0000-00-00 00:00:00', 'active'),
+(94817, 1, '', '0000-00-00 00:00:00', 'active'),
+(94818, 6, '', '0000-00-00 00:00:00', 'active'),
+(94819, 2, '', '0000-00-00 00:00:00', 'active'),
+(94820, 1, '', '0000-00-00 00:00:00', 'active'),
+(94821, 6, '', '0000-00-00 00:00:00', 'active'),
+(94822, 2, '', '0000-00-00 00:00:00', 'active'),
+(94823, 1, '', '0000-00-00 00:00:00', 'active'),
+(94824, 6, '', '0000-00-00 00:00:00', 'active'),
+(94825, 2, '', '0000-00-00 00:00:00', 'active'),
+(94826, 1, '', '0000-00-00 00:00:00', 'active'),
+(94827, 6, '', '0000-00-00 00:00:00', 'active'),
+(94828, 2, '', '0000-00-00 00:00:00', 'active'),
+(94829, 1, '', '0000-00-00 00:00:00', 'active'),
+(94830, 6, '', '0000-00-00 00:00:00', 'active'),
+(94831, 2, '', '0000-00-00 00:00:00', 'active'),
+(94832, 2, '', '0000-00-00 00:00:00', 'active'),
+(94833, 1, '', '0000-00-00 00:00:00', 'active'),
+(94834, 6, '', '0000-00-00 00:00:00', 'active'),
+(94835, 2, '', '0000-00-00 00:00:00', 'active'),
+(94836, 1, '', '0000-00-00 00:00:00', 'active'),
+(94837, 6, '', '0000-00-00 00:00:00', 'active'),
+(94838, 2, '', '0000-00-00 00:00:00', 'active'),
+(94839, 1, '', '0000-00-00 00:00:00', 'active'),
+(94840, 6, '', '0000-00-00 00:00:00', 'active'),
+(94841, 2, '', '0000-00-00 00:00:00', 'active'),
+(94842, 1, '', '0000-00-00 00:00:00', 'active'),
+(94843, 6, '', '0000-00-00 00:00:00', 'active'),
+(94844, 2, '', '0000-00-00 00:00:00', 'active'),
+(94845, 1, '', '0000-00-00 00:00:00', 'active'),
+(94846, 6, '', '0000-00-00 00:00:00', 'active'),
+(94847, 2, '', '0000-00-00 00:00:00', 'active'),
+(94848, 1, '', '0000-00-00 00:00:00', 'active'),
+(94849, 6, '', '0000-00-00 00:00:00', 'active'),
+(94850, 1, '', '0000-00-00 00:00:00', 'active'),
+(94851, 2, '', '0000-00-00 00:00:00', 'active'),
+(94852, 6, '', '0000-00-00 00:00:00', 'active'),
+(94853, 1, '', '0000-00-00 00:00:00', 'active'),
+(94854, 2, '', '0000-00-00 00:00:00', 'active'),
+(94855, 6, '', '0000-00-00 00:00:00', 'active'),
+(94856, 1, '', '0000-00-00 00:00:00', 'active'),
+(94857, 2, '', '0000-00-00 00:00:00', 'active'),
+(94858, 6, '', '0000-00-00 00:00:00', 'active'),
+(94859, 1, '', '0000-00-00 00:00:00', 'active'),
+(94860, 2, '', '0000-00-00 00:00:00', 'active'),
+(94861, 6, '', '0000-00-00 00:00:00', 'active'),
+(94862, 2, '', '0000-00-00 00:00:00', 'active'),
+(94863, 1, '', '0000-00-00 00:00:00', 'active'),
+(94864, 6, '', '0000-00-00 00:00:00', 'active'),
+(94865, 2, '', '0000-00-00 00:00:00', 'active'),
+(94866, 1, '', '0000-00-00 00:00:00', 'active'),
+(94867, 6, '', '0000-00-00 00:00:00', 'active'),
+(94868, 1, '', '0000-00-00 00:00:00', 'active'),
+(94869, 2, '', '0000-00-00 00:00:00', 'active'),
+(94870, 6, '', '0000-00-00 00:00:00', 'active'),
+(94871, 2, '', '0000-00-00 00:00:00', 'active'),
+(94872, 1, '', '0000-00-00 00:00:00', 'active'),
+(94873, 6, '', '0000-00-00 00:00:00', 'active'),
+(94874, 2, '', '0000-00-00 00:00:00', 'active'),
+(94875, 1, '', '0000-00-00 00:00:00', 'active'),
+(94876, 6, '', '0000-00-00 00:00:00', 'active'),
+(94877, 2, '', '0000-00-00 00:00:00', 'active'),
+(94878, 1, '', '0000-00-00 00:00:00', 'active'),
+(94879, 6, '', '0000-00-00 00:00:00', 'active'),
+(94880, 2, '', '0000-00-00 00:00:00', 'active'),
+(94881, 1, '', '0000-00-00 00:00:00', 'active'),
+(94882, 6, '', '0000-00-00 00:00:00', 'active'),
+(94883, 2, '', '0000-00-00 00:00:00', 'active'),
+(94884, 1, '', '0000-00-00 00:00:00', 'active'),
+(94885, 6, '', '0000-00-00 00:00:00', 'active'),
+(94886, 2, '', '0000-00-00 00:00:00', 'active'),
+(94887, 1, '', '0000-00-00 00:00:00', 'active'),
+(94888, 13, 'hqi39cien83nkmsuu4b4p3hhfq', '2025-07-11 08:34:00', 'active'),
+(94889, 13, '', '0000-00-00 00:00:00', 'active'),
+(94890, 6, '', '0000-00-00 00:00:00', 'active'),
+(94891, 13, '', '0000-00-00 00:00:00', 'active'),
+(94892, 2, '', '0000-00-00 00:00:00', 'active'),
+(94893, 1, '', '0000-00-00 00:00:00', 'active'),
+(94894, 6, '', '0000-00-00 00:00:00', 'active'),
+(94895, 13, '', '0000-00-00 00:00:00', 'active'),
+(94896, 2, '', '0000-00-00 00:00:00', 'active'),
+(94897, 1, '', '0000-00-00 00:00:00', 'active'),
+(94898, 6, '', '0000-00-00 00:00:00', 'active'),
+(94899, 13, '', '0000-00-00 00:00:00', 'active'),
+(94900, 2, '', '0000-00-00 00:00:00', 'active'),
+(94901, 1, '', '0000-00-00 00:00:00', 'active'),
+(94902, 6, '', '0000-00-00 00:00:00', 'active'),
+(94903, 13, '', '0000-00-00 00:00:00', 'active'),
+(94904, 2, '', '0000-00-00 00:00:00', 'active'),
+(94905, 1, '', '0000-00-00 00:00:00', 'active'),
+(94906, 6, '', '0000-00-00 00:00:00', 'active'),
+(94907, 13, '', '0000-00-00 00:00:00', 'active'),
+(94908, 2, '', '0000-00-00 00:00:00', 'active'),
+(94909, 1, '', '0000-00-00 00:00:00', 'active'),
+(94910, 6, '', '0000-00-00 00:00:00', 'active'),
+(94911, 13, '', '0000-00-00 00:00:00', 'active'),
+(94912, 2, '', '0000-00-00 00:00:00', 'active'),
+(94913, 1, '', '0000-00-00 00:00:00', 'active'),
+(94914, 6, '', '0000-00-00 00:00:00', 'active'),
+(94915, 13, '', '0000-00-00 00:00:00', 'active'),
+(94916, 2, '', '0000-00-00 00:00:00', 'active'),
+(94917, 1, '', '0000-00-00 00:00:00', 'active'),
+(94918, 6, '', '0000-00-00 00:00:00', 'active'),
+(94919, 13, '', '0000-00-00 00:00:00', 'active'),
+(94920, 1, '', '0000-00-00 00:00:00', 'active'),
+(94921, 2, '', '0000-00-00 00:00:00', 'active'),
+(94922, 6, '', '0000-00-00 00:00:00', 'active'),
+(94923, 13, '', '0000-00-00 00:00:00', 'active'),
+(94924, 1, '', '0000-00-00 00:00:00', 'active'),
+(94925, 2, '', '0000-00-00 00:00:00', 'active'),
+(94926, 6, '', '0000-00-00 00:00:00', 'active'),
+(94927, 13, '', '0000-00-00 00:00:00', 'active'),
+(94928, 1, '', '0000-00-00 00:00:00', 'active'),
+(94929, 2, '', '0000-00-00 00:00:00', 'active'),
+(94930, 6, '', '0000-00-00 00:00:00', 'active'),
+(94931, 13, '', '0000-00-00 00:00:00', 'active'),
+(94932, 2, '', '0000-00-00 00:00:00', 'active'),
+(94933, 1, '', '0000-00-00 00:00:00', 'active'),
+(94934, 6, '', '0000-00-00 00:00:00', 'active'),
+(94935, 13, '', '0000-00-00 00:00:00', 'active'),
+(94936, 1, '', '0000-00-00 00:00:00', 'active'),
+(94937, 6, '', '0000-00-00 00:00:00', 'active'),
+(94938, 13, '', '0000-00-00 00:00:00', 'active'),
+(94939, 1, '', '0000-00-00 00:00:00', 'active'),
+(94940, 6, '', '0000-00-00 00:00:00', 'active'),
+(94941, 13, '', '0000-00-00 00:00:00', 'active'),
+(94942, 1, '', '0000-00-00 00:00:00', 'active'),
+(94943, 2, '', '0000-00-00 00:00:00', 'active'),
+(94944, 6, '', '0000-00-00 00:00:00', 'active'),
+(94945, 13, '', '0000-00-00 00:00:00', 'active'),
+(94946, 1, '', '0000-00-00 00:00:00', 'active'),
+(94947, 6, '', '0000-00-00 00:00:00', 'active'),
+(94948, 13, '', '0000-00-00 00:00:00', 'active'),
+(94949, 1, '', '0000-00-00 00:00:00', 'active'),
+(94950, 6, '', '0000-00-00 00:00:00', 'active'),
+(94951, 13, '', '0000-00-00 00:00:00', 'active'),
+(94952, 1, '', '0000-00-00 00:00:00', 'active'),
+(94953, 6, '', '0000-00-00 00:00:00', 'active'),
+(94954, 13, '', '0000-00-00 00:00:00', 'active'),
+(94955, 1, '', '0000-00-00 00:00:00', 'active'),
+(94956, 6, '', '0000-00-00 00:00:00', 'active'),
+(94957, 13, '', '0000-00-00 00:00:00', 'active'),
+(94958, 13, '', '0000-00-00 00:00:00', 'active'),
+(94959, 13, '', '0000-00-00 00:00:00', 'active'),
+(94960, 13, '', '0000-00-00 00:00:00', 'active'),
+(94961, 13, '', '0000-00-00 00:00:00', 'active'),
+(94962, 13, '', '0000-00-00 00:00:00', 'active'),
+(94963, 13, '', '0000-00-00 00:00:00', 'active'),
+(94964, 13, '', '0000-00-00 00:00:00', 'active'),
+(94965, 13, '', '0000-00-00 00:00:00', 'active'),
+(94966, 13, '', '0000-00-00 00:00:00', 'active'),
+(94967, 1, '', '0000-00-00 00:00:00', 'active'),
+(94968, 6, '', '0000-00-00 00:00:00', 'active'),
+(94969, 13, '', '0000-00-00 00:00:00', 'active'),
+(94970, 1, '', '0000-00-00 00:00:00', 'active'),
+(94971, 6, '', '0000-00-00 00:00:00', 'active'),
+(94972, 13, '', '0000-00-00 00:00:00', 'active'),
+(94973, 1, '', '0000-00-00 00:00:00', 'active'),
+(94974, 6, '', '0000-00-00 00:00:00', 'active'),
+(94975, 13, '', '0000-00-00 00:00:00', 'active'),
+(94976, 1, '', '0000-00-00 00:00:00', 'active'),
+(94977, 13, '', '0000-00-00 00:00:00', 'active'),
+(94978, 6, '', '0000-00-00 00:00:00', 'active'),
+(94979, 1, '', '0000-00-00 00:00:00', 'active'),
+(94980, 6, '', '0000-00-00 00:00:00', 'active'),
+(94981, 13, '', '0000-00-00 00:00:00', 'active'),
+(94982, 1, '', '0000-00-00 00:00:00', 'active'),
+(94983, 13, '', '0000-00-00 00:00:00', 'active'),
+(94984, 6, '', '0000-00-00 00:00:00', 'active'),
+(94985, 1, '', '0000-00-00 00:00:00', 'active'),
+(94986, 13, '', '0000-00-00 00:00:00', 'active'),
+(94987, 6, '', '0000-00-00 00:00:00', 'active'),
+(94988, 1, '', '0000-00-00 00:00:00', 'active'),
+(94989, 2, '', '0000-00-00 00:00:00', 'active'),
+(94990, 6, '', '0000-00-00 00:00:00', 'active'),
+(94991, 13, '', '0000-00-00 00:00:00', 'active'),
+(94992, 1, '', '0000-00-00 00:00:00', 'active'),
+(94993, 6, '', '0000-00-00 00:00:00', 'active'),
+(94994, 13, '', '0000-00-00 00:00:00', 'active'),
+(94995, 1, '', '0000-00-00 00:00:00', 'active'),
+(94996, 13, '', '0000-00-00 00:00:00', 'active'),
+(94997, 6, '', '0000-00-00 00:00:00', 'active'),
+(94998, 1, '', '0000-00-00 00:00:00', 'active'),
+(94999, 13, '', '0000-00-00 00:00:00', 'active'),
+(95000, 6, '', '0000-00-00 00:00:00', 'active'),
+(95001, 1, '', '0000-00-00 00:00:00', 'active'),
+(95002, 13, '', '0000-00-00 00:00:00', 'active'),
+(95003, 6, '', '0000-00-00 00:00:00', 'active'),
+(95004, 20, 'q8fibfjpr0f82n6t664sna6aru', '2025-07-11 08:34:00', 'active'),
+(95005, 20, '', '0000-00-00 00:00:00', 'active'),
+(95006, 1, '', '0000-00-00 00:00:00', 'active'),
+(95007, 6, '', '0000-00-00 00:00:00', 'active'),
+(95008, 13, '', '0000-00-00 00:00:00', 'active'),
+(95009, 20, '', '0000-00-00 00:00:00', 'active'),
+(95010, 20, '', '0000-00-00 00:00:00', 'active'),
+(95011, 1, '', '0000-00-00 00:00:00', 'active'),
+(95012, 13, '', '0000-00-00 00:00:00', 'active'),
+(95013, 6, '', '0000-00-00 00:00:00', 'active'),
+(95014, 20, '', '0000-00-00 00:00:00', 'active'),
+(95015, 1, '', '0000-00-00 00:00:00', 'active'),
+(95016, 13, '', '0000-00-00 00:00:00', 'active'),
+(95017, 6, '', '0000-00-00 00:00:00', 'active'),
+(95018, 20, '', '0000-00-00 00:00:00', 'active'),
+(95019, 1, '', '0000-00-00 00:00:00', 'active'),
+(95020, 6, '', '0000-00-00 00:00:00', 'active'),
+(95021, 13, '', '0000-00-00 00:00:00', 'active'),
+(95022, 20, '', '0000-00-00 00:00:00', 'active'),
+(95023, 1, '', '0000-00-00 00:00:00', 'active'),
+(95024, 13, '', '0000-00-00 00:00:00', 'active'),
+(95025, 6, '', '0000-00-00 00:00:00', 'active'),
+(95026, 20, '', '0000-00-00 00:00:00', 'active'),
+(95027, 1, '', '0000-00-00 00:00:00', 'active'),
+(95028, 13, '', '0000-00-00 00:00:00', 'active'),
+(95029, 6, '', '0000-00-00 00:00:00', 'active'),
+(95030, 20, '', '0000-00-00 00:00:00', 'active'),
+(95031, 20, '', '0000-00-00 00:00:00', 'active'),
+(95032, 1, '', '0000-00-00 00:00:00', 'active'),
+(95033, 6, '', '0000-00-00 00:00:00', 'active'),
+(95034, 13, '', '0000-00-00 00:00:00', 'active'),
+(95035, 20, '', '0000-00-00 00:00:00', 'active'),
+(95036, 1, '', '0000-00-00 00:00:00', 'active'),
+(95037, 13, '', '0000-00-00 00:00:00', 'active'),
+(95038, 6, '', '0000-00-00 00:00:00', 'active'),
+(95039, 20, '', '0000-00-00 00:00:00', 'active'),
+(95040, 1, '', '0000-00-00 00:00:00', 'active'),
+(95041, 6, '', '0000-00-00 00:00:00', 'active'),
+(95042, 13, '', '0000-00-00 00:00:00', 'active'),
+(95043, 20, '', '0000-00-00 00:00:00', 'active'),
+(95044, 1, '', '0000-00-00 00:00:00', 'active'),
+(95045, 13, '', '0000-00-00 00:00:00', 'active'),
+(95046, 6, '', '0000-00-00 00:00:00', 'active'),
+(95047, 20, '', '0000-00-00 00:00:00', 'active'),
+(95048, 20, '', '0000-00-00 00:00:00', 'active'),
+(95049, 1, '', '0000-00-00 00:00:00', 'active'),
+(95050, 13, '', '0000-00-00 00:00:00', 'active'),
+(95051, 6, '', '0000-00-00 00:00:00', 'active'),
+(95052, 1, '', '0000-00-00 00:00:00', 'active'),
+(95053, 6, '', '0000-00-00 00:00:00', 'active'),
+(95054, 13, '', '0000-00-00 00:00:00', 'active'),
+(95055, 20, '', '0000-00-00 00:00:00', 'active'),
+(95056, 1, '', '0000-00-00 00:00:00', 'active'),
+(95057, 20, '', '0000-00-00 00:00:00', 'active'),
+(95058, 13, '', '0000-00-00 00:00:00', 'active'),
+(95059, 6, '', '0000-00-00 00:00:00', 'active'),
+(95060, 1, '', '0000-00-00 00:00:00', 'active'),
+(95061, 20, '', '0000-00-00 00:00:00', 'active'),
+(95062, 13, '', '0000-00-00 00:00:00', 'active'),
+(95063, 6, '', '0000-00-00 00:00:00', 'active'),
+(95064, 1, '', '0000-00-00 00:00:00', 'active'),
+(95065, 20, '', '0000-00-00 00:00:00', 'active'),
+(95066, 13, '', '0000-00-00 00:00:00', 'active'),
+(95067, 6, '', '0000-00-00 00:00:00', 'active'),
+(95068, 1, '', '0000-00-00 00:00:00', 'active'),
+(95069, 2, '', '0000-00-00 00:00:00', 'active'),
+(95070, 6, '', '0000-00-00 00:00:00', 'active'),
+(95071, 20, '', '0000-00-00 00:00:00', 'active'),
+(95072, 13, '', '0000-00-00 00:00:00', 'active'),
+(95073, 1, '', '0000-00-00 00:00:00', 'active'),
+(95074, 6, '', '0000-00-00 00:00:00', 'active'),
+(95075, 20, '', '0000-00-00 00:00:00', 'active'),
+(95076, 13, '', '0000-00-00 00:00:00', 'active'),
+(95077, 1, '', '0000-00-00 00:00:00', 'active'),
+(95078, 6, '', '0000-00-00 00:00:00', 'active'),
+(95079, 13, '', '0000-00-00 00:00:00', 'active'),
+(95080, 20, '', '0000-00-00 00:00:00', 'active'),
+(95081, 1, '', '0000-00-00 00:00:00', 'active'),
+(95082, 13, '', '0000-00-00 00:00:00', 'active'),
+(95083, 20, '', '0000-00-00 00:00:00', 'active'),
+(95084, 6, '', '0000-00-00 00:00:00', 'active'),
+(95085, 1, '', '0000-00-00 00:00:00', 'active'),
+(95086, 6, '', '0000-00-00 00:00:00', 'active'),
+(95087, 20, '', '0000-00-00 00:00:00', 'active'),
+(95088, 13, '', '0000-00-00 00:00:00', 'active'),
+(95089, 1, '', '0000-00-00 00:00:00', 'active'),
+(95090, 6, '', '0000-00-00 00:00:00', 'active'),
+(95091, 20, '', '0000-00-00 00:00:00', 'active'),
+(95092, 13, '', '0000-00-00 00:00:00', 'active'),
+(95093, 1, '', '0000-00-00 00:00:00', 'active'),
+(95094, 6, '', '0000-00-00 00:00:00', 'active'),
+(95095, 13, '', '0000-00-00 00:00:00', 'active'),
+(95096, 20, '', '0000-00-00 00:00:00', 'active'),
+(95097, 1, '', '0000-00-00 00:00:00', 'active'),
+(95098, 6, '', '0000-00-00 00:00:00', 'active'),
+(95099, 20, '', '0000-00-00 00:00:00', 'active'),
+(95100, 13, '', '0000-00-00 00:00:00', 'active'),
+(95101, 1, '', '0000-00-00 00:00:00', 'active'),
+(95102, 6, '', '0000-00-00 00:00:00', 'active'),
+(95103, 20, '', '0000-00-00 00:00:00', 'active'),
+(95104, 13, '', '0000-00-00 00:00:00', 'active'),
+(95105, 1, '', '0000-00-00 00:00:00', 'active'),
+(95106, 6, '', '0000-00-00 00:00:00', 'active'),
+(95107, 13, '', '0000-00-00 00:00:00', 'active'),
+(95108, 20, '', '0000-00-00 00:00:00', 'active'),
+(95109, 1, '', '0000-00-00 00:00:00', 'active'),
+(95110, 6, '', '0000-00-00 00:00:00', 'active'),
+(95111, 20, '', '0000-00-00 00:00:00', 'active'),
+(95112, 13, '', '0000-00-00 00:00:00', 'active'),
+(95113, 1, '', '0000-00-00 00:00:00', 'active'),
+(95114, 6, '', '0000-00-00 00:00:00', 'active'),
+(95115, 20, '', '0000-00-00 00:00:00', 'active'),
+(95116, 13, '', '0000-00-00 00:00:00', 'active'),
+(95117, 1, '', '0000-00-00 00:00:00', 'active'),
+(95118, 6, '', '0000-00-00 00:00:00', 'active'),
+(95119, 20, '', '0000-00-00 00:00:00', 'active'),
+(95120, 13, '', '0000-00-00 00:00:00', 'active'),
+(95121, 1, '', '0000-00-00 00:00:00', 'active'),
+(95122, 6, '', '0000-00-00 00:00:00', 'active'),
+(95123, 20, '', '0000-00-00 00:00:00', 'active'),
+(95124, 13, '', '0000-00-00 00:00:00', 'active'),
+(95125, 1, '', '0000-00-00 00:00:00', 'active'),
+(95126, 6, '', '0000-00-00 00:00:00', 'active'),
+(95127, 20, '', '0000-00-00 00:00:00', 'active'),
+(95128, 13, '', '0000-00-00 00:00:00', 'active'),
+(95129, 1, '', '0000-00-00 00:00:00', 'active'),
+(95130, 6, '', '0000-00-00 00:00:00', 'active'),
+(95131, 13, '', '0000-00-00 00:00:00', 'active'),
+(95132, 20, '', '0000-00-00 00:00:00', 'active'),
+(95133, 1, '', '0000-00-00 00:00:00', 'active'),
+(95134, 6, '', '0000-00-00 00:00:00', 'active'),
+(95135, 13, '', '0000-00-00 00:00:00', 'active'),
+(95136, 20, '', '0000-00-00 00:00:00', 'active'),
+(95137, 1, '', '0000-00-00 00:00:00', 'active'),
+(95138, 6, '', '0000-00-00 00:00:00', 'active'),
+(95139, 13, '', '0000-00-00 00:00:00', 'active'),
+(95140, 20, '', '0000-00-00 00:00:00', 'active'),
+(95141, 1, '', '0000-00-00 00:00:00', 'active'),
+(95142, 6, '', '0000-00-00 00:00:00', 'active'),
+(95143, 13, '', '0000-00-00 00:00:00', 'active'),
+(95144, 20, '', '0000-00-00 00:00:00', 'active'),
+(95145, 1, '', '0000-00-00 00:00:00', 'active'),
+(95146, 6, '', '0000-00-00 00:00:00', 'active'),
+(95147, 20, '', '0000-00-00 00:00:00', 'active'),
+(95148, 13, '', '0000-00-00 00:00:00', 'active'),
+(95149, 1, '', '0000-00-00 00:00:00', 'active'),
+(95150, 6, '', '0000-00-00 00:00:00', 'active'),
+(95151, 2, '', '0000-00-00 00:00:00', 'active'),
+(95152, 13, '', '0000-00-00 00:00:00', 'active'),
+(95153, 20, '', '0000-00-00 00:00:00', 'active'),
+(95154, 1, '', '0000-00-00 00:00:00', 'active'),
+(95155, 6, '', '0000-00-00 00:00:00', 'active'),
+(95156, 20, '', '0000-00-00 00:00:00', 'active'),
+(95157, 13, '', '0000-00-00 00:00:00', 'active'),
+(95158, 1, '', '0000-00-00 00:00:00', 'active'),
+(95159, 6, '', '0000-00-00 00:00:00', 'active'),
+(95160, 13, '', '0000-00-00 00:00:00', 'active'),
+(95161, 20, '', '0000-00-00 00:00:00', 'active'),
+(95162, 1, '', '0000-00-00 00:00:00', 'active'),
+(95163, 6, '', '0000-00-00 00:00:00', 'active'),
+(95164, 20, '', '0000-00-00 00:00:00', 'active'),
+(95165, 13, '', '0000-00-00 00:00:00', 'active'),
+(95166, 1, '', '0000-00-00 00:00:00', 'active'),
+(95167, 6, '', '0000-00-00 00:00:00', 'active'),
+(95168, 6, '', '0000-00-00 00:00:00', 'active'),
+(95169, 6, '', '0000-00-00 00:00:00', 'active'),
+(95170, 6, '', '0000-00-00 00:00:00', 'active'),
+(95171, 6, '', '0000-00-00 00:00:00', 'active'),
+(95172, 6, '', '0000-00-00 00:00:00', 'active'),
+(95173, 6, '', '0000-00-00 00:00:00', 'active'),
+(95174, 6, '', '0000-00-00 00:00:00', 'active'),
+(95175, 6, '', '0000-00-00 00:00:00', 'active'),
+(95176, 20, '', '0000-00-00 00:00:00', 'active'),
+(95177, 13, '', '0000-00-00 00:00:00', 'active'),
+(95178, 1, '', '0000-00-00 00:00:00', 'active'),
+(95179, 6, '', '0000-00-00 00:00:00', 'active'),
+(95180, 13, '', '0000-00-00 00:00:00', 'active'),
+(95181, 20, '', '0000-00-00 00:00:00', 'active'),
+(95182, 1, '', '0000-00-00 00:00:00', 'active'),
+(95183, 6, '', '0000-00-00 00:00:00', 'active'),
+(95184, 20, '', '0000-00-00 00:00:00', 'active'),
+(95185, 13, '', '0000-00-00 00:00:00', 'active'),
+(95186, 1, '', '0000-00-00 00:00:00', 'active'),
+(95187, 13, '', '0000-00-00 00:00:00', 'active'),
+(95188, 6, '', '0000-00-00 00:00:00', 'active'),
+(95189, 20, '', '0000-00-00 00:00:00', 'active'),
+(95190, 1, '', '0000-00-00 00:00:00', 'active'),
+(95191, 20, '', '0000-00-00 00:00:00', 'active'),
+(95192, 6, '', '0000-00-00 00:00:00', 'active'),
+(95193, 13, '', '0000-00-00 00:00:00', 'active'),
+(95194, 1, '', '0000-00-00 00:00:00', 'active'),
+(95195, 13, '', '0000-00-00 00:00:00', 'active'),
+(95196, 20, '', '0000-00-00 00:00:00', 'active'),
+(95197, 6, '', '0000-00-00 00:00:00', 'active'),
+(95198, 1, '', '0000-00-00 00:00:00', 'active'),
+(95199, 20, '', '0000-00-00 00:00:00', 'active'),
+(95200, 6, '', '0000-00-00 00:00:00', 'active'),
+(95201, 13, '', '0000-00-00 00:00:00', 'active'),
+(95202, 1, '', '0000-00-00 00:00:00', 'active'),
+(95203, 20, '', '0000-00-00 00:00:00', 'active'),
+(95204, 13, '', '0000-00-00 00:00:00', 'active'),
+(95205, 6, '', '0000-00-00 00:00:00', 'active'),
+(95206, 1, '', '0000-00-00 00:00:00', 'active'),
+(95207, 2, '', '0000-00-00 00:00:00', 'active'),
+(95208, 6, '', '0000-00-00 00:00:00', 'active'),
+(95209, 13, '', '0000-00-00 00:00:00', 'active'),
+(95210, 20, '', '0000-00-00 00:00:00', 'active'),
+(95211, 1, '', '0000-00-00 00:00:00', 'active'),
+(95212, 6, '', '0000-00-00 00:00:00', 'active'),
+(95213, 20, '', '0000-00-00 00:00:00', 'active'),
+(95214, 13, '', '0000-00-00 00:00:00', 'active'),
+(95215, 1, '', '0000-00-00 00:00:00', 'active'),
+(95216, 13, '', '0000-00-00 00:00:00', 'active'),
+(95217, 6, '', '0000-00-00 00:00:00', 'active'),
+(95218, 20, '', '0000-00-00 00:00:00', 'active'),
+(95219, 1, '', '0000-00-00 00:00:00', 'active'),
+(95220, 6, '', '0000-00-00 00:00:00', 'active'),
+(95221, 20, '', '0000-00-00 00:00:00', 'active'),
+(95222, 13, '', '0000-00-00 00:00:00', 'active'),
+(95223, 1, '', '0000-00-00 00:00:00', 'active'),
+(95224, 6, '', '0000-00-00 00:00:00', 'active'),
+(95225, 20, '', '0000-00-00 00:00:00', 'active'),
+(95226, 13, '', '0000-00-00 00:00:00', 'active'),
+(95227, 1, '', '0000-00-00 00:00:00', 'active'),
+(95228, 13, '', '0000-00-00 00:00:00', 'active'),
+(95229, 20, '', '0000-00-00 00:00:00', 'active'),
+(95230, 6, '', '0000-00-00 00:00:00', 'active'),
+(95231, 2, '', '0000-00-00 00:00:00', 'active'),
+(95232, 2, '', '0000-00-00 00:00:00', 'active'),
+(95233, 1, '', '0000-00-00 00:00:00', 'active'),
+(95234, 13, '', '0000-00-00 00:00:00', 'active'),
+(95235, 6, '', '0000-00-00 00:00:00', 'active'),
+(95236, 20, '', '0000-00-00 00:00:00', 'active'),
+(95237, 2, '', '0000-00-00 00:00:00', 'active'),
+(95238, 1, '', '0000-00-00 00:00:00', 'active'),
+(95239, 2, '', '0000-00-00 00:00:00', 'active'),
+(95240, 6, '', '0000-00-00 00:00:00', 'active'),
+(95241, 13, '', '0000-00-00 00:00:00', 'active'),
+(95242, 20, '', '0000-00-00 00:00:00', 'active'),
+(95243, 1, '', '0000-00-00 00:00:00', 'active'),
+(95244, 6, '', '0000-00-00 00:00:00', 'active'),
+(95245, 2, '', '0000-00-00 00:00:00', 'active'),
+(95246, 20, '', '0000-00-00 00:00:00', 'active'),
+(95247, 13, '', '0000-00-00 00:00:00', 'active'),
+(95248, 1, '', '0000-00-00 00:00:00', 'active'),
+(95249, 6, '', '0000-00-00 00:00:00', 'active'),
+(95250, 2, '', '0000-00-00 00:00:00', 'active'),
+(95251, 20, '', '0000-00-00 00:00:00', 'active'),
+(95252, 13, '', '0000-00-00 00:00:00', 'active'),
+(95253, 1, '', '0000-00-00 00:00:00', 'active'),
+(95254, 6, '', '0000-00-00 00:00:00', 'active'),
+(95255, 2, '', '0000-00-00 00:00:00', 'active'),
+(95256, 20, '', '0000-00-00 00:00:00', 'active'),
+(95257, 13, '', '0000-00-00 00:00:00', 'active'),
+(95258, 2, '', '0000-00-00 00:00:00', 'active'),
+(95259, 1, '', '0000-00-00 00:00:00', 'active'),
+(95260, 6, '', '0000-00-00 00:00:00', 'active'),
+(95261, 13, '', '0000-00-00 00:00:00', 'active'),
+(95262, 20, '', '0000-00-00 00:00:00', 'active'),
+(95263, 2, '', '0000-00-00 00:00:00', 'active'),
+(95264, 1, '', '0000-00-00 00:00:00', 'active'),
+(95265, 6, '', '0000-00-00 00:00:00', 'active'),
+(95266, 13, '', '0000-00-00 00:00:00', 'active'),
+(95267, 20, '', '0000-00-00 00:00:00', 'active'),
+(95268, 2, '', '0000-00-00 00:00:00', 'active'),
+(95269, 1, '', '0000-00-00 00:00:00', 'active'),
+(95270, 13, '', '0000-00-00 00:00:00', 'active'),
+(95271, 20, '', '0000-00-00 00:00:00', 'active'),
+(95272, 6, '', '0000-00-00 00:00:00', 'active'),
+(95273, 2, '', '0000-00-00 00:00:00', 'active'),
+(95274, 1, '', '0000-00-00 00:00:00', 'active'),
+(95275, 6, '', '0000-00-00 00:00:00', 'active'),
+(95276, 20, '', '0000-00-00 00:00:00', 'active'),
+(95277, 13, '', '0000-00-00 00:00:00', 'active'),
+(95278, 2, '', '0000-00-00 00:00:00', 'active'),
+(95279, 1, '', '0000-00-00 00:00:00', 'active'),
+(95280, 6, '', '0000-00-00 00:00:00', 'active'),
+(95281, 20, '', '0000-00-00 00:00:00', 'active'),
+(95282, 13, '', '0000-00-00 00:00:00', 'active'),
+(95283, 2, '', '0000-00-00 00:00:00', 'active'),
+(95284, 1, '', '0000-00-00 00:00:00', 'active'),
+(95285, 20, '', '0000-00-00 00:00:00', 'active'),
+(95286, 13, '', '0000-00-00 00:00:00', 'active'),
+(95287, 6, '', '0000-00-00 00:00:00', 'active'),
+(95288, 2, '', '0000-00-00 00:00:00', 'active'),
+(95289, 1, '', '0000-00-00 00:00:00', 'active'),
+(95290, 6, '', '0000-00-00 00:00:00', 'active'),
+(95291, 20, '', '0000-00-00 00:00:00', 'active'),
+(95292, 13, '', '0000-00-00 00:00:00', 'active'),
+(95293, 2, '', '0000-00-00 00:00:00', 'active'),
+(95294, 1, '', '0000-00-00 00:00:00', 'active'),
+(95295, 13, '', '0000-00-00 00:00:00', 'active'),
+(95296, 20, '', '0000-00-00 00:00:00', 'active'),
+(95297, 6, '', '0000-00-00 00:00:00', 'active'),
+(95298, 2, '', '0000-00-00 00:00:00', 'active'),
+(95299, 1, '', '0000-00-00 00:00:00', 'active'),
+(95300, 13, '', '0000-00-00 00:00:00', 'active'),
+(95301, 20, '', '0000-00-00 00:00:00', 'active'),
+(95302, 6, '', '0000-00-00 00:00:00', 'active'),
+(95303, 2, '', '0000-00-00 00:00:00', 'active'),
+(95304, 1, '', '0000-00-00 00:00:00', 'active'),
+(95305, 13, '', '0000-00-00 00:00:00', 'active'),
+(95306, 20, '', '0000-00-00 00:00:00', 'active'),
+(95307, 6, '', '0000-00-00 00:00:00', 'active'),
+(95308, 2, '', '0000-00-00 00:00:00', 'active'),
+(95309, 1, '', '0000-00-00 00:00:00', 'active'),
+(95310, 20, '', '0000-00-00 00:00:00', 'active'),
+(95311, 6, '', '0000-00-00 00:00:00', 'active'),
+(95312, 13, '', '0000-00-00 00:00:00', 'active'),
+(95313, 2, '', '0000-00-00 00:00:00', 'active'),
+(95314, 1, '', '0000-00-00 00:00:00', 'active'),
+(95315, 20, '', '0000-00-00 00:00:00', 'active'),
+(95316, 13, '', '0000-00-00 00:00:00', 'active'),
+(95317, 6, '', '0000-00-00 00:00:00', 'active'),
+(95318, 2, '', '0000-00-00 00:00:00', 'active'),
+(95319, 1, '', '0000-00-00 00:00:00', 'active'),
+(95320, 6, '', '0000-00-00 00:00:00', 'active'),
+(95321, 20, '', '0000-00-00 00:00:00', 'active'),
+(95322, 13, '', '0000-00-00 00:00:00', 'active'),
+(95323, 2, '', '0000-00-00 00:00:00', 'active'),
+(95324, 1, '', '0000-00-00 00:00:00', 'active'),
+(95325, 6, '', '0000-00-00 00:00:00', 'active'),
+(95326, 13, '', '0000-00-00 00:00:00', 'active'),
+(95327, 20, '', '0000-00-00 00:00:00', 'active'),
+(95328, 2, '', '0000-00-00 00:00:00', 'active'),
+(95329, 1, '', '0000-00-00 00:00:00', 'active'),
+(95330, 6, '', '0000-00-00 00:00:00', 'active'),
+(95331, 13, '', '0000-00-00 00:00:00', 'active'),
+(95332, 20, '', '0000-00-00 00:00:00', 'active'),
+(95333, 2, '', '0000-00-00 00:00:00', 'active'),
+(95334, 1, '', '0000-00-00 00:00:00', 'active'),
+(95335, 20, '', '0000-00-00 00:00:00', 'active'),
+(95336, 13, '', '0000-00-00 00:00:00', 'active'),
+(95337, 6, '', '0000-00-00 00:00:00', 'active'),
+(95338, 2, '', '0000-00-00 00:00:00', 'active'),
+(95339, 1, '', '0000-00-00 00:00:00', 'active'),
+(95340, 6, '', '0000-00-00 00:00:00', 'active'),
+(95341, 13, '', '0000-00-00 00:00:00', 'active'),
+(95342, 20, '', '0000-00-00 00:00:00', 'active'),
+(95343, 2, '', '0000-00-00 00:00:00', 'active'),
+(95344, 1, '', '0000-00-00 00:00:00', 'active'),
+(95345, 13, '', '0000-00-00 00:00:00', 'active'),
+(95346, 20, '', '0000-00-00 00:00:00', 'active'),
+(95347, 6, '', '0000-00-00 00:00:00', 'active'),
+(95348, 2, '', '0000-00-00 00:00:00', 'active'),
+(95349, 1, '', '0000-00-00 00:00:00', 'active'),
+(95350, 13, '', '0000-00-00 00:00:00', 'active'),
+(95351, 20, '', '0000-00-00 00:00:00', 'active'),
+(95352, 6, '', '0000-00-00 00:00:00', 'active'),
+(95353, 2, '', '0000-00-00 00:00:00', 'active'),
+(95354, 1, '', '0000-00-00 00:00:00', 'active'),
+(95355, 2, '', '0000-00-00 00:00:00', 'active'),
+(95356, 2, '', '0000-00-00 00:00:00', 'active'),
+(95357, 2, '', '0000-00-00 00:00:00', 'active'),
+(95358, 2, '', '0000-00-00 00:00:00', 'active'),
+(95359, 2, '', '0000-00-00 00:00:00', 'active'),
+(95360, 2, '', '0000-00-00 00:00:00', 'active'),
+(95361, 2, '', '0000-00-00 00:00:00', 'active'),
+(95362, 2, '', '0000-00-00 00:00:00', 'active'),
+(95363, 2, '', '0000-00-00 00:00:00', 'active'),
+(95364, 2, '', '0000-00-00 00:00:00', 'active'),
+(95365, 13, '', '0000-00-00 00:00:00', 'active'),
+(95366, 1, '', '0000-00-00 00:00:00', 'active'),
+(95367, 20, '', '0000-00-00 00:00:00', 'active'),
+(95368, 6, '', '0000-00-00 00:00:00', 'active'),
+(95369, 2, '', '0000-00-00 00:00:00', 'active'),
+(95370, 2, '', '0000-00-00 00:00:00', 'active'),
+(95371, 2, '', '0000-00-00 00:00:00', 'active'),
+(95372, 2, '', '0000-00-00 00:00:00', 'active'),
+(95373, 2, '', '0000-00-00 00:00:00', 'active'),
+(95374, 2, '', '0000-00-00 00:00:00', 'active'),
+(95375, 2, '', '0000-00-00 00:00:00', 'active'),
+(95376, 2, '', '0000-00-00 00:00:00', 'active'),
+(95377, 2, '', '0000-00-00 00:00:00', 'active'),
+(95378, 2, '', '0000-00-00 00:00:00', 'active'),
+(95379, 2, '', '0000-00-00 00:00:00', 'active'),
+(95380, 2, '', '0000-00-00 00:00:00', 'active'),
+(95381, 2, '', '0000-00-00 00:00:00', 'active'),
+(95382, 2, '', '0000-00-00 00:00:00', 'active'),
+(95383, 2, '', '0000-00-00 00:00:00', 'active'),
+(95384, 2, '', '0000-00-00 00:00:00', 'active'),
+(95385, 2, '', '0000-00-00 00:00:00', 'active'),
+(95386, 2, '', '0000-00-00 00:00:00', 'active'),
+(95387, 2, '', '0000-00-00 00:00:00', 'active'),
+(95388, 2, '', '0000-00-00 00:00:00', 'active'),
+(95389, 20, '', '0000-00-00 00:00:00', 'active'),
+(95390, 13, '', '0000-00-00 00:00:00', 'active'),
+(95391, 6, '', '0000-00-00 00:00:00', 'active'),
+(95392, 1, '', '0000-00-00 00:00:00', 'active'),
+(95393, 20, '', '0000-00-00 00:00:00', 'active'),
+(95394, 13, '', '0000-00-00 00:00:00', 'active'),
+(95395, 2, '', '0000-00-00 00:00:00', 'active'),
+(95396, 1, '', '0000-00-00 00:00:00', 'active'),
+(95397, 20, '', '0000-00-00 00:00:00', 'active'),
+(95398, 13, '', '0000-00-00 00:00:00', 'active'),
+(95399, 6, '', '0000-00-00 00:00:00', 'active'),
+(95400, 2, '', '0000-00-00 00:00:00', 'active'),
+(95401, 1, '', '0000-00-00 00:00:00', 'active'),
+(95402, 6, '', '0000-00-00 00:00:00', 'active'),
+(95403, 13, '', '0000-00-00 00:00:00', 'active'),
+(95404, 20, '', '0000-00-00 00:00:00', 'active'),
+(95405, 2, '', '0000-00-00 00:00:00', 'active'),
+(95406, 1, '', '0000-00-00 00:00:00', 'active'),
+(95407, 13, '', '0000-00-00 00:00:00', 'active'),
+(95408, 20, '', '0000-00-00 00:00:00', 'active'),
+(95409, 6, '', '0000-00-00 00:00:00', 'active'),
+(95410, 2, '', '0000-00-00 00:00:00', 'active'),
+(95411, 1, '', '0000-00-00 00:00:00', 'active'),
+(95412, 20, '', '0000-00-00 00:00:00', 'active'),
+(95413, 6, '', '0000-00-00 00:00:00', 'active'),
+(95414, 13, '', '0000-00-00 00:00:00', 'active'),
+(95415, 2, '', '0000-00-00 00:00:00', 'active'),
+(95416, 1, '', '0000-00-00 00:00:00', 'active'),
+(95417, 6, '', '0000-00-00 00:00:00', 'active'),
+(95418, 13, '', '0000-00-00 00:00:00', 'active'),
+(95419, 20, '', '0000-00-00 00:00:00', 'active'),
+(95420, 2, '', '0000-00-00 00:00:00', 'active'),
+(95421, 1, '', '0000-00-00 00:00:00', 'active'),
+(95422, 13, '', '0000-00-00 00:00:00', 'active'),
+(95423, 20, '', '0000-00-00 00:00:00', 'active'),
+(95424, 6, '', '0000-00-00 00:00:00', 'active'),
+(95425, 2, '', '0000-00-00 00:00:00', 'active'),
+(95426, 1, '', '0000-00-00 00:00:00', 'active'),
+(95427, 13, '', '0000-00-00 00:00:00', 'active'),
+(95428, 6, '', '0000-00-00 00:00:00', 'active'),
+(95429, 20, '', '0000-00-00 00:00:00', 'active'),
+(95430, 2, '', '0000-00-00 00:00:00', 'active'),
+(95431, 1, '', '0000-00-00 00:00:00', 'active'),
+(95432, 20, '', '0000-00-00 00:00:00', 'active'),
+(95433, 6, '', '0000-00-00 00:00:00', 'active'),
+(95434, 13, '', '0000-00-00 00:00:00', 'active'),
+(95435, 2, '', '0000-00-00 00:00:00', 'active'),
+(95436, 1, '', '0000-00-00 00:00:00', 'active'),
+(95437, 6, '', '0000-00-00 00:00:00', 'active'),
+(95438, 20, '', '0000-00-00 00:00:00', 'active'),
+(95439, 13, '', '0000-00-00 00:00:00', 'active'),
+(95440, 2, '', '0000-00-00 00:00:00', 'active'),
+(95441, 1, '', '0000-00-00 00:00:00', 'active'),
+(95442, 20, '', '0000-00-00 00:00:00', 'active'),
+(95443, 6, '', '0000-00-00 00:00:00', 'active'),
+(95444, 13, '', '0000-00-00 00:00:00', 'active'),
+(95445, 2, '', '0000-00-00 00:00:00', 'active'),
+(95446, 1, '', '0000-00-00 00:00:00', 'active'),
+(95447, 20, '', '0000-00-00 00:00:00', 'active'),
+(95448, 13, '', '0000-00-00 00:00:00', 'active'),
+(95449, 6, '', '0000-00-00 00:00:00', 'active'),
+(95450, 2, '', '0000-00-00 00:00:00', 'active'),
+(95451, 1, '', '0000-00-00 00:00:00', 'active'),
+(95452, 13, '', '0000-00-00 00:00:00', 'active'),
+(95453, 6, '', '0000-00-00 00:00:00', 'active'),
+(95454, 20, '', '0000-00-00 00:00:00', 'active'),
+(95455, 1, '', '0000-00-00 00:00:00', 'active'),
+(95456, 2, '', '0000-00-00 00:00:00', 'active'),
+(95457, 6, '', '0000-00-00 00:00:00', 'active'),
+(95458, 20, '', '0000-00-00 00:00:00', 'active'),
+(95459, 13, '', '0000-00-00 00:00:00', 'active'),
+(95460, 1, '', '0000-00-00 00:00:00', 'active'),
+(95461, 2, '', '0000-00-00 00:00:00', 'active'),
+(95462, 1, '', '0000-00-00 00:00:00', 'active'),
+(95463, 6, '', '0000-00-00 00:00:00', 'active'),
+(95464, 20, '', '0000-00-00 00:00:00', 'active'),
+(95465, 13, '', '0000-00-00 00:00:00', 'active'),
+(95466, 2, '', '0000-00-00 00:00:00', 'active'),
+(95467, 1, '', '0000-00-00 00:00:00', 'active'),
+(95468, 13, '', '0000-00-00 00:00:00', 'active'),
+(95469, 6, '', '0000-00-00 00:00:00', 'active'),
+(95470, 20, '', '0000-00-00 00:00:00', 'active'),
+(95471, 2, '', '0000-00-00 00:00:00', 'active'),
+(95472, 1, '', '0000-00-00 00:00:00', 'active'),
+(95473, 6, '', '0000-00-00 00:00:00', 'active'),
+(95474, 20, '', '0000-00-00 00:00:00', 'active'),
+(95475, 13, '', '0000-00-00 00:00:00', 'active'),
+(95476, 2, '', '0000-00-00 00:00:00', 'active'),
+(95477, 1, '', '0000-00-00 00:00:00', 'active'),
+(95478, 13, '', '0000-00-00 00:00:00', 'active'),
+(95479, 6, '', '0000-00-00 00:00:00', 'active'),
+(95480, 20, '', '0000-00-00 00:00:00', 'active'),
+(95481, 2, '', '0000-00-00 00:00:00', 'active'),
+(95482, 1, '', '0000-00-00 00:00:00', 'active'),
+(95483, 6, '', '0000-00-00 00:00:00', 'active'),
+(95484, 20, '', '0000-00-00 00:00:00', 'active'),
+(95485, 13, '', '0000-00-00 00:00:00', 'active'),
+(95486, 2, '', '0000-00-00 00:00:00', 'active'),
+(95487, 20, '', '0000-00-00 00:00:00', 'active'),
+(95488, 13, '', '0000-00-00 00:00:00', 'active'),
+(95489, 6, '', '0000-00-00 00:00:00', 'active'),
+(95490, 1, '', '0000-00-00 00:00:00', 'active'),
+(95491, 2, '', '0000-00-00 00:00:00', 'active'),
+(95492, 13, '', '0000-00-00 00:00:00', 'active'),
+(95493, 20, '', '0000-00-00 00:00:00', 'active'),
+(95494, 1, '', '0000-00-00 00:00:00', 'active'),
+(95495, 6, '', '0000-00-00 00:00:00', 'active'),
+(95496, 2, '', '0000-00-00 00:00:00', 'active'),
+(95497, 20, '', '0000-00-00 00:00:00', 'active'),
+(95498, 1, '', '0000-00-00 00:00:00', 'active'),
+(95499, 6, '', '0000-00-00 00:00:00', 'active'),
+(95500, 13, '', '0000-00-00 00:00:00', 'active'),
+(95501, 2, '', '0000-00-00 00:00:00', 'active'),
+(95502, 1, '', '0000-00-00 00:00:00', 'active'),
+(95503, 13, '', '0000-00-00 00:00:00', 'active'),
+(95504, 20, '', '0000-00-00 00:00:00', 'active'),
+(95505, 6, '', '0000-00-00 00:00:00', 'active'),
+(95506, 2, '', '0000-00-00 00:00:00', 'active'),
+(95507, 1, '', '0000-00-00 00:00:00', 'active'),
+(95508, 13, '', '0000-00-00 00:00:00', 'active'),
+(95509, 20, '', '0000-00-00 00:00:00', 'active'),
+(95510, 6, '', '0000-00-00 00:00:00', 'active'),
+(95511, 2, '', '0000-00-00 00:00:00', 'active'),
+(95512, 20, '', '0000-00-00 00:00:00', 'active'),
+(95513, 1, '', '0000-00-00 00:00:00', 'active'),
+(95514, 13, '', '0000-00-00 00:00:00', 'active'),
+(95515, 6, '', '0000-00-00 00:00:00', 'active'),
+(95516, 2, '', '0000-00-00 00:00:00', 'active'),
+(95517, 6, '', '0000-00-00 00:00:00', 'active'),
+(95518, 13, '', '0000-00-00 00:00:00', 'active'),
+(95519, 20, '', '0000-00-00 00:00:00', 'active'),
+(95520, 1, '', '0000-00-00 00:00:00', 'active'),
+(95521, 2, '', '0000-00-00 00:00:00', 'active'),
+(95522, 20, '', '0000-00-00 00:00:00', 'active'),
+(95523, 1, '', '0000-00-00 00:00:00', 'active'),
+(95524, 13, '', '0000-00-00 00:00:00', 'active'),
+(95525, 6, '', '0000-00-00 00:00:00', 'active'),
+(95526, 2, '', '0000-00-00 00:00:00', 'active'),
+(95527, 6, '', '0000-00-00 00:00:00', 'active'),
+(95528, 1, '', '0000-00-00 00:00:00', 'active'),
+(95529, 13, '', '0000-00-00 00:00:00', 'active'),
+(95530, 20, '', '0000-00-00 00:00:00', 'active'),
+(95531, 2, '', '0000-00-00 00:00:00', 'active'),
+(95532, 6, '', '0000-00-00 00:00:00', 'active'),
+(95533, 20, '', '0000-00-00 00:00:00', 'active'),
+(95534, 1, '', '0000-00-00 00:00:00', 'active'),
+(95535, 13, '', '0000-00-00 00:00:00', 'active'),
+(95536, 2, '', '0000-00-00 00:00:00', 'active'),
+(95537, 6, '', '0000-00-00 00:00:00', 'active'),
+(95538, 20, '', '0000-00-00 00:00:00', 'active'),
+(95539, 13, '', '0000-00-00 00:00:00', 'active'),
+(95540, 1, '', '0000-00-00 00:00:00', 'active'),
+(95541, 2, '', '0000-00-00 00:00:00', 'active'),
+(95542, 13, '', '0000-00-00 00:00:00', 'active'),
+(95543, 6, '', '0000-00-00 00:00:00', 'active'),
+(95544, 1, '', '0000-00-00 00:00:00', 'active'),
+(95545, 20, '', '0000-00-00 00:00:00', 'active'),
+(95546, 2, '', '0000-00-00 00:00:00', 'active'),
+(95547, 6, '', '0000-00-00 00:00:00', 'active'),
+(95548, 13, '', '0000-00-00 00:00:00', 'active'),
+(95549, 20, '', '0000-00-00 00:00:00', 'active'),
+(95550, 1, '', '0000-00-00 00:00:00', 'active'),
+(95551, 2, '', '0000-00-00 00:00:00', 'active'),
+(95552, 6, '', '0000-00-00 00:00:00', 'active'),
+(95553, 20, '', '0000-00-00 00:00:00', 'active'),
+(95554, 13, '', '0000-00-00 00:00:00', 'active'),
+(95555, 1, '', '0000-00-00 00:00:00', 'active'),
+(95556, 2, '', '0000-00-00 00:00:00', 'active'),
+(95557, 1, '', '0000-00-00 00:00:00', 'active'),
+(95558, 20, '', '0000-00-00 00:00:00', 'active'),
+(95559, 13, '', '0000-00-00 00:00:00', 'active'),
+(95560, 6, '', '0000-00-00 00:00:00', 'active'),
+(95561, 2, '', '0000-00-00 00:00:00', 'active'),
+(95562, 13, '', '0000-00-00 00:00:00', 'active'),
+(95563, 20, '', '0000-00-00 00:00:00', 'active'),
+(95564, 6, '', '0000-00-00 00:00:00', 'active'),
+(95565, 1, '', '0000-00-00 00:00:00', 'active'),
+(95566, 2, '', '0000-00-00 00:00:00', 'active'),
+(95567, 20, '', '0000-00-00 00:00:00', 'active'),
+(95568, 6, '', '0000-00-00 00:00:00', 'active'),
+(95569, 1, '', '0000-00-00 00:00:00', 'active'),
+(95570, 13, '', '0000-00-00 00:00:00', 'active'),
+(95571, 2, '', '0000-00-00 00:00:00', 'active'),
+(95572, 6, '', '0000-00-00 00:00:00', 'active'),
+(95573, 1, '', '0000-00-00 00:00:00', 'active'),
+(95574, 13, '', '0000-00-00 00:00:00', 'active'),
+(95575, 20, '', '0000-00-00 00:00:00', 'active'),
+(95576, 2, '', '0000-00-00 00:00:00', 'active'),
+(95577, 1, '', '0000-00-00 00:00:00', 'active'),
+(95578, 13, '', '0000-00-00 00:00:00', 'active'),
+(95579, 6, '', '0000-00-00 00:00:00', 'active'),
+(95580, 20, '', '0000-00-00 00:00:00', 'active'),
+(95581, 2, '', '0000-00-00 00:00:00', 'active'),
+(95582, 6, '', '0000-00-00 00:00:00', 'active'),
+(95583, 1, '', '0000-00-00 00:00:00', 'active'),
+(95584, 13, '', '0000-00-00 00:00:00', 'active'),
+(95585, 20, '', '0000-00-00 00:00:00', 'active'),
+(95586, 2, '', '0000-00-00 00:00:00', 'active'),
+(95587, 20, '', '0000-00-00 00:00:00', 'active'),
+(95588, 1, '', '0000-00-00 00:00:00', 'active'),
+(95589, 13, '', '0000-00-00 00:00:00', 'active'),
+(95590, 6, '', '0000-00-00 00:00:00', 'active'),
+(95591, 2, '', '0000-00-00 00:00:00', 'active'),
+(95592, 1, '', '0000-00-00 00:00:00', 'active'),
+(95593, 13, '', '0000-00-00 00:00:00', 'active'),
+(95594, 6, '', '0000-00-00 00:00:00', 'active'),
+(95595, 20, '', '0000-00-00 00:00:00', 'active'),
+(95596, 2, '', '0000-00-00 00:00:00', 'active'),
+(95597, 13, '', '0000-00-00 00:00:00', 'active'),
+(95598, 6, '', '0000-00-00 00:00:00', 'active'),
+(95599, 20, '', '0000-00-00 00:00:00', 'active'),
+(95600, 1, '', '0000-00-00 00:00:00', 'active'),
+(95601, 2, '', '0000-00-00 00:00:00', 'active'),
+(95602, 20, '', '0000-00-00 00:00:00', 'active'),
+(95603, 1, '', '0000-00-00 00:00:00', 'active');
+INSERT INTO `user_sessions` (`id`, `user_id`, `session_id`, `last_activity`, `session_status`) VALUES
+(95604, 13, '', '0000-00-00 00:00:00', 'active'),
+(95605, 6, '', '0000-00-00 00:00:00', 'active'),
+(95606, 2, '', '0000-00-00 00:00:00', 'active'),
+(95607, 1, '', '0000-00-00 00:00:00', 'active'),
+(95608, 6, '', '0000-00-00 00:00:00', 'active'),
+(95609, 20, '', '0000-00-00 00:00:00', 'active'),
+(95610, 13, '', '0000-00-00 00:00:00', 'active'),
+(95611, 2, '', '0000-00-00 00:00:00', 'active'),
+(95612, 6, '', '0000-00-00 00:00:00', 'active'),
+(95613, 13, '', '0000-00-00 00:00:00', 'active'),
+(95614, 20, '', '0000-00-00 00:00:00', 'active'),
+(95615, 1, '', '0000-00-00 00:00:00', 'active'),
+(95616, 2, '', '0000-00-00 00:00:00', 'active'),
+(95617, 20, '', '0000-00-00 00:00:00', 'active'),
+(95618, 6, '', '0000-00-00 00:00:00', 'active'),
+(95619, 1, '', '0000-00-00 00:00:00', 'active'),
+(95620, 13, '', '0000-00-00 00:00:00', 'active'),
+(95621, 2, '', '0000-00-00 00:00:00', 'active'),
+(95622, 6, '', '0000-00-00 00:00:00', 'active'),
+(95623, 20, '', '0000-00-00 00:00:00', 'active'),
+(95624, 1, '', '0000-00-00 00:00:00', 'active'),
+(95625, 13, '', '0000-00-00 00:00:00', 'active'),
+(95626, 2, '', '0000-00-00 00:00:00', 'active'),
+(95627, 6, '', '0000-00-00 00:00:00', 'active'),
+(95628, 1, '', '0000-00-00 00:00:00', 'active'),
+(95629, 13, '', '0000-00-00 00:00:00', 'active'),
+(95630, 20, '', '0000-00-00 00:00:00', 'active'),
+(95631, 2, '', '0000-00-00 00:00:00', 'active'),
+(95632, 20, '', '0000-00-00 00:00:00', 'active'),
+(95633, 6, '', '0000-00-00 00:00:00', 'active'),
+(95634, 13, '', '0000-00-00 00:00:00', 'active'),
+(95635, 1, '', '0000-00-00 00:00:00', 'active'),
+(95636, 2, '', '0000-00-00 00:00:00', 'active'),
+(95637, 20, '', '0000-00-00 00:00:00', 'active'),
+(95638, 1, '', '0000-00-00 00:00:00', 'active'),
+(95639, 6, '', '0000-00-00 00:00:00', 'active'),
+(95640, 13, '', '0000-00-00 00:00:00', 'active'),
+(95641, 2, '', '0000-00-00 00:00:00', 'active'),
+(95642, 13, '', '0000-00-00 00:00:00', 'active'),
+(95643, 20, '', '0000-00-00 00:00:00', 'active'),
+(95644, 6, '', '0000-00-00 00:00:00', 'active'),
+(95645, 1, '', '0000-00-00 00:00:00', 'active'),
+(95646, 2, '', '0000-00-00 00:00:00', 'active'),
+(95647, 13, '', '0000-00-00 00:00:00', 'active'),
+(95648, 20, '', '0000-00-00 00:00:00', 'active'),
+(95649, 6, '', '0000-00-00 00:00:00', 'active'),
+(95650, 1, '', '0000-00-00 00:00:00', 'active'),
+(95651, 2, '', '0000-00-00 00:00:00', 'active'),
+(95652, 20, '', '0000-00-00 00:00:00', 'active'),
+(95653, 1, '', '0000-00-00 00:00:00', 'active'),
+(95654, 6, '', '0000-00-00 00:00:00', 'active'),
+(95655, 13, '', '0000-00-00 00:00:00', 'active'),
+(95656, 2, '', '0000-00-00 00:00:00', 'active'),
+(95657, 1, '', '0000-00-00 00:00:00', 'active'),
+(95658, 6, '', '0000-00-00 00:00:00', 'active'),
+(95659, 20, '', '0000-00-00 00:00:00', 'active'),
+(95660, 13, '', '0000-00-00 00:00:00', 'active'),
+(95661, 2, '', '0000-00-00 00:00:00', 'active'),
+(95662, 20, '', '0000-00-00 00:00:00', 'active'),
+(95663, 6, '', '0000-00-00 00:00:00', 'active'),
+(95664, 13, '', '0000-00-00 00:00:00', 'active'),
+(95665, 1, '', '0000-00-00 00:00:00', 'active'),
+(95666, 2, '', '0000-00-00 00:00:00', 'active'),
+(95667, 1, '', '0000-00-00 00:00:00', 'active'),
+(95668, 20, '', '0000-00-00 00:00:00', 'active'),
+(95669, 13, '', '0000-00-00 00:00:00', 'active'),
+(95670, 6, '', '0000-00-00 00:00:00', 'active'),
+(95671, 2, '', '0000-00-00 00:00:00', 'active'),
+(95672, 6, '', '0000-00-00 00:00:00', 'active'),
+(95673, 13, '', '0000-00-00 00:00:00', 'active'),
+(95674, 20, '', '0000-00-00 00:00:00', 'active'),
+(95675, 1, '', '0000-00-00 00:00:00', 'active'),
+(95676, 2, '', '0000-00-00 00:00:00', 'active'),
+(95677, 13, '', '0000-00-00 00:00:00', 'active'),
+(95678, 1, '', '0000-00-00 00:00:00', 'active'),
+(95679, 6, '', '0000-00-00 00:00:00', 'active'),
+(95680, 20, '', '0000-00-00 00:00:00', 'active'),
+(95681, 2, '', '0000-00-00 00:00:00', 'active'),
+(95682, 20, '', '0000-00-00 00:00:00', 'active'),
+(95683, 13, '', '0000-00-00 00:00:00', 'active'),
+(95684, 6, '', '0000-00-00 00:00:00', 'active'),
+(95685, 1, '', '0000-00-00 00:00:00', 'active'),
+(95686, 2, '', '0000-00-00 00:00:00', 'active'),
+(95687, 13, '', '0000-00-00 00:00:00', 'active'),
+(95688, 20, '', '0000-00-00 00:00:00', 'active'),
+(95689, 1, '', '0000-00-00 00:00:00', 'active'),
+(95690, 6, '', '0000-00-00 00:00:00', 'active'),
+(95691, 2, '', '0000-00-00 00:00:00', 'active'),
+(95692, 13, '', '0000-00-00 00:00:00', 'active'),
+(95693, 6, '', '0000-00-00 00:00:00', 'active'),
+(95694, 20, '', '0000-00-00 00:00:00', 'active'),
+(95695, 1, '', '0000-00-00 00:00:00', 'active'),
+(95696, 2, '', '0000-00-00 00:00:00', 'active'),
+(95697, 20, '', '0000-00-00 00:00:00', 'active'),
+(95698, 1, '', '0000-00-00 00:00:00', 'active'),
+(95699, 6, '', '0000-00-00 00:00:00', 'active'),
+(95700, 13, '', '0000-00-00 00:00:00', 'active'),
+(95701, 2, '', '0000-00-00 00:00:00', 'active'),
+(95702, 2, '', '0000-00-00 00:00:00', 'active'),
+(95703, 2, '', '0000-00-00 00:00:00', 'active'),
+(95704, 2, '', '0000-00-00 00:00:00', 'active'),
+(95705, 2, '', '0000-00-00 00:00:00', 'active'),
+(95706, 6, '', '0000-00-00 00:00:00', 'active'),
+(95707, 13, '', '0000-00-00 00:00:00', 'active'),
+(95708, 20, '', '0000-00-00 00:00:00', 'active'),
+(95709, 1, '', '0000-00-00 00:00:00', 'active'),
+(95710, 20, '', '0000-00-00 00:00:00', 'active'),
+(95711, 1, '', '0000-00-00 00:00:00', 'active'),
+(95712, 13, '', '0000-00-00 00:00:00', 'active'),
+(95713, 2, '', '0000-00-00 00:00:00', 'active'),
+(95714, 1, '', '0000-00-00 00:00:00', 'active'),
+(95715, 13, '', '0000-00-00 00:00:00', 'active'),
+(95716, 6, '', '0000-00-00 00:00:00', 'active'),
+(95717, 20, '', '0000-00-00 00:00:00', 'active'),
+(95718, 2, '', '0000-00-00 00:00:00', 'active'),
+(95719, 1, '', '0000-00-00 00:00:00', 'active'),
+(95720, 13, '', '0000-00-00 00:00:00', 'active'),
+(95721, 6, '', '0000-00-00 00:00:00', 'active'),
+(95722, 20, '', '0000-00-00 00:00:00', 'active'),
+(95723, 2, '', '0000-00-00 00:00:00', 'active'),
+(95724, 1, '', '0000-00-00 00:00:00', 'active'),
+(95725, 13, '', '0000-00-00 00:00:00', 'active'),
+(95726, 6, '', '0000-00-00 00:00:00', 'active'),
+(95727, 20, '', '0000-00-00 00:00:00', 'active'),
+(95728, 2, '', '0000-00-00 00:00:00', 'active'),
+(95729, 1, '', '0000-00-00 00:00:00', 'active'),
+(95730, 13, '', '0000-00-00 00:00:00', 'active'),
+(95731, 20, '', '0000-00-00 00:00:00', 'active'),
+(95732, 6, '', '0000-00-00 00:00:00', 'active'),
+(95733, 1, '', '0000-00-00 00:00:00', 'active'),
+(95734, 2, '', '0000-00-00 00:00:00', 'active'),
+(95735, 20, '', '0000-00-00 00:00:00', 'active'),
+(95736, 13, '', '0000-00-00 00:00:00', 'active'),
+(95737, 6, '', '0000-00-00 00:00:00', 'active'),
+(95738, 1, '', '0000-00-00 00:00:00', 'active'),
+(95739, 2, '', '0000-00-00 00:00:00', 'active'),
+(95740, 13, '', '0000-00-00 00:00:00', 'active'),
+(95741, 6, '', '0000-00-00 00:00:00', 'active'),
+(95742, 20, '', '0000-00-00 00:00:00', 'active'),
+(95743, 1, '', '0000-00-00 00:00:00', 'active'),
+(95744, 2, '', '0000-00-00 00:00:00', 'active'),
+(95745, 6, '', '0000-00-00 00:00:00', 'active'),
+(95746, 13, '', '0000-00-00 00:00:00', 'active'),
+(95747, 20, '', '0000-00-00 00:00:00', 'active'),
+(95748, 1, '', '0000-00-00 00:00:00', 'active'),
+(95749, 2, '', '0000-00-00 00:00:00', 'active'),
+(95750, 6, '', '0000-00-00 00:00:00', 'active'),
+(95751, 20, '', '0000-00-00 00:00:00', 'active'),
+(95752, 13, '', '0000-00-00 00:00:00', 'active'),
+(95753, 2, '', '0000-00-00 00:00:00', 'active'),
+(95754, 1, '', '0000-00-00 00:00:00', 'active'),
+(95755, 6, '', '0000-00-00 00:00:00', 'active'),
+(95756, 20, '', '0000-00-00 00:00:00', 'active'),
+(95757, 13, '', '0000-00-00 00:00:00', 'active'),
+(95758, 2, '', '0000-00-00 00:00:00', 'active'),
+(95759, 1, '', '0000-00-00 00:00:00', 'active'),
+(95760, 6, '', '0000-00-00 00:00:00', 'active'),
+(95761, 20, '', '0000-00-00 00:00:00', 'active'),
+(95762, 13, '', '0000-00-00 00:00:00', 'active'),
+(95763, 2, '', '0000-00-00 00:00:00', 'active'),
+(95764, 1, '', '0000-00-00 00:00:00', 'active'),
+(95765, 13, '', '0000-00-00 00:00:00', 'active'),
+(95766, 6, '', '0000-00-00 00:00:00', 'active'),
+(95767, 20, '', '0000-00-00 00:00:00', 'active'),
+(95768, 2, '', '0000-00-00 00:00:00', 'active'),
+(95769, 1, '', '0000-00-00 00:00:00', 'active'),
+(95770, 2, '', '0000-00-00 00:00:00', 'active'),
+(95771, 6, '', '0000-00-00 00:00:00', 'active'),
+(95772, 13, '', '0000-00-00 00:00:00', 'active'),
+(95773, 20, '', '0000-00-00 00:00:00', 'active'),
+(95774, 1, '', '0000-00-00 00:00:00', 'active'),
+(95775, 2, '', '0000-00-00 00:00:00', 'active'),
+(95776, 13, '', '0000-00-00 00:00:00', 'active'),
+(95777, 6, '', '0000-00-00 00:00:00', 'active'),
+(95778, 20, '', '0000-00-00 00:00:00', 'active'),
+(95779, 1, '', '0000-00-00 00:00:00', 'active'),
+(95780, 2, '', '0000-00-00 00:00:00', 'active'),
+(95781, 20, '', '0000-00-00 00:00:00', 'active'),
+(95782, 13, '', '0000-00-00 00:00:00', 'active'),
+(95783, 6, '', '0000-00-00 00:00:00', 'active'),
+(95784, 1, '', '0000-00-00 00:00:00', 'active'),
+(95785, 2, '', '0000-00-00 00:00:00', 'active'),
+(95786, 13, '', '0000-00-00 00:00:00', 'active'),
+(95787, 20, '', '0000-00-00 00:00:00', 'active'),
+(95788, 6, '', '0000-00-00 00:00:00', 'active'),
+(95789, 1, '', '0000-00-00 00:00:00', 'active'),
+(95790, 2, '', '0000-00-00 00:00:00', 'active'),
+(95791, 6, '', '0000-00-00 00:00:00', 'active'),
+(95792, 20, '', '0000-00-00 00:00:00', 'active'),
+(95793, 13, '', '0000-00-00 00:00:00', 'active'),
+(95794, 1, '', '0000-00-00 00:00:00', 'active'),
+(95795, 2, '', '0000-00-00 00:00:00', 'active'),
+(95796, 6, '', '0000-00-00 00:00:00', 'active'),
+(95797, 13, '', '0000-00-00 00:00:00', 'active'),
+(95798, 20, '', '0000-00-00 00:00:00', 'active'),
+(95799, 1, '', '0000-00-00 00:00:00', 'active'),
+(95800, 13, '', '0000-00-00 00:00:00', 'active'),
+(95801, 2, '', '0000-00-00 00:00:00', 'active'),
+(95802, 6, '', '0000-00-00 00:00:00', 'active'),
+(95803, 20, '', '0000-00-00 00:00:00', 'active'),
+(95804, 6, '', '0000-00-00 00:00:00', 'active'),
+(95805, 13, '', '0000-00-00 00:00:00', 'active'),
+(95806, 1, '', '0000-00-00 00:00:00', 'active'),
+(95807, 2, '', '0000-00-00 00:00:00', 'active'),
+(95808, 20, '', '0000-00-00 00:00:00', 'active'),
+(95809, 13, '', '0000-00-00 00:00:00', 'active'),
+(95810, 2, '', '0000-00-00 00:00:00', 'active'),
+(95811, 6, '', '0000-00-00 00:00:00', 'active'),
+(95812, 1, '', '0000-00-00 00:00:00', 'active'),
+(95813, 1, '', '0000-00-00 00:00:00', 'active'),
+(95814, 2, '', '0000-00-00 00:00:00', 'active'),
+(95815, 6, '', '0000-00-00 00:00:00', 'active'),
+(95816, 13, '', '0000-00-00 00:00:00', 'active'),
+(95817, 2, '', '0000-00-00 00:00:00', 'active'),
+(95818, 2, '', '0000-00-00 00:00:00', 'active'),
+(95819, 1, '', '0000-00-00 00:00:00', 'active'),
+(95820, 20, '', '0000-00-00 00:00:00', 'active'),
+(95821, 13, '', '0000-00-00 00:00:00', 'active'),
+(95822, 6, '', '0000-00-00 00:00:00', 'active'),
+(95823, 6, '', '0000-00-00 00:00:00', 'active'),
+(95824, 2, '', '0000-00-00 00:00:00', 'active'),
+(95825, 20, '', '0000-00-00 00:00:00', 'active'),
+(95826, 13, '', '0000-00-00 00:00:00', 'active'),
+(95827, 1, '', '0000-00-00 00:00:00', 'active'),
+(95828, 2, '', '0000-00-00 00:00:00', 'active'),
+(95829, 20, '', '0000-00-00 00:00:00', 'active'),
+(95830, 13, '', '0000-00-00 00:00:00', 'active'),
+(95831, 6, '', '0000-00-00 00:00:00', 'active'),
+(95832, 1, '', '0000-00-00 00:00:00', 'active'),
+(95833, 13, '', '0000-00-00 00:00:00', 'active'),
+(95834, 6, '', '0000-00-00 00:00:00', 'active'),
+(95835, 20, '', '0000-00-00 00:00:00', 'active'),
+(95836, 2, '', '0000-00-00 00:00:00', 'active'),
+(95837, 1, '', '0000-00-00 00:00:00', 'active'),
+(95838, 6, '', '0000-00-00 00:00:00', 'active'),
+(95839, 20, '', '0000-00-00 00:00:00', 'active'),
+(95840, 2, '', '0000-00-00 00:00:00', 'active'),
+(95841, 13, '', '0000-00-00 00:00:00', 'active'),
+(95842, 1, '', '0000-00-00 00:00:00', 'active'),
+(95843, 13, '', '0000-00-00 00:00:00', 'active'),
+(95844, 20, '', '0000-00-00 00:00:00', 'active'),
+(95845, 2, '', '0000-00-00 00:00:00', 'active'),
+(95846, 6, '', '0000-00-00 00:00:00', 'active'),
+(95847, 1, '', '0000-00-00 00:00:00', 'active'),
+(95848, 13, '', '0000-00-00 00:00:00', 'active'),
+(95849, 6, '', '0000-00-00 00:00:00', 'active'),
+(95850, 20, '', '0000-00-00 00:00:00', 'active'),
+(95851, 2, '', '0000-00-00 00:00:00', 'active'),
+(95852, 1, '', '0000-00-00 00:00:00', 'active'),
+(95853, 20, '', '0000-00-00 00:00:00', 'active'),
+(95854, 6, '', '0000-00-00 00:00:00', 'active'),
+(95855, 13, '', '0000-00-00 00:00:00', 'active'),
+(95856, 2, '', '0000-00-00 00:00:00', 'active'),
+(95857, 1, '', '0000-00-00 00:00:00', 'active'),
+(95858, 13, '', '0000-00-00 00:00:00', 'active'),
+(95859, 20, '', '0000-00-00 00:00:00', 'active'),
+(95860, 6, '', '0000-00-00 00:00:00', 'active'),
+(95861, 2, '', '0000-00-00 00:00:00', 'active'),
+(95862, 1, '', '0000-00-00 00:00:00', 'active'),
+(95863, 6, '', '0000-00-00 00:00:00', 'active'),
+(95864, 20, '', '0000-00-00 00:00:00', 'active'),
+(95865, 13, '', '0000-00-00 00:00:00', 'active'),
+(95866, 2, '', '0000-00-00 00:00:00', 'active'),
+(95867, 1, '', '0000-00-00 00:00:00', 'active'),
+(95868, 2, '', '0000-00-00 00:00:00', 'active'),
+(95869, 6, '', '0000-00-00 00:00:00', 'active'),
+(95870, 13, '', '0000-00-00 00:00:00', 'active'),
+(95871, 20, '', '0000-00-00 00:00:00', 'active'),
+(95872, 1, '', '0000-00-00 00:00:00', 'active'),
+(95873, 13, '', '0000-00-00 00:00:00', 'active'),
+(95874, 2, '', '0000-00-00 00:00:00', 'active'),
+(95875, 6, '', '0000-00-00 00:00:00', 'active'),
+(95876, 20, '', '0000-00-00 00:00:00', 'active'),
+(95877, 1, '', '0000-00-00 00:00:00', 'active'),
+(95878, 20, '', '0000-00-00 00:00:00', 'active'),
+(95879, 13, '', '0000-00-00 00:00:00', 'active'),
+(95880, 6, '', '0000-00-00 00:00:00', 'active'),
+(95881, 2, '', '0000-00-00 00:00:00', 'active'),
+(95882, 1, '', '0000-00-00 00:00:00', 'active'),
+(95883, 13, '', '0000-00-00 00:00:00', 'active'),
+(95884, 2, '', '0000-00-00 00:00:00', 'active'),
+(95885, 20, '', '0000-00-00 00:00:00', 'active'),
+(95886, 6, '', '0000-00-00 00:00:00', 'active'),
+(95887, 1, '', '0000-00-00 00:00:00', 'active'),
+(95888, 2, '', '0000-00-00 00:00:00', 'active'),
+(95889, 13, '', '0000-00-00 00:00:00', 'active'),
+(95890, 6, '', '0000-00-00 00:00:00', 'active'),
+(95891, 20, '', '0000-00-00 00:00:00', 'active'),
+(95892, 1, '', '0000-00-00 00:00:00', 'active'),
+(95893, 13, '', '0000-00-00 00:00:00', 'active'),
+(95894, 20, '', '0000-00-00 00:00:00', 'active'),
+(95895, 2, '', '0000-00-00 00:00:00', 'active'),
+(95896, 6, '', '0000-00-00 00:00:00', 'active'),
+(95897, 1, '', '0000-00-00 00:00:00', 'active'),
+(95898, 13, '', '0000-00-00 00:00:00', 'active'),
+(95899, 6, '', '0000-00-00 00:00:00', 'active'),
+(95900, 2, '', '0000-00-00 00:00:00', 'active'),
+(95901, 20, '', '0000-00-00 00:00:00', 'active'),
+(95902, 1, '', '0000-00-00 00:00:00', 'active'),
+(95903, 2, '', '0000-00-00 00:00:00', 'active'),
+(95904, 13, '', '0000-00-00 00:00:00', 'active'),
+(95905, 6, '', '0000-00-00 00:00:00', 'active'),
+(95906, 20, '', '0000-00-00 00:00:00', 'active'),
+(95907, 1, '', '0000-00-00 00:00:00', 'active'),
+(95908, 2, '', '0000-00-00 00:00:00', 'active'),
+(95909, 13, '', '0000-00-00 00:00:00', 'active'),
+(95910, 6, '', '0000-00-00 00:00:00', 'active'),
+(95911, 20, '', '0000-00-00 00:00:00', 'active'),
+(95912, 1, '', '0000-00-00 00:00:00', 'active'),
+(95913, 20, '', '0000-00-00 00:00:00', 'active'),
+(95914, 2, '', '0000-00-00 00:00:00', 'active'),
+(95915, 13, '', '0000-00-00 00:00:00', 'active'),
+(95916, 6, '', '0000-00-00 00:00:00', 'active'),
+(95917, 1, '', '0000-00-00 00:00:00', 'active'),
+(95918, 20, '', '0000-00-00 00:00:00', 'active'),
+(95919, 13, '', '0000-00-00 00:00:00', 'active'),
+(95920, 6, '', '0000-00-00 00:00:00', 'active'),
+(95921, 2, '', '0000-00-00 00:00:00', 'active'),
+(95922, 1, '', '0000-00-00 00:00:00', 'active'),
+(95923, 6, '', '0000-00-00 00:00:00', 'active'),
+(95924, 20, '', '0000-00-00 00:00:00', 'active'),
+(95925, 2, '', '0000-00-00 00:00:00', 'active'),
+(95926, 13, '', '0000-00-00 00:00:00', 'active'),
+(95927, 6, '', '0000-00-00 00:00:00', 'active'),
+(95928, 13, '', '0000-00-00 00:00:00', 'active'),
+(95929, 2, '', '0000-00-00 00:00:00', 'active'),
+(95930, 20, '', '0000-00-00 00:00:00', 'active'),
+(95931, 13, '', '0000-00-00 00:00:00', 'active'),
+(95932, 6, '', '0000-00-00 00:00:00', 'active'),
+(95933, 2, '', '0000-00-00 00:00:00', 'active'),
+(95934, 20, '', '0000-00-00 00:00:00', 'active'),
+(95935, 2, '', '0000-00-00 00:00:00', 'active'),
+(95936, 13, '', '0000-00-00 00:00:00', 'active'),
+(95937, 20, '', '0000-00-00 00:00:00', 'active'),
+(95938, 6, '', '0000-00-00 00:00:00', 'active'),
+(95939, 13, '', '0000-00-00 00:00:00', 'active'),
+(95940, 2, '', '0000-00-00 00:00:00', 'active'),
+(95941, 20, '', '0000-00-00 00:00:00', 'active'),
+(95942, 6, '', '0000-00-00 00:00:00', 'active'),
+(95943, 2, '', '0000-00-00 00:00:00', 'active'),
+(95944, 13, '', '0000-00-00 00:00:00', 'active'),
+(95945, 6, '', '0000-00-00 00:00:00', 'active'),
+(95946, 20, '', '0000-00-00 00:00:00', 'active'),
+(95947, 2, '', '0000-00-00 00:00:00', 'active'),
+(95948, 13, '', '0000-00-00 00:00:00', 'active'),
+(95949, 6, '', '0000-00-00 00:00:00', 'active'),
+(95950, 20, '', '0000-00-00 00:00:00', 'active'),
+(95951, 1, '', '0000-00-00 00:00:00', 'active'),
+(95952, 1, '', '0000-00-00 00:00:00', 'active'),
+(95953, 2, '', '0000-00-00 00:00:00', 'active'),
+(95954, 20, '', '0000-00-00 00:00:00', 'active'),
+(95955, 13, '', '0000-00-00 00:00:00', 'active'),
+(95956, 6, '', '0000-00-00 00:00:00', 'active'),
+(95957, 1, '', '0000-00-00 00:00:00', 'active'),
+(95958, 6, '', '0000-00-00 00:00:00', 'active'),
+(95959, 20, '', '0000-00-00 00:00:00', 'active'),
+(95960, 2, '', '0000-00-00 00:00:00', 'active'),
+(95961, 13, '', '0000-00-00 00:00:00', 'active'),
+(95962, 1, '', '0000-00-00 00:00:00', 'active'),
+(95963, 2, '', '0000-00-00 00:00:00', 'active'),
+(95964, 6, '', '0000-00-00 00:00:00', 'active'),
+(95965, 20, '', '0000-00-00 00:00:00', 'active'),
+(95966, 13, '', '0000-00-00 00:00:00', 'active'),
+(95967, 1, '', '0000-00-00 00:00:00', 'active'),
+(95968, 6, '', '0000-00-00 00:00:00', 'active'),
+(95969, 13, '', '0000-00-00 00:00:00', 'active'),
+(95970, 2, '', '0000-00-00 00:00:00', 'active'),
+(95971, 20, '', '0000-00-00 00:00:00', 'active'),
+(95972, 1, '', '0000-00-00 00:00:00', 'active'),
+(95973, 6, '', '0000-00-00 00:00:00', 'active'),
+(95974, 2, '', '0000-00-00 00:00:00', 'active'),
+(95975, 20, '', '0000-00-00 00:00:00', 'active'),
+(95976, 13, '', '0000-00-00 00:00:00', 'active'),
+(95977, 1, '', '0000-00-00 00:00:00', 'active'),
+(95978, 13, '', '0000-00-00 00:00:00', 'active'),
+(95979, 6, '', '0000-00-00 00:00:00', 'active'),
+(95980, 20, '', '0000-00-00 00:00:00', 'active'),
+(95981, 2, '', '0000-00-00 00:00:00', 'active'),
+(95982, 1, '', '0000-00-00 00:00:00', 'active'),
+(95983, 2, '', '0000-00-00 00:00:00', 'active'),
+(95984, 13, '', '0000-00-00 00:00:00', 'active'),
+(95985, 6, '', '0000-00-00 00:00:00', 'active'),
+(95986, 20, '', '0000-00-00 00:00:00', 'active'),
+(95987, 1, '', '0000-00-00 00:00:00', 'active'),
+(95988, 13, '', '0000-00-00 00:00:00', 'active'),
+(95989, 2, '', '0000-00-00 00:00:00', 'active'),
+(95990, 6, '', '0000-00-00 00:00:00', 'active'),
+(95991, 2, '', '0000-00-00 00:00:00', 'active'),
+(95992, 13, '', '0000-00-00 00:00:00', 'active'),
+(95993, 20, '', '0000-00-00 00:00:00', 'active'),
+(95994, 6, '', '0000-00-00 00:00:00', 'active'),
+(95995, 1, '', '0000-00-00 00:00:00', 'active'),
+(95996, 20, '', '0000-00-00 00:00:00', 'active'),
+(95997, 1, '', '0000-00-00 00:00:00', 'active'),
+(95998, 6, '', '0000-00-00 00:00:00', 'active'),
+(95999, 13, '', '0000-00-00 00:00:00', 'active'),
+(96000, 2, '', '0000-00-00 00:00:00', 'active'),
+(96001, 20, '', '0000-00-00 00:00:00', 'active'),
+(96002, 1, '', '0000-00-00 00:00:00', 'active'),
+(96003, 20, '', '0000-00-00 00:00:00', 'active'),
+(96004, 6, '', '0000-00-00 00:00:00', 'active'),
+(96005, 2, '', '0000-00-00 00:00:00', 'active'),
+(96006, 13, '', '0000-00-00 00:00:00', 'active'),
+(96007, 1, '', '0000-00-00 00:00:00', 'active'),
+(96008, 20, '', '0000-00-00 00:00:00', 'active'),
+(96009, 1, '', '0000-00-00 00:00:00', 'active'),
+(96010, 20, '', '0000-00-00 00:00:00', 'active'),
+(96011, 1, '', '0000-00-00 00:00:00', 'active'),
+(96012, 1, '', '0000-00-00 00:00:00', 'active'),
+(96013, 1, '', '0000-00-00 00:00:00', 'active'),
+(96014, 1, '', '0000-00-00 00:00:00', 'active'),
+(96015, 1, '', '0000-00-00 00:00:00', 'active'),
+(96016, 1, '', '0000-00-00 00:00:00', 'active'),
+(96017, 1, '', '0000-00-00 00:00:00', 'active'),
+(96018, 1, '', '0000-00-00 00:00:00', 'active'),
+(96019, 2, '', '0000-00-00 00:00:00', 'active'),
+(96020, 20, '', '0000-00-00 00:00:00', 'active'),
+(96021, 13, '', '0000-00-00 00:00:00', 'active'),
+(96022, 6, '', '0000-00-00 00:00:00', 'active'),
+(96023, 1, '', '0000-00-00 00:00:00', 'active'),
+(96024, 13, '', '0000-00-00 00:00:00', 'active'),
+(96025, 20, '', '0000-00-00 00:00:00', 'active'),
+(96026, 6, '', '0000-00-00 00:00:00', 'active'),
+(96027, 2, '', '0000-00-00 00:00:00', 'active'),
+(96028, 1, '', '0000-00-00 00:00:00', 'active'),
+(96029, 2, '', '0000-00-00 00:00:00', 'active'),
+(96030, 13, '', '0000-00-00 00:00:00', 'active'),
+(96031, 1, '', '0000-00-00 00:00:00', 'active'),
+(96032, 6, '', '0000-00-00 00:00:00', 'active'),
+(96033, 20, '', '0000-00-00 00:00:00', 'active'),
+(96034, 6, '', '0000-00-00 00:00:00', 'active'),
+(96035, 13, '', '0000-00-00 00:00:00', 'active'),
+(96036, 20, '', '0000-00-00 00:00:00', 'active'),
+(96037, 1, '', '0000-00-00 00:00:00', 'active'),
+(96038, 2, '', '0000-00-00 00:00:00', 'active'),
+(96039, 2, '', '0000-00-00 00:00:00', 'active'),
+(96040, 2, '', '0000-00-00 00:00:00', 'active'),
+(96041, 2, '', '0000-00-00 00:00:00', 'active'),
+(96042, 2, '', '0000-00-00 00:00:00', 'active'),
+(96043, 2, '', '0000-00-00 00:00:00', 'active'),
+(96044, 2, '', '0000-00-00 00:00:00', 'active'),
+(96045, 2, '', '0000-00-00 00:00:00', 'active'),
+(96046, 2, '', '0000-00-00 00:00:00', 'active'),
+(96047, 2, '', '0000-00-00 00:00:00', 'active'),
+(96048, 2, '', '0000-00-00 00:00:00', 'active'),
+(96049, 6, '', '0000-00-00 00:00:00', 'active'),
+(96050, 20, '', '0000-00-00 00:00:00', 'active'),
+(96051, 13, '', '0000-00-00 00:00:00', 'active'),
+(96052, 1, '', '0000-00-00 00:00:00', 'active'),
+(96053, 2, '', '0000-00-00 00:00:00', 'active'),
+(96054, 2, '', '0000-00-00 00:00:00', 'active'),
+(96055, 2, '', '0000-00-00 00:00:00', 'active'),
+(96056, 2, '', '0000-00-00 00:00:00', 'active'),
+(96057, 2, '', '0000-00-00 00:00:00', 'active'),
+(96058, 2, '', '0000-00-00 00:00:00', 'active'),
+(96059, 2, '', '0000-00-00 00:00:00', 'active'),
+(96060, 2, '', '0000-00-00 00:00:00', 'active'),
+(96061, 2, '', '0000-00-00 00:00:00', 'active'),
+(96062, 2, '', '0000-00-00 00:00:00', 'active'),
+(96063, 2, '', '0000-00-00 00:00:00', 'active'),
+(96064, 2, '', '0000-00-00 00:00:00', 'active'),
+(96065, 6, '', '0000-00-00 00:00:00', 'active'),
+(96066, 20, '', '0000-00-00 00:00:00', 'active'),
+(96067, 13, '', '0000-00-00 00:00:00', 'active'),
+(96068, 1, '', '0000-00-00 00:00:00', 'active'),
+(96069, 20, '', '0000-00-00 00:00:00', 'active'),
+(96070, 13, '', '0000-00-00 00:00:00', 'active'),
+(96071, 1, '', '0000-00-00 00:00:00', 'active'),
+(96072, 2, '', '0000-00-00 00:00:00', 'active'),
+(96073, 6, '', '0000-00-00 00:00:00', 'active'),
+(96074, 2, '', '0000-00-00 00:00:00', 'active'),
+(96075, 13, '', '0000-00-00 00:00:00', 'active'),
+(96076, 6, '', '0000-00-00 00:00:00', 'active'),
+(96077, 1, '', '0000-00-00 00:00:00', 'active'),
+(96078, 20, '', '0000-00-00 00:00:00', 'active'),
+(96079, 6, '', '0000-00-00 00:00:00', 'active'),
+(96080, 2, '', '0000-00-00 00:00:00', 'active'),
+(96081, 13, '', '0000-00-00 00:00:00', 'active'),
+(96082, 20, '', '0000-00-00 00:00:00', 'active'),
+(96083, 1, '', '0000-00-00 00:00:00', 'active'),
+(96084, 13, '', '0000-00-00 00:00:00', 'active'),
+(96085, 6, '', '0000-00-00 00:00:00', 'active'),
+(96086, 2, '', '0000-00-00 00:00:00', 'active'),
+(96087, 20, '', '0000-00-00 00:00:00', 'active'),
+(96088, 1, '', '0000-00-00 00:00:00', 'active'),
+(96089, 13, '', '0000-00-00 00:00:00', 'active'),
+(96090, 20, '', '0000-00-00 00:00:00', 'active'),
+(96091, 6, '', '0000-00-00 00:00:00', 'active'),
+(96092, 2, '', '0000-00-00 00:00:00', 'active'),
+(96093, 1, '', '0000-00-00 00:00:00', 'active'),
+(96094, 13, '', '0000-00-00 00:00:00', 'active'),
+(96095, 6, '', '0000-00-00 00:00:00', 'active'),
+(96096, 2, '', '0000-00-00 00:00:00', 'active'),
+(96097, 20, '', '0000-00-00 00:00:00', 'active'),
+(96098, 1, '', '0000-00-00 00:00:00', 'active'),
+(96099, 13, '', '0000-00-00 00:00:00', 'active'),
+(96100, 2, '', '0000-00-00 00:00:00', 'active'),
+(96101, 6, '', '0000-00-00 00:00:00', 'active'),
+(96102, 1, '', '0000-00-00 00:00:00', 'active'),
+(96103, 20, '', '0000-00-00 00:00:00', 'active'),
+(96104, 2, '', '0000-00-00 00:00:00', 'active'),
+(96105, 2, '', '0000-00-00 00:00:00', 'active'),
+(96106, 2, '', '0000-00-00 00:00:00', 'active'),
+(96107, 2, '', '0000-00-00 00:00:00', 'active'),
+(96108, 2, '', '0000-00-00 00:00:00', 'active'),
+(96109, 2, '', '0000-00-00 00:00:00', 'active'),
+(96110, 2, '', '0000-00-00 00:00:00', 'active'),
+(96111, 2, '', '0000-00-00 00:00:00', 'active'),
+(96112, 2, '', '0000-00-00 00:00:00', 'active'),
+(96113, 2, '', '0000-00-00 00:00:00', 'active'),
+(96114, 2, '', '0000-00-00 00:00:00', 'active'),
+(96115, 2, '', '0000-00-00 00:00:00', 'active'),
+(96116, 2, '', '0000-00-00 00:00:00', 'active'),
+(96117, 2, '', '0000-00-00 00:00:00', 'active'),
+(96118, 2, '', '0000-00-00 00:00:00', 'active'),
+(96119, 2, '', '0000-00-00 00:00:00', 'active'),
+(96120, 2, '', '0000-00-00 00:00:00', 'active'),
+(96121, 2, '', '0000-00-00 00:00:00', 'active'),
+(96122, 2, '', '0000-00-00 00:00:00', 'active'),
+(96123, 13, '', '0000-00-00 00:00:00', 'active'),
+(96124, 6, '', '0000-00-00 00:00:00', 'active'),
+(96125, 20, '', '0000-00-00 00:00:00', 'active'),
+(96126, 1, '', '0000-00-00 00:00:00', 'active'),
+(96127, 2, '', '0000-00-00 00:00:00', 'active'),
+(96128, 2, '', '0000-00-00 00:00:00', 'active'),
+(96129, 6, '', '0000-00-00 00:00:00', 'active'),
+(96130, 13, '', '0000-00-00 00:00:00', 'active'),
+(96131, 2, '', '0000-00-00 00:00:00', 'active'),
+(96132, 20, '', '0000-00-00 00:00:00', 'active'),
+(96133, 1, '', '0000-00-00 00:00:00', 'active'),
+(96134, 6, '', '0000-00-00 00:00:00', 'active'),
+(96135, 1, '', '0000-00-00 00:00:00', 'active'),
+(96136, 2, '', '0000-00-00 00:00:00', 'active'),
+(96137, 20, '', '0000-00-00 00:00:00', 'active'),
+(96138, 13, '', '0000-00-00 00:00:00', 'active'),
+(96139, 13, '', '0000-00-00 00:00:00', 'active'),
+(96140, 2, '', '0000-00-00 00:00:00', 'active'),
+(96141, 6, '', '0000-00-00 00:00:00', 'active'),
+(96142, 20, '', '0000-00-00 00:00:00', 'active'),
+(96143, 1, '', '0000-00-00 00:00:00', 'active'),
+(96144, 2, '', '0000-00-00 00:00:00', 'active'),
+(96145, 13, '', '0000-00-00 00:00:00', 'active'),
+(96146, 20, '', '0000-00-00 00:00:00', 'active'),
+(96147, 6, '', '0000-00-00 00:00:00', 'active'),
+(96148, 1, '', '0000-00-00 00:00:00', 'active'),
+(96149, 13, '', '0000-00-00 00:00:00', 'active'),
+(96150, 6, '', '0000-00-00 00:00:00', 'active'),
+(96151, 20, '', '0000-00-00 00:00:00', 'active'),
+(96152, 2, '', '0000-00-00 00:00:00', 'active'),
+(96153, 1, '', '0000-00-00 00:00:00', 'active'),
+(96154, 13, '', '0000-00-00 00:00:00', 'active'),
+(96155, 2, '', '0000-00-00 00:00:00', 'active'),
+(96156, 20, '', '0000-00-00 00:00:00', 'active'),
+(96157, 6, '', '0000-00-00 00:00:00', 'active'),
+(96158, 1, '', '0000-00-00 00:00:00', 'active'),
+(96159, 13, '', '0000-00-00 00:00:00', 'active'),
+(96160, 6, '', '0000-00-00 00:00:00', 'active'),
+(96161, 20, '', '0000-00-00 00:00:00', 'active'),
+(96162, 2, '', '0000-00-00 00:00:00', 'active'),
+(96163, 1, '', '0000-00-00 00:00:00', 'active'),
+(96164, 13, '', '0000-00-00 00:00:00', 'active'),
+(96165, 6, '', '0000-00-00 00:00:00', 'active'),
+(96166, 20, '', '0000-00-00 00:00:00', 'active'),
+(96167, 1, '', '0000-00-00 00:00:00', 'active'),
+(96168, 2, '', '0000-00-00 00:00:00', 'active'),
+(96169, 13, '', '0000-00-00 00:00:00', 'active'),
+(96170, 2, '', '0000-00-00 00:00:00', 'active'),
+(96171, 20, '', '0000-00-00 00:00:00', 'active'),
+(96172, 1, '', '0000-00-00 00:00:00', 'active'),
+(96173, 6, '', '0000-00-00 00:00:00', 'active'),
+(96174, 13, '', '0000-00-00 00:00:00', 'active'),
+(96175, 6, '', '0000-00-00 00:00:00', 'active'),
+(96176, 2, '', '0000-00-00 00:00:00', 'active'),
+(96177, 1, '', '0000-00-00 00:00:00', 'active'),
+(96178, 20, '', '0000-00-00 00:00:00', 'active'),
+(96179, 13, '', '0000-00-00 00:00:00', 'active'),
+(96180, 6, '', '0000-00-00 00:00:00', 'active'),
+(96181, 20, '', '0000-00-00 00:00:00', 'active'),
+(96182, 1, '', '0000-00-00 00:00:00', 'active'),
+(96183, 2, '', '0000-00-00 00:00:00', 'active'),
+(96184, 20, '', '0000-00-00 00:00:00', 'active'),
+(96185, 6, '', '0000-00-00 00:00:00', 'active'),
+(96186, 6, '', '0000-00-00 00:00:00', 'active'),
+(96187, 20, '', '0000-00-00 00:00:00', 'active'),
+(96188, 6, '', '0000-00-00 00:00:00', 'active'),
+(96189, 20, '', '0000-00-00 00:00:00', 'active'),
+(96190, 20, '', '0000-00-00 00:00:00', 'active'),
+(96191, 6, '', '0000-00-00 00:00:00', 'active'),
+(96192, 20, '', '0000-00-00 00:00:00', 'active'),
+(96193, 6, '', '0000-00-00 00:00:00', 'active'),
+(96194, 20, '', '0000-00-00 00:00:00', 'active'),
+(96195, 6, '', '0000-00-00 00:00:00', 'active'),
+(96196, 6, '', '0000-00-00 00:00:00', 'active'),
+(96197, 20, '', '0000-00-00 00:00:00', 'active'),
+(96198, 6, '', '0000-00-00 00:00:00', 'active'),
+(96199, 20, '', '0000-00-00 00:00:00', 'active'),
+(96200, 20, '', '0000-00-00 00:00:00', 'active'),
+(96201, 6, '', '0000-00-00 00:00:00', 'active'),
+(96202, 20, '', '0000-00-00 00:00:00', 'active'),
+(96203, 6, '', '0000-00-00 00:00:00', 'active'),
+(96204, 20, '', '0000-00-00 00:00:00', 'active'),
+(96205, 6, '', '0000-00-00 00:00:00', 'active'),
+(96206, 20, '', '0000-00-00 00:00:00', 'active'),
+(96207, 6, '', '0000-00-00 00:00:00', 'active'),
+(96208, 6, '', '0000-00-00 00:00:00', 'active'),
+(96209, 20, '', '0000-00-00 00:00:00', 'active'),
+(96210, 6, '', '0000-00-00 00:00:00', 'active'),
+(96211, 20, '', '0000-00-00 00:00:00', 'active'),
+(96212, 6, '', '0000-00-00 00:00:00', 'active'),
+(96213, 20, '', '0000-00-00 00:00:00', 'active'),
+(96214, 20, '', '0000-00-00 00:00:00', 'active'),
+(96215, 6, '', '0000-00-00 00:00:00', 'active'),
+(96216, 6, '', '0000-00-00 00:00:00', 'active'),
+(96217, 20, '', '0000-00-00 00:00:00', 'active'),
+(96218, 6, '', '0000-00-00 00:00:00', 'active'),
+(96219, 20, '', '0000-00-00 00:00:00', 'active'),
+(96220, 20, '', '0000-00-00 00:00:00', 'active'),
+(96221, 6, '', '0000-00-00 00:00:00', 'active'),
+(96222, 13, '', '0000-00-00 00:00:00', 'active'),
+(96223, 1, '', '0000-00-00 00:00:00', 'active'),
+(96224, 2, '', '0000-00-00 00:00:00', 'active'),
+(96225, 6, '', '0000-00-00 00:00:00', 'active'),
+(96226, 20, '', '0000-00-00 00:00:00', 'active'),
+(96227, 6, '', '0000-00-00 00:00:00', 'active'),
+(96228, 20, '', '0000-00-00 00:00:00', 'active'),
+(96229, 6, '', '0000-00-00 00:00:00', 'active'),
+(96230, 2, '', '0000-00-00 00:00:00', 'active'),
+(96231, 13, '', '0000-00-00 00:00:00', 'active'),
+(96232, 20, '', '0000-00-00 00:00:00', 'active'),
+(96233, 1, '', '0000-00-00 00:00:00', 'active'),
+(96234, 13, '', '0000-00-00 00:00:00', 'active'),
+(96235, 20, '', '0000-00-00 00:00:00', 'active'),
+(96236, 6, '', '0000-00-00 00:00:00', 'active'),
+(96237, 1, '', '0000-00-00 00:00:00', 'active'),
+(96238, 2, '', '0000-00-00 00:00:00', 'active'),
+(96239, 13, '', '0000-00-00 00:00:00', 'active'),
+(96240, 2, '', '0000-00-00 00:00:00', 'active'),
+(96241, 20, '', '0000-00-00 00:00:00', 'active'),
+(96242, 6, '', '0000-00-00 00:00:00', 'active'),
+(96243, 1, '', '0000-00-00 00:00:00', 'active'),
+(96244, 6, '', '0000-00-00 00:00:00', 'active'),
+(96245, 2, '', '0000-00-00 00:00:00', 'active'),
+(96246, 13, '', '0000-00-00 00:00:00', 'active'),
+(96247, 20, '', '0000-00-00 00:00:00', 'active'),
+(96248, 1, '', '0000-00-00 00:00:00', 'active'),
+(96249, 1, '', '0000-00-00 00:00:00', 'active'),
+(96250, 6, '', '0000-00-00 00:00:00', 'active'),
+(96251, 2, '', '0000-00-00 00:00:00', 'active'),
+(96252, 20, '', '0000-00-00 00:00:00', 'active'),
+(96253, 13, '', '0000-00-00 00:00:00', 'active'),
+(96254, 6, '', '0000-00-00 00:00:00', 'active'),
+(96255, 13, '', '0000-00-00 00:00:00', 'active'),
+(96256, 2, '', '0000-00-00 00:00:00', 'active'),
+(96257, 1, '', '0000-00-00 00:00:00', 'active'),
+(96258, 20, '', '0000-00-00 00:00:00', 'active'),
+(96259, 6, '', '0000-00-00 00:00:00', 'active'),
+(96260, 13, '', '0000-00-00 00:00:00', 'active'),
+(96261, 20, '', '0000-00-00 00:00:00', 'active'),
+(96262, 1, '', '0000-00-00 00:00:00', 'active'),
+(96263, 2, '', '0000-00-00 00:00:00', 'active'),
+(96264, 13, '', '0000-00-00 00:00:00', 'active'),
+(96265, 2, '', '0000-00-00 00:00:00', 'active'),
+(96266, 6, '', '0000-00-00 00:00:00', 'active'),
+(96267, 1, '', '0000-00-00 00:00:00', 'active'),
+(96268, 20, '', '0000-00-00 00:00:00', 'active'),
+(96269, 13, '', '0000-00-00 00:00:00', 'active'),
+(96270, 20, '', '0000-00-00 00:00:00', 'active'),
+(96271, 2, '', '0000-00-00 00:00:00', 'active'),
+(96272, 6, '', '0000-00-00 00:00:00', 'active'),
+(96273, 1, '', '0000-00-00 00:00:00', 'active'),
+(96274, 13, '', '0000-00-00 00:00:00', 'active'),
+(96275, 6, '', '0000-00-00 00:00:00', 'active'),
+(96276, 2, '', '0000-00-00 00:00:00', 'active'),
+(96277, 1, '', '0000-00-00 00:00:00', 'active'),
+(96278, 20, '', '0000-00-00 00:00:00', 'active'),
+(96279, 6, '', '0000-00-00 00:00:00', 'active'),
+(96280, 2, '', '0000-00-00 00:00:00', 'active'),
+(96281, 1, '', '0000-00-00 00:00:00', 'active'),
+(96282, 13, '', '0000-00-00 00:00:00', 'active'),
+(96283, 20, '', '0000-00-00 00:00:00', 'active'),
+(96284, 2, '', '0000-00-00 00:00:00', 'active'),
+(96285, 13, '', '0000-00-00 00:00:00', 'active'),
+(96286, 6, '', '0000-00-00 00:00:00', 'active'),
+(96287, 1, '', '0000-00-00 00:00:00', 'active'),
+(96288, 20, '', '0000-00-00 00:00:00', 'active'),
+(96289, 13, '', '0000-00-00 00:00:00', 'active'),
+(96290, 6, '', '0000-00-00 00:00:00', 'active'),
+(96291, 2, '', '0000-00-00 00:00:00', 'active'),
+(96292, 20, '', '0000-00-00 00:00:00', 'active'),
+(96293, 1, '', '0000-00-00 00:00:00', 'active'),
+(96294, 6, '', '0000-00-00 00:00:00', 'active'),
+(96295, 13, '', '0000-00-00 00:00:00', 'active'),
+(96296, 2, '', '0000-00-00 00:00:00', 'active'),
+(96297, 20, '', '0000-00-00 00:00:00', 'active'),
+(96298, 1, '', '0000-00-00 00:00:00', 'active'),
+(96299, 6, '', '0000-00-00 00:00:00', 'active'),
+(96300, 13, '', '0000-00-00 00:00:00', 'active'),
+(96301, 2, '', '0000-00-00 00:00:00', 'active'),
+(96302, 20, '', '0000-00-00 00:00:00', 'active'),
+(96303, 1, '', '0000-00-00 00:00:00', 'active'),
+(96304, 6, '', '0000-00-00 00:00:00', 'active'),
+(96305, 13, '', '0000-00-00 00:00:00', 'active'),
+(96306, 2, '', '0000-00-00 00:00:00', 'active'),
+(96307, 20, '', '0000-00-00 00:00:00', 'active'),
+(96308, 1, '', '0000-00-00 00:00:00', 'active'),
+(96309, 6, '', '0000-00-00 00:00:00', 'active'),
+(96310, 13, '', '0000-00-00 00:00:00', 'active'),
+(96311, 20, '', '0000-00-00 00:00:00', 'active'),
+(96312, 1, '', '0000-00-00 00:00:00', 'active'),
+(96313, 2, '', '0000-00-00 00:00:00', 'active'),
+(96314, 13, '', '0000-00-00 00:00:00', 'active'),
+(96315, 6, '', '0000-00-00 00:00:00', 'active'),
+(96316, 2, '', '0000-00-00 00:00:00', 'active'),
+(96317, 20, '', '0000-00-00 00:00:00', 'active'),
+(96318, 1, '', '0000-00-00 00:00:00', 'active'),
+(96319, 6, '', '0000-00-00 00:00:00', 'active'),
+(96320, 2, '', '0000-00-00 00:00:00', 'active'),
+(96321, 13, '', '0000-00-00 00:00:00', 'active'),
+(96322, 1, '', '0000-00-00 00:00:00', 'active'),
+(96323, 20, '', '0000-00-00 00:00:00', 'active'),
+(96324, 6, '', '0000-00-00 00:00:00', 'active'),
+(96325, 2, '', '0000-00-00 00:00:00', 'active'),
+(96326, 13, '', '0000-00-00 00:00:00', 'active'),
+(96327, 20, '', '0000-00-00 00:00:00', 'active'),
+(96328, 1, '', '0000-00-00 00:00:00', 'active'),
+(96329, 13, '', '0000-00-00 00:00:00', 'active'),
+(96330, 6, '', '0000-00-00 00:00:00', 'active'),
+(96331, 2, '', '0000-00-00 00:00:00', 'active'),
+(96332, 20, '', '0000-00-00 00:00:00', 'active'),
+(96333, 1, '', '0000-00-00 00:00:00', 'active'),
+(96334, 6, '', '0000-00-00 00:00:00', 'active'),
+(96335, 13, '', '0000-00-00 00:00:00', 'active'),
+(96336, 20, '', '0000-00-00 00:00:00', 'active'),
+(96337, 2, '', '0000-00-00 00:00:00', 'active'),
+(96338, 1, '', '0000-00-00 00:00:00', 'active'),
+(96339, 2, '', '0000-00-00 00:00:00', 'active'),
+(96340, 1, '', '0000-00-00 00:00:00', 'active'),
+(96341, 13, '', '0000-00-00 00:00:00', 'active'),
+(96342, 6, '', '0000-00-00 00:00:00', 'active'),
+(96343, 20, '', '0000-00-00 00:00:00', 'active'),
+(96344, 13, '', '0000-00-00 00:00:00', 'active'),
+(96345, 2, '', '0000-00-00 00:00:00', 'active'),
+(96346, 20, '', '0000-00-00 00:00:00', 'active'),
+(96347, 6, '', '0000-00-00 00:00:00', 'active'),
+(96348, 1, '', '0000-00-00 00:00:00', 'active'),
+(96349, 13, '', '0000-00-00 00:00:00', 'active'),
+(96350, 2, '', '0000-00-00 00:00:00', 'active'),
+(96351, 6, '', '0000-00-00 00:00:00', 'active'),
+(96352, 20, '', '0000-00-00 00:00:00', 'active'),
+(96353, 1, '', '0000-00-00 00:00:00', 'active'),
+(96354, 2, '', '0000-00-00 00:00:00', 'active'),
+(96355, 13, '', '0000-00-00 00:00:00', 'active'),
+(96356, 6, '', '0000-00-00 00:00:00', 'active'),
+(96357, 20, '', '0000-00-00 00:00:00', 'active'),
+(96358, 1, '', '0000-00-00 00:00:00', 'active'),
+(96359, 6, '', '0000-00-00 00:00:00', 'active'),
+(96360, 20, '', '0000-00-00 00:00:00', 'active'),
+(96361, 1, '', '0000-00-00 00:00:00', 'active'),
+(96362, 2, '', '0000-00-00 00:00:00', 'active'),
+(96363, 13, '', '0000-00-00 00:00:00', 'active'),
+(96364, 20, '', '0000-00-00 00:00:00', 'active'),
+(96365, 13, '', '0000-00-00 00:00:00', 'active'),
+(96366, 1, '', '0000-00-00 00:00:00', 'active'),
+(96367, 2, '', '0000-00-00 00:00:00', 'active'),
+(96368, 6, '', '0000-00-00 00:00:00', 'active'),
+(96369, 13, '', '0000-00-00 00:00:00', 'active'),
+(96370, 1, '', '0000-00-00 00:00:00', 'active'),
+(96371, 20, '', '0000-00-00 00:00:00', 'active'),
+(96372, 2, '', '0000-00-00 00:00:00', 'active'),
+(96373, 6, '', '0000-00-00 00:00:00', 'active'),
+(96374, 1, '', '0000-00-00 00:00:00', 'active'),
+(96375, 13, '', '0000-00-00 00:00:00', 'active'),
+(96376, 6, '', '0000-00-00 00:00:00', 'active'),
+(96377, 2, '', '0000-00-00 00:00:00', 'active'),
+(96378, 20, '', '0000-00-00 00:00:00', 'active'),
+(96379, 6, '', '0000-00-00 00:00:00', 'active'),
+(96380, 13, '', '0000-00-00 00:00:00', 'active'),
+(96381, 2, '', '0000-00-00 00:00:00', 'active'),
+(96382, 20, '', '0000-00-00 00:00:00', 'active'),
+(96383, 1, '', '0000-00-00 00:00:00', 'active'),
+(96384, 13, '', '0000-00-00 00:00:00', 'active'),
+(96385, 6, '', '0000-00-00 00:00:00', 'active'),
+(96386, 2, '', '0000-00-00 00:00:00', 'active'),
+(96387, 20, '', '0000-00-00 00:00:00', 'active'),
+(96388, 1, '', '0000-00-00 00:00:00', 'active'),
+(96389, 13, '', '0000-00-00 00:00:00', 'active'),
+(96390, 6, '', '0000-00-00 00:00:00', 'active'),
+(96391, 20, '', '0000-00-00 00:00:00', 'active'),
+(96392, 2, '', '0000-00-00 00:00:00', 'active'),
+(96393, 1, '', '0000-00-00 00:00:00', 'active'),
+(96394, 2, '', '0000-00-00 00:00:00', 'active'),
+(96395, 2, '', '0000-00-00 00:00:00', 'active'),
+(96396, 2, '', '0000-00-00 00:00:00', 'active'),
+(96397, 2, '', '0000-00-00 00:00:00', 'active'),
+(96398, 2, '', '0000-00-00 00:00:00', 'active'),
+(96399, 2, '', '0000-00-00 00:00:00', 'active'),
+(96400, 6, '', '0000-00-00 00:00:00', 'active'),
+(96401, 13, '', '0000-00-00 00:00:00', 'active'),
+(96402, 20, '', '0000-00-00 00:00:00', 'active'),
+(96403, 1, '', '0000-00-00 00:00:00', 'active'),
+(96404, 2, '', '0000-00-00 00:00:00', 'active'),
+(96405, 2, '', '0000-00-00 00:00:00', 'active');
 
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `user_settings`
+-- Table structure for table `user_settings`
 --
 
 CREATE TABLE `user_settings` (
@@ -3966,7 +5955,7 @@ CREATE TABLE `user_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `user_settings`
+-- Dumping data for table `user_settings`
 --
 
 INSERT INTO `user_settings` (`id`, `user_id`, `email_notifications`, `task_reminders`, `theme`, `created_at`, `updated_at`) VALUES
@@ -3977,7 +5966,7 @@ INSERT INTO `user_settings` (`id`, `user_id`, `email_notifications`, `task_remin
 -- --------------------------------------------------------
 
 --
--- Struktur dari tabel `viral_content`
+-- Table structure for table `viral_content`
 --
 
 CREATE TABLE `viral_content` (
@@ -3992,7 +5981,7 @@ CREATE TABLE `viral_content` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data untuk tabel `viral_content`
+-- Dumping data for table `viral_content`
 --
 
 INSERT INTO `viral_content` (`id`, `task_id`, `user_id`, `platform`, `views`, `marked_date`, `marked_by`, `created_at`) VALUES
@@ -4009,34 +5998,46 @@ INSERT INTO `viral_content` (`id`, `task_id`, `user_id`, `platform`, `views`, `m
 (11, 161, NULL, 'instagram', 56000, '2025-06-23', 1, '2025-06-23 08:00:06'),
 (12, 161, NULL, 'tiktok', 120000, '2025-06-23', 1, '2025-06-23 08:00:13'),
 (13, 167, NULL, 'instagram', 100000, '2025-06-27', 1, '2025-06-27 02:41:47'),
-(14, 167, NULL, 'tiktok', 100000, '2025-06-27', 1, '2025-06-27 02:41:54');
+(14, 167, NULL, 'tiktok', 100000, '2025-06-27', 1, '2025-06-27 02:41:54'),
+(15, 176, NULL, 'instagram', 100000, '2025-07-05', 1, '2025-07-05 04:40:35'),
+(16, 176, NULL, 'tiktok', 500000, '2025-07-05', 1, '2025-07-05 04:40:40'),
+(17, 219, NULL, 'instagram', 67000, '2025-07-10', 1, '2025-07-10 08:43:41'),
+(18, 219, NULL, 'tiktok', 120000, '2025-07-10', 1, '2025-07-10 08:43:47'),
+(19, 229, NULL, 'instagram', 100000, '2025-07-11', 1, '2025-07-11 06:37:44'),
+(20, 229, NULL, 'tiktok', 200000, '2025-07-11', 1, '2025-07-11 06:37:50'),
+(21, 228, NULL, 'instagram', 100000, '2025-07-11', 1, '2025-07-11 06:48:55'),
+(22, 228, NULL, 'tiktok', 200000, '2025-07-11', 1, '2025-07-11 06:49:02'),
+(23, 227, NULL, 'instagram', 100000, '2025-07-11', 1, '2025-07-11 06:49:09'),
+(24, 227, NULL, 'tiktok', 200000, '2025-07-11', 1, '2025-07-11 06:49:15'),
+(25, 226, NULL, 'instagram', 100000, '2025-07-11', 1, '2025-07-11 06:49:21'),
+(26, 226, NULL, 'tiktok', 200000, '2025-07-11', 1, '2025-07-11 06:49:25');
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indeks untuk tabel `accounts`
+-- Indexes for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD PRIMARY KEY (`id`),
   ADD KEY `created_by` (`created_by`);
 
 --
--- Indeks untuk tabel `agenda_items`
+-- Indexes for table `agenda_items`
 --
 ALTER TABLE `agenda_items`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `announcements`
+-- Indexes for table `announcements`
 --
 ALTER TABLE `announcements`
   ADD PRIMARY KEY (`id`),
   ADD KEY `created_by` (`created_by`);
 
 --
--- Indeks untuk tabel `announcement_comments`
+-- Indexes for table `announcement_comments`
 --
 ALTER TABLE `announcement_comments`
   ADD PRIMARY KEY (`id`),
@@ -4044,7 +6045,7 @@ ALTER TABLE `announcement_comments`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `announcement_reactions`
+-- Indexes for table `announcement_reactions`
 --
 ALTER TABLE `announcement_reactions`
   ADD PRIMARY KEY (`id`),
@@ -4052,19 +6053,19 @@ ALTER TABLE `announcement_reactions`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `categories`
+-- Indexes for table `categories`
 --
 ALTER TABLE `categories`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `chat_last_checked`
+-- Indexes for table `chat_last_checked`
 --
 ALTER TABLE `chat_last_checked`
   ADD PRIMARY KEY (`user_id`,`sender_id`);
 
 --
--- Indeks untuk tabel `chat_messages`
+-- Indexes for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
   ADD PRIMARY KEY (`id`),
@@ -4072,21 +6073,21 @@ ALTER TABLE `chat_messages`
   ADD KEY `receiver_id` (`receiver_id`);
 
 --
--- Indeks untuk tabel `content_pillars`
+-- Indexes for table `content_pillars`
 --
 ALTER TABLE `content_pillars`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indeks untuk tabel `content_types`
+-- Indexes for table `content_types`
 --
 ALTER TABLE `content_types`
   ADD PRIMARY KEY (`id`),
   ADD KEY `category_id` (`category_id`);
 
 --
--- Indeks untuk tabel `distribution_platforms`
+-- Indexes for table `distribution_platforms`
 --
 ALTER TABLE `distribution_platforms`
   ADD PRIMARY KEY (`id`),
@@ -4094,33 +6095,33 @@ ALTER TABLE `distribution_platforms`
   ADD KEY `platform_id` (`platform_id`);
 
 --
--- Indeks untuk tabel `general_info`
+-- Indexes for table `general_info`
 --
 ALTER TABLE `general_info`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `notifications`
+-- Indexes for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `platforms`
+-- Indexes for table `platforms`
 --
 ALTER TABLE `platforms`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `point_settings`
+-- Indexes for table `point_settings`
 --
 ALTER TABLE `point_settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `team` (`team`,`category`,`content_type`);
 
 --
--- Indeks untuk tabel `program_schedules`
+-- Indexes for table `program_schedules`
 --
 ALTER TABLE `program_schedules`
   ADD PRIMARY KEY (`id`),
@@ -4129,14 +6130,14 @@ ALTER TABLE `program_schedules`
   ADD KEY `editor_id` (`editor_id`);
 
 --
--- Indeks untuk tabel `resources`
+-- Indexes for table `resources`
 --
 ALTER TABLE `resources`
   ADD PRIMARY KEY (`id`),
   ADD KEY `uploaded_by` (`uploaded_by`);
 
 --
--- Indeks untuk tabel `revisions`
+-- Indexes for table `revisions`
 --
 ALTER TABLE `revisions`
   ADD PRIMARY KEY (`id`),
@@ -4144,7 +6145,7 @@ ALTER TABLE `revisions`
   ADD KEY `revised_by` (`revised_by`);
 
 --
--- Indeks untuk tabel `shifts`
+-- Indexes for table `shifts`
 --
 ALTER TABLE `shifts`
   ADD PRIMARY KEY (`id`),
@@ -4152,21 +6153,21 @@ ALTER TABLE `shifts`
   ADD KEY `created_by` (`created_by`);
 
 --
--- Indeks untuk tabel `target_schedule`
+-- Indexes for table `target_schedule`
 --
 ALTER TABLE `target_schedule`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `target_settings`
+-- Indexes for table `target_settings`
 --
 ALTER TABLE `target_settings`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `setting_key` (`setting_key`);
 
 --
--- Indeks untuk tabel `tasks`
+-- Indexes for table `tasks`
 --
 ALTER TABLE `tasks`
   ADD PRIMARY KEY (`id`),
@@ -4178,7 +6179,7 @@ ALTER TABLE `tasks`
   ADD KEY `assigned_to` (`assigned_to`);
 
 --
--- Indeks untuk tabel `task_assistance`
+-- Indexes for table `task_assistance`
 --
 ALTER TABLE `task_assistance`
   ADD PRIMARY KEY (`id`),
@@ -4187,7 +6188,7 @@ ALTER TABLE `task_assistance`
   ADD KEY `added_by` (`added_by`);
 
 --
--- Indeks untuk tabel `task_comments`
+-- Indexes for table `task_comments`
 --
 ALTER TABLE `task_comments`
   ADD PRIMARY KEY (`id`),
@@ -4195,7 +6196,7 @@ ALTER TABLE `task_comments`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `task_links`
+-- Indexes for table `task_links`
 --
 ALTER TABLE `task_links`
   ADD PRIMARY KEY (`id`),
@@ -4203,13 +6204,13 @@ ALTER TABLE `task_links`
   ADD KEY `added_by` (`added_by`);
 
 --
--- Indeks untuk tabel `task_point_settings`
+-- Indexes for table `task_point_settings`
 --
 ALTER TABLE `task_point_settings`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indeks untuk tabel `task_rejections`
+-- Indexes for table `task_rejections`
 --
 ALTER TABLE `task_rejections`
   ADD PRIMARY KEY (`id`),
@@ -4217,7 +6218,7 @@ ALTER TABLE `task_rejections`
   ADD KEY `rejected_by` (`rejected_by`);
 
 --
--- Indeks untuk tabel `task_revisions`
+-- Indexes for table `task_revisions`
 --
 ALTER TABLE `task_revisions`
   ADD PRIMARY KEY (`id`),
@@ -4225,7 +6226,7 @@ ALTER TABLE `task_revisions`
   ADD KEY `revised_by` (`revised_by`);
 
 --
--- Indeks untuk tabel `task_status_logs`
+-- Indexes for table `task_status_logs`
 --
 ALTER TABLE `task_status_logs`
   ADD PRIMARY KEY (`id`),
@@ -4233,7 +6234,7 @@ ALTER TABLE `task_status_logs`
   ADD KEY `updated_by` (`updated_by`);
 
 --
--- Indeks untuk tabel `templates`
+-- Indexes for table `templates`
 --
 ALTER TABLE `templates`
   ADD PRIMARY KEY (`id`),
@@ -4243,7 +6244,7 @@ ALTER TABLE `templates`
   ADD KEY `created_by` (`created_by`);
 
 --
--- Indeks untuk tabel `time_tracking`
+-- Indexes for table `time_tracking`
 --
 ALTER TABLE `time_tracking`
   ADD PRIMARY KEY (`id`),
@@ -4251,21 +6252,21 @@ ALTER TABLE `time_tracking`
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `typing_indicators`
+-- Indexes for table `typing_indicators`
 --
 ALTER TABLE `typing_indicators`
   ADD PRIMARY KEY (`user_id`,`receiver_id`),
   ADD KEY `receiver_id` (`receiver_id`);
 
 --
--- Indeks untuk tabel `users`
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indeks untuk tabel `user_points`
+-- Indexes for table `user_points`
 --
 ALTER TABLE `user_points`
   ADD PRIMARY KEY (`id`),
@@ -4273,7 +6274,7 @@ ALTER TABLE `user_points`
   ADD KEY `task_id` (`task_id`);
 
 --
--- Indeks untuk tabel `user_sessions`
+-- Indexes for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
   ADD PRIMARY KEY (`id`),
@@ -4282,14 +6283,14 @@ ALTER TABLE `user_sessions`
   ADD KEY `last_activity` (`last_activity`);
 
 --
--- Indeks untuk tabel `user_settings`
+-- Indexes for table `user_settings`
 --
 ALTER TABLE `user_settings`
   ADD PRIMARY KEY (`id`),
   ADD KEY `user_id` (`user_id`);
 
 --
--- Indeks untuk tabel `viral_content`
+-- Indexes for table `viral_content`
 --
 ALTER TABLE `viral_content`
   ADD PRIMARY KEY (`id`),
@@ -4297,283 +6298,283 @@ ALTER TABLE `viral_content`
   ADD KEY `marked_by` (`marked_by`);
 
 --
--- AUTO_INCREMENT untuk tabel yang dibuang
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT untuk tabel `accounts`
+-- AUTO_INCREMENT for table `accounts`
 --
 ALTER TABLE `accounts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `agenda_items`
+-- AUTO_INCREMENT for table `agenda_items`
 --
 ALTER TABLE `agenda_items`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT untuk tabel `announcements`
+-- AUTO_INCREMENT for table `announcements`
 --
 ALTER TABLE `announcements`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `announcement_comments`
+-- AUTO_INCREMENT for table `announcement_comments`
 --
 ALTER TABLE `announcement_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `announcement_reactions`
+-- AUTO_INCREMENT for table `announcement_reactions`
 --
 ALTER TABLE `announcement_reactions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `categories`
+-- AUTO_INCREMENT for table `categories`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT untuk tabel `chat_messages`
+-- AUTO_INCREMENT for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=112;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=118;
 
 --
--- AUTO_INCREMENT untuk tabel `content_pillars`
+-- AUTO_INCREMENT for table `content_pillars`
 --
 ALTER TABLE `content_pillars`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
--- AUTO_INCREMENT untuk tabel `content_types`
+-- AUTO_INCREMENT for table `content_types`
 --
 ALTER TABLE `content_types`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT untuk tabel `distribution_platforms`
+-- AUTO_INCREMENT for table `distribution_platforms`
 --
 ALTER TABLE `distribution_platforms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT untuk tabel `general_info`
+-- AUTO_INCREMENT for table `general_info`
 --
 ALTER TABLE `general_info`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT untuk tabel `notifications`
+-- AUTO_INCREMENT for table `notifications`
 --
 ALTER TABLE `notifications`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=900;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=989;
 
 --
--- AUTO_INCREMENT untuk tabel `platforms`
+-- AUTO_INCREMENT for table `platforms`
 --
 ALTER TABLE `platforms`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- AUTO_INCREMENT untuk tabel `point_settings`
+-- AUTO_INCREMENT for table `point_settings`
 --
 ALTER TABLE `point_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `program_schedules`
+-- AUTO_INCREMENT for table `program_schedules`
 --
 ALTER TABLE `program_schedules`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT untuk tabel `resources`
+-- AUTO_INCREMENT for table `resources`
 --
 ALTER TABLE `resources`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `revisions`
+-- AUTO_INCREMENT for table `revisions`
 --
 ALTER TABLE `revisions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `shifts`
+-- AUTO_INCREMENT for table `shifts`
 --
 ALTER TABLE `shifts`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
--- AUTO_INCREMENT untuk tabel `target_schedule`
+-- AUTO_INCREMENT for table `target_schedule`
 --
 ALTER TABLE `target_schedule`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `target_settings`
+-- AUTO_INCREMENT for table `target_settings`
 --
 ALTER TABLE `target_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
--- AUTO_INCREMENT untuk tabel `tasks`
+-- AUTO_INCREMENT for table `tasks`
 --
 ALTER TABLE `tasks`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=215;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=233;
 
 --
--- AUTO_INCREMENT untuk tabel `task_assistance`
+-- AUTO_INCREMENT for table `task_assistance`
 --
 ALTER TABLE `task_assistance`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
--- AUTO_INCREMENT untuk tabel `task_comments`
+-- AUTO_INCREMENT for table `task_comments`
 --
 ALTER TABLE `task_comments`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT untuk tabel `task_links`
+-- AUTO_INCREMENT for table `task_links`
 --
 ALTER TABLE `task_links`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=478;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=529;
 
 --
--- AUTO_INCREMENT untuk tabel `task_point_settings`
+-- AUTO_INCREMENT for table `task_point_settings`
 --
 ALTER TABLE `task_point_settings`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
--- AUTO_INCREMENT untuk tabel `task_rejections`
+-- AUTO_INCREMENT for table `task_rejections`
 --
 ALTER TABLE `task_rejections`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `task_revisions`
+-- AUTO_INCREMENT for table `task_revisions`
 --
 ALTER TABLE `task_revisions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT untuk tabel `task_status_logs`
+-- AUTO_INCREMENT for table `task_status_logs`
 --
 ALTER TABLE `task_status_logs`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=801;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=858;
 
 --
--- AUTO_INCREMENT untuk tabel `templates`
+-- AUTO_INCREMENT for table `templates`
 --
 ALTER TABLE `templates`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT untuk tabel `time_tracking`
+-- AUTO_INCREMENT for table `time_tracking`
 --
 ALTER TABLE `time_tracking`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=220;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
--- AUTO_INCREMENT untuk tabel `users`
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
--- AUTO_INCREMENT untuk tabel `user_points`
+-- AUTO_INCREMENT for table `user_points`
 --
 ALTER TABLE `user_points`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=225;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=258;
 
 --
--- AUTO_INCREMENT untuk tabel `user_sessions`
+-- AUTO_INCREMENT for table `user_sessions`
 --
 ALTER TABLE `user_sessions`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=66907;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=96406;
 
 --
--- AUTO_INCREMENT untuk tabel `user_settings`
+-- AUTO_INCREMENT for table `user_settings`
 --
 ALTER TABLE `user_settings`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT untuk tabel `viral_content`
+-- AUTO_INCREMENT for table `viral_content`
 --
 ALTER TABLE `viral_content`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 
 --
--- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
+-- Constraints for dumped tables
 --
 
 --
--- Ketidakleluasaan untuk tabel `accounts`
+-- Constraints for table `accounts`
 --
 ALTER TABLE `accounts`
   ADD CONSTRAINT `accounts_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `announcements`
+-- Constraints for table `announcements`
 --
 ALTER TABLE `announcements`
   ADD CONSTRAINT `announcements_ibfk_1` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `announcement_comments`
+-- Constraints for table `announcement_comments`
 --
 ALTER TABLE `announcement_comments`
   ADD CONSTRAINT `announcement_comments_ibfk_1` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `announcement_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `announcement_reactions`
+-- Constraints for table `announcement_reactions`
 --
 ALTER TABLE `announcement_reactions`
   ADD CONSTRAINT `announcement_reactions_ibfk_1` FOREIGN KEY (`announcement_id`) REFERENCES `announcements` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `announcement_reactions_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `chat_messages`
+-- Constraints for table `chat_messages`
 --
 ALTER TABLE `chat_messages`
   ADD CONSTRAINT `chat_messages_ibfk_1` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `chat_messages_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `content_pillars`
+-- Constraints for table `content_pillars`
 --
 ALTER TABLE `content_pillars`
   ADD CONSTRAINT `content_pillars_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `content_types`
+-- Constraints for table `content_types`
 --
 ALTER TABLE `content_types`
   ADD CONSTRAINT `content_types_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `distribution_platforms`
+-- Constraints for table `distribution_platforms`
 --
 ALTER TABLE `distribution_platforms`
   ADD CONSTRAINT `distribution_platforms_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `distribution_platforms_ibfk_2` FOREIGN KEY (`platform_id`) REFERENCES `platforms` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `notifications`
+-- Constraints for table `notifications`
 --
 ALTER TABLE `notifications`
   ADD CONSTRAINT `notifications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `program_schedules`
+-- Constraints for table `program_schedules`
 --
 ALTER TABLE `program_schedules`
   ADD CONSTRAINT `program_schedules_ibfk_1` FOREIGN KEY (`program_id`) REFERENCES `content_pillars` (`id`) ON DELETE CASCADE,
@@ -4581,33 +6582,33 @@ ALTER TABLE `program_schedules`
   ADD CONSTRAINT `program_schedules_ibfk_3` FOREIGN KEY (`editor_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
 
 --
--- Ketidakleluasaan untuk tabel `resources`
+-- Constraints for table `resources`
 --
 ALTER TABLE `resources`
   ADD CONSTRAINT `resources_ibfk_1` FOREIGN KEY (`uploaded_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `revisions`
+-- Constraints for table `revisions`
 --
 ALTER TABLE `revisions`
   ADD CONSTRAINT `revisions_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `revisions_ibfk_2` FOREIGN KEY (`revised_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `shifts`
+-- Constraints for table `shifts`
 --
 ALTER TABLE `shifts`
   ADD CONSTRAINT `shifts_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `shifts_ibfk_2` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `target_schedule`
+-- Constraints for table `target_schedule`
 --
 ALTER TABLE `target_schedule`
   ADD CONSTRAINT `target_schedule_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `tasks`
+-- Constraints for table `tasks`
 --
 ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
@@ -4618,7 +6619,7 @@ ALTER TABLE `tasks`
   ADD CONSTRAINT `tasks_ibfk_6` FOREIGN KEY (`assigned_to`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_assistance`
+-- Constraints for table `task_assistance`
 --
 ALTER TABLE `task_assistance`
   ADD CONSTRAINT `task_assistance_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
@@ -4626,42 +6627,42 @@ ALTER TABLE `task_assistance`
   ADD CONSTRAINT `task_assistance_ibfk_3` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_comments`
+-- Constraints for table `task_comments`
 --
 ALTER TABLE `task_comments`
   ADD CONSTRAINT `task_comments_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `task_comments_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_links`
+-- Constraints for table `task_links`
 --
 ALTER TABLE `task_links`
   ADD CONSTRAINT `task_links_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `task_links_ibfk_2` FOREIGN KEY (`added_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_rejections`
+-- Constraints for table `task_rejections`
 --
 ALTER TABLE `task_rejections`
   ADD CONSTRAINT `task_rejections_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `task_rejections_ibfk_2` FOREIGN KEY (`rejected_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_revisions`
+-- Constraints for table `task_revisions`
 --
 ALTER TABLE `task_revisions`
   ADD CONSTRAINT `task_revisions_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `task_revisions_ibfk_2` FOREIGN KEY (`revised_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `task_status_logs`
+-- Constraints for table `task_status_logs`
 --
 ALTER TABLE `task_status_logs`
   ADD CONSTRAINT `task_status_logs_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `task_status_logs_ibfk_2` FOREIGN KEY (`updated_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `templates`
+-- Constraints for table `templates`
 --
 ALTER TABLE `templates`
   ADD CONSTRAINT `templates_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`),
@@ -4670,27 +6671,27 @@ ALTER TABLE `templates`
   ADD CONSTRAINT `templates_ibfk_4` FOREIGN KEY (`created_by`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `time_tracking`
+-- Constraints for table `time_tracking`
 --
 ALTER TABLE `time_tracking`
   ADD CONSTRAINT `time_tracking_ibfk_1` FOREIGN KEY (`task_id`) REFERENCES `tasks` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `time_tracking_ibfk_2` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `typing_indicators`
+-- Constraints for table `typing_indicators`
 --
 ALTER TABLE `typing_indicators`
   ADD CONSTRAINT `typing_indicators_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   ADD CONSTRAINT `typing_indicators_ibfk_2` FOREIGN KEY (`receiver_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 
 --
--- Ketidakleluasaan untuk tabel `user_points`
+-- Constraints for table `user_points`
 --
 ALTER TABLE `user_points`
   ADD CONSTRAINT `user_points_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
 
 --
--- Ketidakleluasaan untuk tabel `user_settings`
+-- Constraints for table `user_settings`
 --
 ALTER TABLE `user_settings`
   ADD CONSTRAINT `user_settings_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
