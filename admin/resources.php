@@ -1,6 +1,10 @@
 <?php
 require_once '../config/database.php';
 require_once '../includes/auth.php';
+// === BARU: Include autoloader Composer dan class S3 Client ===
+require_once '../vendor/autoload.php';
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 
 redirectIfNotLoggedIn();
 if (getUserRole() !== 'creative_director') {
@@ -8,7 +12,18 @@ if (getUserRole() !== 'creative_director') {
     exit();
 }
 
-// Upload resource
+// === BARU: Muat konfigurasi dan inisialisasi S3 Client ===
+$s3Config = require '../config/s3.php';
+$s3Client = new S3Client([
+    'credentials' => $s3Config['credentials'],
+    'region'      => $s3Config['region'],
+    'version'     => $s3Config['version'],
+    'endpoint'    => $s3Config['endpoint']
+]);
+$bucketName = $s3Config['bucket'];
+
+
+// === DIUBAH: Logika untuk mengunggah resource ke S3/Spaces ===
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['resource_file'])) {
     $name = trim($_POST['name']);
     $type = $_POST['type'];
@@ -21,49 +36,63 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_FILES['resource_file'])) {
     } elseif ($file['size'] > 5 * 1024 * 1024) { // 5MB
         $_SESSION['error'] = "Ukuran file terlalu besar (maksimal 5MB)";
     } else {
-        // Generate unique filename
+        // Generate unique filename dan S3 key
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $filename = uniqid() . '.' . $ext;
-        $uploadPath = '../uploads/resources/' . $filename;
+        $objectKey = 'resources/' . $filename; // Simpan dalam "folder" di bucket
         
-        if (move_uploaded_file($file['tmp_name'], $uploadPath)) {
-            try {
-                $stmt = $pdo->prepare("INSERT INTO resources (name, file_path, type, uploaded_by) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$name, $filename, $type, $_SESSION['user_id']]);
-                $_SESSION['success'] = "Resource berhasil diupload";
-            } catch (PDOException $e) {
-                $_SESSION['error'] = "Gagal menyimpan resource: " . $e->getMessage();
-                unlink($uploadPath); // Hapus file yang sudah diupload
-            }
-        } else {
-            $_SESSION['error'] = "Gagal mengupload file";
+        try {
+            // Unggah file ke object storage
+            $s3Client->putObject([
+                'Bucket'     => $bucketName,
+                'Key'        => $objectKey,
+                'SourceFile' => $file['tmp_name'],
+                'ContentType'=> $file['type'],
+                'ACL'        => 'private' // 'private' lebih aman, akses via pre-signed URL
+            ]);
+            
+            // Simpan path (object key) ke database
+            $stmt = $pdo->prepare("INSERT INTO resources (name, file_path, type, uploaded_by) VALUES (?, ?, ?, ?)");
+            // Simpan $objectKey, bukan $filename
+            $stmt->execute([$name, $objectKey, $type, $_SESSION['user_id']]);
+            $_SESSION['success'] = "Resource berhasil diupload";
+
+        } catch (S3Exception $e) {
+            $_SESSION['error'] = "Gagal mengupload file: " . $e->getMessage();
+        } catch (PDOException $e) {
+            $_SESSION['error'] = "Gagal menyimpan resource: " . $e->getMessage();
+            // Jika gagal simpan DB, hapus file yang sudah terunggah ke S3/Spaces
+            $s3Client->deleteObject(['Bucket' => $bucketName, 'Key' => $objectKey]);
         }
     }
     header("Location: resources.php");
     exit();
 }
 
-// Hapus resource
+// === DIUBAH: Logika untuk menghapus resource dari S3/Spaces ===
 if (isset($_GET['delete'])) {
     $resourceId = $_GET['delete'];
     
     try {
-        // Dapatkan info file
+        // Dapatkan info file (object key)
         $stmt = $pdo->prepare("SELECT file_path FROM resources WHERE id = ?");
         $stmt->execute([$resourceId]);
-        $filePath = $stmt->fetchColumn();
+        $objectKey = $stmt->fetchColumn();
         
-        // Hapus dari database
+        // Hapus dari database terlebih dahulu
         $stmt = $pdo->prepare("DELETE FROM resources WHERE id = ?");
         $stmt->execute([$resourceId]);
         
-        // Hapus file
-        if (file_exists('../uploads/resources/' . $filePath)) {
-            unlink('../uploads/resources/' . $filePath);
+        // Hapus file dari object storage
+        if ($objectKey) {
+            $s3Client->deleteObject([
+                'Bucket' => $bucketName,
+                'Key'    => $objectKey,
+            ]);
         }
         
         $_SESSION['success'] = "Resource berhasil dihapus";
-    } catch (PDOException $e) {
+    } catch (PDOException | S3Exception $e) { // Tangkap kedua jenis exception
         $_SESSION['error'] = "Gagal menghapus resource: " . $e->getMessage();
     }
     header("Location: resources.php");
@@ -110,7 +139,20 @@ include '../includes/header.php';
                                     <td><?= htmlspecialchars($resource['name']) ?></td>
                                     <td><?= htmlspecialchars($resource['type']) ?></td>
                                     <td>
-                                        <a href="../uploads/resources/<?= $resource['file_path'] ?>" target="_blank">
+                                        <?php
+                                            // === DIUBAH: Buat Pre-signed URL yang aman dan sementara ===
+                                            try {
+                                                $cmd = $s3Client->getCommand('GetObject', [
+                                                    'Bucket' => $bucketName,
+                                                    'Key'    => $resource['file_path']
+                                                ]);
+                                                $request = $s3Client->createPresignedRequest($cmd, '+20 minutes');
+                                                $presignedUrl = (string) $request->getUri();
+                                            } catch (Exception $e) {
+                                                $presignedUrl = '#'; // Tampilkan link mati jika ada error
+                                            }
+                                        ?>
+                                        <a href="<?= htmlspecialchars($presignedUrl) ?>" target="_blank">
                                             Lihat File
                                         </a>
                                     </td>
