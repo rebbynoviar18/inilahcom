@@ -1,0 +1,98 @@
+2025-06-04 16:19:38 - User: 9, Action: start
+Started new tracking: 2 for task: 9
+2025-06-04 16:19:43 - User: 9, Action: stop
+Stopped 1 active trackings
+2025-06-04 16:19:56 - User: 9, Action: start
+Started new tracking: 3 for task: 9
+2025-06-04 16:20:05 - User: 9, Action: stop
+Stopped 1 active trackings
+2025-06-04 16:20:12 - User: 9, Action: start
+Started new tracking: 4 for task: 9
+2025-06-04 16:20:13 - User: 9, Action: stop
+Stopped 1 active trackings
+2025-06-04 16:20:27 - User: 9, Action: start
+Started new tracking: 5 for task: 9
+2025-06-04 16:20:28 - User: 9, Action: stop
+Stopped 1 active trackings
+2025-06-04 16:34:46 - User: 9, Action: start, Task: 10
+2025-06-04 16:34:46 - Stopped existing tracking: 10
+2025-06-04 16:34:46 - Started new tracking: 11 for task: 10
+2025-06-04 16:34:46 - User: 9, Action: start, Task: 10
+2025-06-04 16:34:46 - Stopped existing tracking: 11
+2025-06-04 16:34:46 - Started new tracking: 12 for task: 10
+2025-06-04 16:34:47 - User: 9, Action: stop, Task: 
+2025-06-04 16:34:47 - Stopped 1 active trackings
+2025-06-04 16:34:47 - User: 9, Action: stop, Task: 
+2025-06-04 16:34:47 - Stopped 0 active trackings
+2025-06-04 16:34:52 - User: 9, Action: start, Task: 10
+2025-06-04 16:34:52 - Started new tracking: 13 for task: 10
+2025-06-04 16:34:52 - User: 9, Action: start, Task: 10
+2025-06-04 16:34:52 - Stopped existing tracking: 13
+2025-06-04 16:34:52 - Started new tracking: 14 for task: 10
+2025-06-04 16:34:53 - User: 9, Action: stop, Task: 
+2025-06-04 16:34:53 - Stopped 1 active trackings
+2025-06-04 16:34:53 - User: 9, Action: stop, Task: 
+2025-06-04 16:34:53 - Stopped 0 active trackings
+2025-06-04 16:35:00 - User: 9, Action: start, Task: 10
+2025-06-04 16:35:00 - Started new tracking: 15 for task: 10
+2025-06-04 16:35:00 - User: 9, Action: start, Task: 10
+2025-06-04 16:35:00 - Stopped existing tracking: 15
+2025-06-04 16:35:00 - Started new tracking: 16 for task: 10
+2025-06-04 16:35:01 - User: 9, Action: stop, Task: 
+2025-06-04 16:35:01 - Stopped 1 active trackings
+2025-06-04 16:35:01 - User: 9, Action: stop, Task: 
+2025-06-04 16:35:01 - Stopped 0 active trackings
+2025-06-04 16:35:56 - User: 9, Action: start, Task: 11
+2025-06-04 16:35:56 - Started new tracking: 17 for task: 11
+2025-06-04 16:35:56 - User: 9, Action: start, Task: 11
+2025-06-04 16:35:56 - Stopped existing tracking: 17
+2025-06-04 16:35:56 - Started new tracking: 18 for task: 11
+2025-06-04 16:35:58 - User: 9, Action: stop, Task: 
+2025-06-04 16:35:58 - Stopped 1 active trackings
+2025-06-04 16:35:58 - User: 9, Action: stop, Task: 
+2025-06-04 16:35:58 - Stopped 0 active trackings
+2025-06-04 16:36:37 - User: 9, Action: start, Task: 11
+2025-06-04 16:36:37 - Started new tracking: 19 for task: 11
+2025-06-04 16:36:37 - User: 9, Action: start, Task: 11
+2025-06-04 16:36:37 - Stopped existing tracking: 19
+2025-06-04 16:36:37 - Started new tracking: 20 for task: 11
+2025-06-04 16:36:38 - User: 9, Action: stop, Task: 
+2025-06-04 16:36:38 - Stopped 1 active trackings
+2025-06-04 16:36:38 - User: 9, Action: stop, Task: 
+2025-06-04 16:36:38 - Stopped 0 active trackings
+2025-06-04 16:37:27 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:27 - Started new tracking: 21 for task: 12
+2025-06-04 16:37:27 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:27 - Stopped existing tracking: 21
+2025-06-04 16:37:27 - Started new tracking: 22 for task: 12
+2025-06-04 16:37:29 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:29 - Stopped 1 active trackings
+2025-06-04 16:37:29 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:29 - Stopped 0 active trackings
+2025-06-04 16:37:43 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:43 - Started new tracking: 23 for task: 12
+2025-06-04 16:37:43 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:43 - Stopped existing tracking: 23
+2025-06-04 16:37:43 - Started new tracking: 24 for task: 12
+2025-06-04 16:37:47 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:47 - Stopped 1 active trackings
+2025-06-04 16:37:47 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:47 - Stopped 0 active trackings
+2025-06-04 16:37:54 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:54 - Started new tracking: 25 for task: 12
+2025-06-04 16:37:54 - User: 9, Action: start, Task: 12
+2025-06-04 16:37:54 - Stopped existing tracking: 25
+2025-06-04 16:37:54 - Started new tracking: 26 for task: 12
+2025-06-04 16:37:56 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:56 - Stopped 1 active trackings
+2025-06-04 16:37:56 - User: 9, Action: stop, Task: 
+2025-06-04 16:37:56 - Stopped 0 active trackings
+2025-06-04 16:38:01 - User: 9, Action: start, Task: 12
+2025-06-04 16:38:01 - Started new tracking: 27 for task: 12
+2025-06-04 16:38:01 - User: 9, Action: start, Task: 12
+2025-06-04 16:38:01 - Stopped existing tracking: 27
+2025-06-04 16:38:01 - Started new tracking: 28 for task: 12
+2025-06-04 16:38:09 - User: 9, Action: stop, Task: 
+2025-06-04 16:38:09 - Stopped 1 active trackings
+2025-06-04 16:38:09 - User: 9, Action: stop, Task: 
+2025-06-04 16:38:09 - Stopped 0 active trackings

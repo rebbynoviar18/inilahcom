@@ -1,0 +1,89 @@
+/* Program Calendar Styles */
+.calendar-table {
+    table-layout: fixed;
+    width: 100%;
+}
+
+.calendar-table th {
+    text-align: center;
+    background-color: #f8f9fa;
+    padding: 10px;
+}
+
+.calendar-day {
+    height: 150px;
+    vertical-align: top;
+    padding: 5px !important;
+    position: relative;
+    border: 1px solid #dee2e6;
+}
+
+.empty-day {
+    background-color: #f9f9f9;
+}
+
+.today {
+    background-color: #fffde7;
+}
+
+.date-header {
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: right;
+    font-size: 14px;
+}
+
+.program-list {
+    overflow-y: auto;
+    max-height: 120px;
+}
+
+.program-item {
+    margin-bottom: 5px;
+    padding: 4px 6px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.program-title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    flex-grow: 1;
+}
+
+.program-progress {
+    height: 4px;
+    margin-top: 2px;
+    background-color: rgba(255, 255, 255, 0.3);
+}
+
+.program-progress-bar {
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.program-meta {
+    font-size: 10px;
+    opacity: 0.8;
+    margin-top: 2px;
+}
+
+.program-users {
+    display: flex;
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.program-user-avatar {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+

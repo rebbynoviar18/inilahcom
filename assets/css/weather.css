@@ -1,0 +1,405 @@
+/* Modern Weather Widget Styles */
+
+
+.chat-widget img.user-avatar {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.chat-window img.user-avatar {
+    max-width: 30px;
+    max-height: 30px;
+    width: auto;
+    height: auto;
+}
+
+.weather-widget-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.weather-widget-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+}
+
+.weather-time-widget.enhanced {
+    position: relative;
+    height: 220px;
+    padding: 25px;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Time Section - Modern Digital Clock */
+.time-section {
+    margin-bottom: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.time-display {
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 8px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+    display: flex;
+    justify-content: center;
+    font-feature-settings: "tnum";
+    font-variant-numeric: tabular-nums;
+}
+
+.time-display span {
+    display: inline-block;
+    min-width: 0.6em;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+
+.time-display .seconds {
+    font-size: 0.8em;
+    opacity: 0.8;
+    align-self: flex-end;
+    margin-bottom: 4px;
+}
+
+.time-display .blink {
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    50% { opacity: 0.3; }
+}
+
+.date-display {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.9;
+    text-align: center;
+}
+
+
+
+/* Enhanced Weather Widget Styles */
+.weather-widget-container {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.weather-time-widget.enhanced {
+    position: relative;
+    height: 220px;
+    padding: 25px;
+    font-family: 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    overflow: hidden;
+}
+
+/* Time Section */
+.time-section {
+    margin-bottom: 15px;
+    z-index: 2;
+    position: relative;
+}
+
+.time-display {
+    font-size: 2.8rem;
+    font-weight: 300;
+    margin-bottom: 5px;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: 1px;
+}
+
+.date-display {
+    font-size: 1.1rem;
+    font-weight: 400;
+    opacity: 0.9;
+}
+
+.weather-details {
+    text-align: right;
+}
+
+.weather-condition {
+    font-size: 1.3rem;
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.location {
+    font-size: 1rem;
+    opacity: 0.9;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.location i {
+    margin-right: 5px;
+}
+
+/* Background Themes - Enhanced */
+.morning {
+    background: url('../../assets/images/morning.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.afternoon {
+    background: url('../../assets/images/afternoon.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.evening {
+    background: url('../../assets/images/evening.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.night {
+    background: url('../../assets/images/night.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.rainy {
+    background: url('../../assets/images/rainy.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.cloudy {
+    background: url('../../assets/images/cloudy2.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.clear {
+    background: url('../../assets/images/clear.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+/* Weather section */
+.weather-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    z-index: 10;
+    
+}
+
+.temperature {
+    font-size: 2.5rem;
+    color: #fff !important;
+}
+
+.degree {
+    font-size: 1.2rem;
+    vertical-align: top;
+    position: relative;
+    top: 0.5rem;
+    color: #fff !important;
+}
+
+.weather-details {
+    text-align: right;
+}
+
+.weather-condition {
+    font-size: 1rem;
+    margin-bottom: 1px;
+    color: #fff !important;
+}
+
+.location {
+    font-size: 0.9rem;
+    opacity: 0.9;
+    color: #fff !important;
+}
+
+
+/* Time section */
+.time-section {
+    position: relative;
+    z-index: 10;
+    margin-bottom: 5px;    
+    color: #fff;
+}
+
+.time-display {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.date-display {
+    font-size: 1rem;
+    opacity: 0.9;
+}
+
+
+/* Sun & Moon - Enhanced */
+.sun {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background: #FFD700;
+    border-radius: 50%;
+    box-shadow: 0 0 50px #FFD700, 0 0 100px rgba(255, 215, 0, 0.4);
+    top: 30px;
+    right: 40px;
+    animation: sunPulse 8s ease-in-out infinite, sunMovement 30s linear infinite;
+    z-index: 1;
+    transition: all 0.5s ease;
+}
+
+.moon {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    background: #f8f8f8;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(248, 248, 248, 0.8);
+    top: 30px;
+    right: 40px;
+    animation: moonGlow 6s ease-in-out infinite, moonMovement 40s linear infinite;
+    z-index: 1;
+    display: none;
+    transition: all 0.5s ease;
+}
+
+/* Clouds - Enhanced */
+.cloud-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.cloud {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    opacity: 0.9;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.1));
+    animation-timing-function: linear;
+}
+
+/* Rain - Enhanced */
+.rain-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+.raindrop {
+    position: absolute;
+    width: 2px;
+    height: 12px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.4));
+    border-radius: 0 0 2px 2px;
+    animation: rainFall linear infinite;
+}
+
+/* Stars - Enhanced */
+.star-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    display: none;
+}
+
+.star {
+    position: absolute;
+    background: white;
+    border-radius: 50%;
+    animation: twinkle ease-in-out infinite;
+    filter: drop-shadow(0 0 5px white);
+}
+
+/* Enhanced Animations */
+@keyframes sunPulse {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 50px #FFD700, 0 0 100px rgba(255, 215, 0, 0.4); }
+    50% { transform: scale(1.05); box-shadow: 0 0 60px #FFD700, 0 0 120px rgba(255, 215, 0, 0.5); }
+}
+
+@keyframes moonGlow {
+    0%, 100% { transform: scale(1); box-shadow: 0 0 40px rgba(248, 248, 248, 0.8); }
+    50% { transform: scale(1.05); box-shadow: 0 0 50px rgba(248, 248, 248, 1); }
+}
+
+@keyframes sunMovement {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(25px, 15px) rotate(5deg); }
+    50% { transform: translate(0, 30px) rotate(0deg); }
+    75% { transform: translate(-25px, 15px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes moonMovement {
+    0% { transform: translate(0, 0) rotate(0deg); }
+    25% { transform: translate(20px, 10px) rotate(5deg); }
+    50% { transform: translate(0, 20px) rotate(0deg); }
+    75% { transform: translate(-20px, 10px) rotate(-5deg); }
+    100% { transform: translate(0, 0) rotate(0deg); }
+}
+
+@keyframes cloudFloat {
+    0% { transform: translateX(-150px) translateY(0); }
+    100% { transform: translateX(calc(100vw + 150px)) translateY(0); }
+}
+
+@keyframes cloudFloatSlow {
+    0% { transform: translateX(-200px) translateY(0); }
+    100% { transform: translateX(calc(100vw + 200px)) translateY(0); }
+}
+
+@keyframes rainFall {
+    0% { transform: translateY(-10px); opacity: 1; }
+    100% { transform: translateY(220px); opacity: 0.2; }
+}
+
+@keyframes twinkle {
+    0%, 100% { opacity: 0.3; transform: scale(0.8); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .weather-time-widget.enhanced {
+        height: 200px;
+        padding: 20px;
+    }
+    
+    .time-display {
+        font-size: 2.2rem;
+    }
+    
+    .temperature {
+        font-size: 2.5rem;
+    }
+    
+    .weather-condition {
+        font-size: 1.1rem;
+    }
+}

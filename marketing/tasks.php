@@ -1,0 +1,269 @@
+<?php
+require_once '../config/database.php';
+require_once '../includes/auth.php';
+require_once '../includes/functions.php';
+
+// Periksa login dan role
+redirectIfNotLoggedIn();
+if (getUserRole() !== 'marketing_team') {
+    header("Location: ../index.php");
+    exit();
+}
+
+$userId = $_SESSION['user_id'];
+
+// Filter dan pagination
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$perPage = 20;
+$offset = ($page - 1) * $perPage;
+
+// Filter parameters
+$status = isset($_GET['status']) ? $_GET['status'] : 'all';
+$priority = isset($_GET['priority']) ? $_GET['priority'] : '';
+$accountId = isset($_GET['account_id']) ? $_GET['account_id'] : '';
+$search = isset($_GET['search']) ? trim($_GET['search']) : '';
+
+// Base query
+$query = "
+    SELECT t.*, 
+           c.name as category_name,
+           ct.name as content_type_name,
+           cp.name as content_pillar_name,
+           a.name as account_name,
+           u.name as assigned_to_name
+    FROM tasks t
+    JOIN categories c ON t.category_id = c.id
+    JOIN content_types ct ON t.content_type_id = ct.id
+    JOIN content_pillars cp ON t.content_pillar_id = cp.id
+    JOIN accounts a ON t.account_id = a.id
+    LEFT JOIN users u ON t.assigned_to = u.id
+    WHERE t.created_by = :user_id
+";
+
+$countQuery = "
+    SELECT COUNT(*) 
+    FROM tasks t
+    WHERE t.created_by = :user_id
+";
+
+$params = [':user_id' => $userId];
+
+// Tambahkan filter status
+if ($status !== 'all') {
+    if ($status === 'active') {
+        $query .= " AND t.status NOT IN ('completed', 'cancelled')";
+        $countQuery .= " AND t.status NOT IN ('completed', 'cancelled')";
+    } else {
+        $query .= " AND t.status = :status";
+        $countQuery .= " AND t.status = :status";
+        $params[':status'] = $status;
+    }
+}
+
+// Tambahkan filter akun
+if (!empty($accountId)) {
+    $query .= " AND t.account_id = :account_id";
+    $countQuery .= " AND t.account_id = :account_id";
+    $params[':account_id'] = $accountId;
+}
+
+// Tambahkan pencarian
+if (!empty($search)) {
+    $query .= " AND (t.title LIKE :search OR t.description LIKE :search)";
+    $countQuery .= " AND (t.title LIKE :search OR t.description LIKE :search)";
+    $params[':search'] = "%$search%";
+}
+
+// Order and limit
+$query .= " ORDER BY 
+    t.created_at DESC,
+    t.deadline ASC
+    LIMIT :per_page OFFSET :offset";
+
+$params[':per_page'] = $perPage;
+$params[':offset'] = $offset;
+
+// Execute queries
+$stmt = $pdo->prepare($query);
+foreach ($params as $key => $value) {
+    if ($key === ':offset' || $key === ':per_page') {
+        $stmt->bindValue($key, $value, PDO::PARAM_INT);
+    } else {
+        $stmt->bindValue($key, $value);
+    }
+}
+$stmt->execute();
+$tasks = $stmt->fetchAll();
+
+// Count total for pagination
+$countStmt = $pdo->prepare($countQuery);
+foreach ($params as $key => $value) {
+    if ($key !== ':offset' && $key !== ':per_page') {
+        $countStmt->bindValue($key, $value);
+    }
+}
+$countStmt->execute();
+$totalTasks = $countStmt->fetchColumn();
+$totalPages = ceil($totalTasks / $perPage);
+
+// Get accounts for filter
+$accountsStmt = $pdo->query("SELECT * FROM accounts ORDER BY name");
+$accounts = $accountsStmt->fetchAll();
+
+$pageTitle = "Task Saya";
+include '../includes/header.php';
+?>
+
+<div class="container-fluid mt-4">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h4 class="mb-0">Task Saya</h4>
+                    <div>
+                        <a href="create_task.php" class="btn btn-primary">
+                            <i class="fas fa-plus"></i> Buat Task Baru
+                        </a>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <?php if (isset($_SESSION['success'])): ?>
+                        <div class="alert alert-success">
+                            <?= $_SESSION['success']; unset($_SESSION['success']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <?php if (isset($_SESSION['error'])): ?>
+                        <div class="alert alert-danger">
+                            <?= $_SESSION['error']; unset($_SESSION['error']); ?>
+                        </div>
+                    <?php endif; ?>
+                    
+                    <!-- Filter Form -->
+                    <form method="GET" class="mb-4">
+                        <div class="row g-3 align-items-end">
+                            <div class="col-md-3">
+                                <label for="status" class="form-label">Status</label>
+                                <select class="form-select" id="status" name="status">
+                                    <option value="all" <?= $status === 'all' ? 'selected' : '' ?>>Semua Status</option>
+                                    <option value="active" <?= $status === 'active' ? 'selected' : '' ?>>Task Aktif</option>
+                                    <option value="in_production" <?= $status === 'in_production' ? 'selected' : '' ?>>Dalam Produksi</option>
+                                    <option value="ready_for_review" <?= $status === 'ready_for_review' ? 'selected' : '' ?>>Siap Review</option>
+                                    <option value="uploaded" <?= $status === 'uploaded' ? 'selected' : '' ?>>Telah Upload</option>
+                                    <option value="completed" <?= $status === 'completed' ? 'selected' : '' ?>>Selesai</option>
+                                    <option value="revision" <?= $status === 'revision' ? 'selected' : '' ?>>Revisi</option>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="account_id" class="form-label">Akun</label>
+                                <select class="form-select" id="account_id" name="account_id">
+                                    <option value="">Semua Akun</option>
+                                    <?php foreach ($accounts as $account): ?>
+                                        <option value="<?= $account['id'] ?>" <?= $accountId == $account['id'] ? 'selected' : '' ?>>
+                                            <?= htmlspecialchars($account['name']) ?>
+                                        </option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            
+                            <div class="col-md-3">
+                                <label for="search" class="form-label">Pencarian</label>
+                                <input type="text" class="form-control" id="search" name="search" placeholder="Cari judul atau deskripsi" value="<?= htmlspecialchars($search) ?>">
+                            </div>
+                            
+                            <div class="col-md-3 d-flex align-items-end">
+                                <button type="submit" class="btn btn-primary w-100">
+                                    <i class="fas fa-search"></i> Filter
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                    <!-- Tasks Table -->
+                    <?php if (count($tasks) > 0): ?>
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead class="table-light">
+                                    <tr>
+                                        <th>Judul</th>
+                                        <th>Petugas</th>
+                                        <th>Akun</th>
+                                        <th>Kategori</th>
+                                        <th>Deadline</th>
+                                        <th>Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($tasks as $task): ?>
+                                        <tr class="task-row" data-href="view_task.php?id=<?= $task['id'] ?>">
+                                            <td><?= htmlspecialchars(cleanWhatsAppFormatting($task['title'])) ?></td>
+                                            <td>
+                                                <?= getUserProfilePhotoWithName($task['assigned_to'], $task['assigned_to_name'], "rounded-circle me-2", "24") ?>
+                                               
+                                            </td>  
+                                            <td><?= htmlspecialchars($task['account_name']) ?></td>
+                                            <td><?= htmlspecialchars($task['category_name']) ?></td>
+                                            <td>
+                                                <span class="<?= isTaskOverdue($task) && $task['status'] !== 'completed' ? 'text-danger fw-bold' : '' ?>">
+                                                    <?= date('d M Y', strtotime($task['deadline'])) ?>
+                                                    <small class="d-block text-muted"><?= date('H:i', strtotime($task['deadline'])) ?></small>
+                                                </span>
+                                            </td>
+                                            <td><?= getStatusBadge($task['status']) ?></td>                                         
+                                        </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    <?php else: ?>
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i> Tidak ada task yang ditemukan.
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-3">
+    <div class="col-md-12">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                <?php if ($page > 1): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?<?= http_build_query(array_merge($_GET, ['page' => $page - 1])) ?>">Previous</a>
+                </li>
+                <?php endif; ?>
+                
+                <?php for ($i = 1; $i <= $totalPages; $i++): ?>
+                <li class="page-item <?= $i == $page ? 'active' : '' ?>">
+                    <a class="page-link" href="?<?= http_build_query(array_merge($_GET, ['page' => $i])) ?>"><?= $i ?></a>
+                </li>
+                <?php endfor; ?>
+                
+                <?php if ($page < $totalPages): ?>
+                <li class="page-item">
+                    <a class="page-link" href="?<?= http_build_query(array_merge($_GET, ['page' => $page + 1])) ?>">Next</a>
+                </li>
+                <?php endif; ?>
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<?php include '../includes/footer.php'; ?>
+
+<script>
+// Tambahkan event listener untuk membuat seluruh baris tabel dapat diklik
+document.addEventListener('DOMContentLoaded', function() {
+    const taskRows = document.querySelectorAll('.task-row');
+    taskRows.forEach(row => {
+        row.style.cursor = 'pointer';
+        row.addEventListener('click', function() {
+            window.location.href = this.dataset.href;
+        });
+    });
+});
+</script>
