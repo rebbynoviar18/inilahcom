@@ -315,7 +315,7 @@ try {
     // Jika tabel tidak ada, gunakan objek kosong
     if ($e->getCode() == '42S02') {
         $revisions = new PDOStatement();
-        $revisions->rowCount = function() { return 0; };
+        $revisions = [];
     } else {
         throw $e; // Rethrow jika error bukan karena tabel tidak ada
     }
@@ -1015,7 +1015,7 @@ document.addEventListener('DOMContentLoaded', function() {
     if (previewModal) {
         previewModal.addEventListener('show.bs.modal', function (event) {
             const button = event.relatedTarget;
-            const filePath = button.getAttribute('data-file-path');
+            const s3ObjectKey = button.getAttribute('data-file-path');
             const fileType = button.getAttribute('data-file-type');
             const fileName = button.getAttribute('data-file-name');
             
@@ -1024,41 +1024,52 @@ document.addEventListener('DOMContentLoaded', function() {
             const downloadLink = document.getElementById('downloadLink');
             
             modalTitle.textContent = `Preview: ${fileName}`;
-            downloadLink.href = `../uploads/${filePath}`;
-            downloadLink.download = fileName;
-            
-            // Clear previous content
-            previewContent.innerHTML = '';
-            
-            // Build file URL without encoding
-            const fileUrl = `../uploads/${filePath}`;
-            
-            if (fileType === 'image') {
-                previewContent.innerHTML = `
-                    <img src="${fileUrl}" class="img-fluid" alt="${fileName}" style="max-height: 70vh;" onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZGRkIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkdhZ2FsIG1lbXVhdCBnYW1iYXI8L3RleHQ+PC9zdmc+';">
-                `;
-            } else if (fileType === 'video') {
-                const videoExt = filePath.split('.').pop().toLowerCase();
-                previewContent.innerHTML = `
-                    <video controls class="img-fluid" style="max-height: 70vh;">
-                        <source src="${fileUrl}" type="video/${videoExt}">
-                        Browser Anda tidak mendukung pemutaran video.
-                    </video>
-                `;
-            } else if (fileType === 'pdf') {
-                previewContent.innerHTML = `
-                    <iframe src="${fileUrl}" style="width: 100%; height: 70vh;" frameborder="0"></iframe>
-                `;
-            } else {
-                previewContent.innerHTML = `
-                    <div class="alert alert-info">
-                        <i class="fas fa-info-circle"></i> File tidak dapat ditampilkan secara langsung. Silakan download untuk melihat.
+            downloadLink.href = '#';
+            previewContent.innerHTML = `
+                <div class="text-center p-5">
+                    <div class="spinner-border" role="status">
+                        <span class="visually-hidden">Loading...</span>
                     </div>
-                `;
-            }
-        });
-    }
-});
+                    <p class="mt-2">Mempersiapkan pratinjau...</p>
+                </div>`;
+
+            fetch(`../includes/generate_presigned_url.php?key=${encodeURIComponent(s3ObjectKey)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success && data.url) {
+                        const presignedUrl = data.url;
+                        
+                        downloadLink.href = presignedUrl;
+                        downloadLink.download = fileName;
+
+                        if (fileType === 'image') {
+                            previewContent.innerHTML = `<img src="${presignedUrl}" class="img-fluid" alt="${fileName}" style="max-height: 70vh;">`;
+                        } else if (fileType === 'video') {
+                            const videoExt = fileName.split('.').pop().toLowerCase();
+                            previewContent.innerHTML = `
+                                <video controls class="img-fluid" style="max-height: 70vh;">
+                                    <source src="${presignedUrl}" type="video/${videoExt}">
+                                    Browser Anda tidak mendukung pemutaran video.
+                                </video>`;
+                        } else if (fileType === 'pdf') {
+                            previewContent.innerHTML = `<iframe src="${presignedUrl}" style="width: 100%; height: 70vh;" frameborder="0"></iframe>`;
+                        } else {
+                            previewContent.innerHTML = `
+                                <div class="alert alert-info">
+                                    <i class="fas fa-info-circle"></i> Pratinjau tidak tersedia. Silakan unduh file untuk melihatnya.
+                                </div>`;
+                        }
+                    } else {
+                        previewContent.innerHTML = `<div class="alert alert-danger">Gagal mendapatkan file pratinjau: ${data.error || 'Unknown error'}</div>`;
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching presigned URL:', error);
+                    previewContent.innerHTML = `<div class="alert alert-danger">Terjadi kesalahan jaringan saat meminta file.</div>`;
+                });
+            });
+        }
+    });
 </script>
 <?php endif; ?>
 

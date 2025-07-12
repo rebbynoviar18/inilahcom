@@ -82,25 +82,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
                     // Redirect based on role
                     switch ($user['role']) {
                         case 'creative_director':
-                            header('Location: /creative/admin/dashboard.php');
+                            header('Location: /admin/dashboard.php');
                             break;
                         case 'content_team':
-                            header('Location: /creative/content/dashboard.php');
+                            header('Location: /content/dashboard.php');
                             break;
                         case 'production_team':
-                            header('Location: /creative/production/dashboard.php');
+                            header('Location: /production/dashboard.php');
                             break;
                         case 'redaksi':
-                            header('Location: /creative/redaksi/dashboard.php');
+                            header('Location: /redaksi/dashboard.php');
                             break;
                         case 'redaktur_pelaksana':
-                            header('Location: /creative/redaktur/dashboard.php');
+                            header('Location: /redaktur/dashboard.php');
                             break;
                         case 'marketing':
-                            header('Location: /creative/marketing/dashboard.php');
+                            header('Location: /marketing/dashboard.php');
                             break;
                         default:
-                            header('Location: /creative/index.php');
+                            header('Location: /index.php');
                     }
                     exit();
                 } else {
