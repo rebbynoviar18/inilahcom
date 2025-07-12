@@ -435,7 +435,7 @@ include '../includes/header.php';
                                 <?php
                                 $fileName = basename($filePath);
                                 $fileExt = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
-                                $fileUrl = '../uploads/' . $filePath;
+                                $fileUrl = $filePath;
                                 $isImage = in_array($fileExt, ['jpg', 'jpeg', 'png', 'gif']);
                                 $isVideo = in_array($fileExt, ['mp4', 'mov', 'avi']);
                                 $isPdf = $fileExt === 'pdf';
@@ -467,19 +467,19 @@ include '../includes/header.php';
                                             <div class="btn-group btn-group-sm" role="group">
                                                 <?php if ($isImage): ?>
                                                     <button type="button" class="btn btn-outline-primary btn-sm" 
-                                                            onclick="previewImage('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                                            onclick="previewS3File('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>', 'image')"
                                                             title="Preview">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
                                                 <?php elseif ($isVideo): ?>
                                                     <button type="button" class="btn btn-outline-primary btn-sm" 
-                                                            onclick="previewVideo('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                                            onclick="previewS3File('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>', 'video')"
                                                             title="Play">
                                                         <i class="fas fa-play"></i>
                                                     </button>
                                                 <?php elseif ($isPdf): ?>
                                                     <button type="button" class="btn btn-outline-primary btn-sm" 
-                                                            onclick="previewPdf('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>')"
+                                                            onclick="previewS3File('<?= htmlspecialchars($fileUrl) ?>', '<?= htmlspecialchars($fileName) ?>', 'pdf')"
                                                             title="Preview">
                                                         <i class="fas fa-eye"></i>
                                                     </button>
@@ -847,40 +847,66 @@ include '../includes/header.php';
 
 <script>
 // Preview functions
-function previewImage(url, fileName) {
-    document.getElementById('previewModalLabel').textContent = 'Preview: ' + fileName;
-    document.getElementById('previewContent').innerHTML = 
-        `<img src="${url}" class="preview-image" alt="${fileName}">`;
-    document.getElementById('downloadFromPreview').href = url;
-    document.getElementById('downloadFromPreview').download = fileName;
-    
-    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
-    modal.show();
-}
+async function previewS3File(s3Key, fileName, fileType) {
+    const previewModal = new bootstrap.Modal(document.getElementById('previewModal'));
+    const modalLabel = document.getElementById('previewModalLabel');
+    const previewContent = document.getElementById('previewContent');
+    const downloadLink = document.getElementById('downloadFromPreview');
 
-function previewVideo(url, fileName) {
-    document.getElementById('previewModalLabel').textContent = 'Preview: ' + fileName;
-    document.getElementById('previewContent').innerHTML = 
-        `<video controls class="preview-video">
-            <source src="${url}" type="video/mp4">
-            Browser Anda tidak mendukung pemutaran video.
-        </video>`;
-    document.getElementById('downloadFromPreview').href = url;
-    document.getElementById('downloadFromPreview').download = fileName;
-    
-    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
-    modal.show();
-}
+    // 1. Show the modal with a loading indicator
+    modalLabel.textContent = 'Preview: ' + fileName;
+    previewContent.innerHTML = `
+        <div class="text-center p-5">
+            <div class="spinner-border" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
+        </div>`;
+    downloadLink.href = '#';
+    previewModal.show();
 
-function previewPdf(url, fileName) {
-    document.getElementById('previewModalLabel').textContent = 'Preview: ' + fileName;
-    document.getElementById('previewContent').innerHTML = 
-        `<iframe src="${url}" class="preview-pdf"></iframe>`;
-    document.getElementById('downloadFromPreview').href = url;
-    document.getElementById('downloadFromPreview').download = fileName;
-    
-    const modal = new bootstrap.Modal(document.getElementById('previewModal'));
-    modal.show();
+    try {
+        // 2. Fetch the secure, temporary URL from your server
+        const response = await fetch(`../includes/generate_presigned_url.php?key=${encodeURIComponent(s3Key)}`);
+        if (!response.ok) {
+            throw new Error(`Server error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+
+        if (data.success) {
+            const secureUrl = data.url;
+            let contentHtml = '';
+
+            // 3. Generate the correct HTML based on fileType
+            switch (fileType) {
+                case 'image':
+                    contentHtml = `<img src="${secureUrl}" class="preview-image" alt="${fileName}">`;
+                    break;
+                case 'video':
+                    contentHtml = `
+                        <video controls class="preview-video">
+                            <source src="${secureUrl}">
+                            Your browser does not support the video tag.
+                        </video>`;
+                    break;
+                case 'pdf':
+                    contentHtml = `<iframe src="${secureUrl}" class="preview-pdf"></iframe>`;
+                    break;
+                default:
+                    contentHtml = `<div class="alert alert-warning">Preview is not available for this file type.</div>`;
+            }
+            
+            previewContent.innerHTML = contentHtml;
+            downloadLink.href = secureUrl;
+            downloadLink.download = fileName;
+
+        } else {
+            throw new Error(data.error || 'Failed to get preview link.');
+        }
+
+    } catch (error) {
+        // 4. Display any errors in the modal
+        previewContent.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message}</div>`;
+    }
 }
 
 function downloadAllFiles() {

@@ -2,6 +2,10 @@
 require_once '../config/database.php';
 require_once '../includes/auth.php';
 require_once '../includes/functions.php';
+require_once '../vendor/autoload.php';
+
+use Aws\S3\S3Client;
+use Aws\S3\Exception\S3Exception;
 
 redirectIfNotLoggedIn();
 
@@ -41,23 +45,28 @@ if (!in_array($task['status'], ['in_production', 'revision'])) {
     exit();
 }
 
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    // Proses upload file
+    $s3Config = require '../config/s3.php';
+    $s3Client = new S3Client([
+        'credentials' => $s3Config['credentials'],
+        'region'      => $s3Config['region'],
+        'version'     => $s3Config['version'],
+        'endpoint'    => $s3Config['endpoint'], // Hapus jika menggunakan AWS S3 asli
+    ]);
+    $bucketName = $s3Config['bucket'];
+
+    // Ambil data dari form
     $notes = trim($_POST['notes'] ?? '');
     $uploadedLink = trim($_POST['uploaded_link'] ?? '');
     
-    // Validasi file
+    // Validasi awal: pastikan ada file yang dipilih
     if (!isset($_FILES['task_files']) || empty($_FILES['task_files']['name'][0])) {
-        $_SESSION['error'] = "Silakan pilih minimal satu file untuk diupload";
+        $_SESSION['error'] = "Silakan pilih minimal satu file untuk diupload.";
     } else {
         $files = $_FILES['task_files'];
-        $uploadDir = '../uploads/tasks/';
-        if (!file_exists($uploadDir)) {
-            mkdir($uploadDir, 0777, true);
-        }
-        
-        $uploadedFiles = [];
-        $allFilesUploaded = true;
+        $uploadedS3Objects = []; // Menyimpan key dari objek yang berhasil diupload ke S3
+        $uploadOk = true;
         
         foreach ($files['name'] as $key => $fileName) {
             if (empty($fileName)) continue;
@@ -70,85 +79,91 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             // Validasi ukuran file (max 100MB)
             $maxSize = 100 * 1024 * 1024; // 100MB
             if ($fileSize > $maxSize) {
-                $_SESSION['error'] = "Ukuran file $fileName terlalu besar (maksimal 100MB)";
-                $allFilesUploaded = false;
+                $_SESSION['error'] = "Ukuran file '$fileName' terlalu besar (maksimal 100MB).";
+                $uploadOk = false;
                 break;
             }
             
-            // Generate nama file unik
+            // Buat nama file unik dan S3 object key
             $newFileName = uniqid('task_') . '_' . $taskId . '_' . $key . '.' . $fileExt;
-            $uploadPath = $uploadDir . $newFileName;
+            $objectKey = 'tasks/' . $newFileName; // Path di dalam bucket S3
             
-            if (move_uploaded_file($fileTmpName, $uploadPath)) {
-                $uploadedFiles[] = 'tasks/' . $newFileName;
-            } else {
-                $_SESSION['error'] = "Gagal mengupload file $fileName";
-                $allFilesUploaded = false;
-                break;
+            try {
+                // Unggah file ke S3
+                $s3Client->putObject([
+                    'Bucket'     => $bucketName,
+                    'Key'        => $objectKey,
+                    'SourceFile' => $fileTmpName,
+                    'ContentType'=> $fileType,
+                    'ACL'        => 'private' // 'private' lebih aman, akses via pre-signed URL jika perlu
+                ]);
+                
+                // Simpan object key jika berhasil
+                $uploadedS3Objects[] = $objectKey;
+
+            } catch (S3Exception $e) {
+                $_SESSION['error'] = "Gagal mengupload file '$fileName': " . $e->getMessage();
+                $uploadOk = false;
+                break; // Hentikan proses jika satu file gagal
             }
         }
         
-        if ($allFilesUploaded && !empty($uploadedFiles)) {
+        if ($uploadOk && !empty($uploadedS3Objects)) {
             try {
                 $pdo->beginTransaction();
                 
-                // Convert array ke JSON untuk disimpan di database
-                $filePathJson = json_encode($uploadedFiles);
+                // Konversi array object keys ke format JSON untuk disimpan di DB
+                $filePathJson = json_encode($uploadedS3Objects);
                 
-                // Update task dengan file path, upload link, catatan, dan ubah status
-                $stmt = $pdo->prepare("
-                    UPDATE tasks 
-                    SET status = 'ready_for_review',
-                        file_path = ?,
-                        uploaded_link = ?,
-                        notes = ?
-                    WHERE id = ?
-                ");
-                $stmt->execute([
-                    $filePathJson,
-                    $uploadedLink,
-                    $notes,
-                    $taskId
-                ]);
+                // Update task dengan S3 object keys, link, catatan, dan status
+                $stmt = $pdo->prepare("UPDATE tasks SET status = 'ready_for_review', file_path = ?, uploaded_link = ?, notes = ? WHERE id = ?");
+                $stmt->execute([$filePathJson, $uploadedLink, $notes, $taskId]);
                 
                 // Catat perubahan status
-                $stmt = $pdo->prepare("
-                    INSERT INTO task_status_logs (task_id, status, updated_by)
-                    VALUES (?, 'ready_for_review', ?)
-                ");
+                $stmt = $pdo->prepare("INSERT INTO task_status_logs (task_id, status, updated_by) VALUES (?, 'ready_for_review', ?)");
                 $stmt->execute([$taskId, $userId]);
                 
                 // Kirim notifikasi ke redaktur
-                $stmt = $pdo->prepare("
-                    INSERT INTO notifications (user_id, message, link)
-                    SELECT id, ?, ?
-                    FROM users 
-                    WHERE role = 'redaktur_pelaksana'
-                ");
-                $stmt->execute([
-                    "Task siap untuk diverifikasi: " . $task['title'],
-                    "../redaktur/view_task.php?id=" . $taskId
-                ]);
+                $stmt = $pdo->prepare("INSERT INTO notifications (user_id, message, link) SELECT id, ?, ? FROM users WHERE role = 'redaktur_pelaksana'");
+                $stmt->execute(["Task siap untuk diverifikasi: " . $task['title'], "../redaktur/view_task.php?id=" . $taskId]);
                 
                 // Hentikan tracking waktu jika ada
-                $stmt = $pdo->prepare("
-                    UPDATE time_tracking
-                    SET end_time = NOW()
-                    WHERE task_id = ? AND user_id = ? AND end_time IS NULL
-                ");
+                $stmt = $pdo->prepare("UPDATE time_tracking SET end_time = NOW() WHERE task_id = ? AND user_id = ? AND end_time IS NULL");
                 $stmt->execute([$taskId, $userId]);
                 
                 $pdo->commit();
                 
-                $_SESSION['success'] = "File berhasil diupload dan task siap untuk diverifikasi";
+                $_SESSION['success'] = "File berhasil diupload dan task siap untuk diverifikasi.";
                 header("Location: view_task.php?id=" . $taskId);
                 exit();
+
             } catch (Exception $e) {
                 $pdo->rollBack();
-                $_SESSION['error'] = "Terjadi kesalahan: " . $e->getMessage();
+                $_SESSION['error'] = "Terjadi kesalahan pada database: " . $e->getMessage();
+                
+                foreach ($uploadedS3Objects as $keyToDelete) {
+                    try {
+                        $s3Client->deleteObject(['Bucket' => $bucketName, 'Key' => $keyToDelete]);
+                    } catch (S3Exception $s3e) {
+                        // Catat error ini ke log server, karena ini adalah anomali
+                        error_log("Gagal menghapus file S3 ($keyToDelete) setelah DB rollback: " . $s3e->getMessage());
+                    }
+                }
+            }
+        } elseif (!$uploadOk && !empty($uploadedS3Objects)) {
+             // Jika upload gagal di tengah jalan, hapus file yang sudah berhasil diupload sebelumnya
+             foreach ($uploadedS3Objects as $keyToDelete) {
+                try {
+                    $s3Client->deleteObject(['Bucket' => $bucketName, 'Key' => $keyToDelete]);
+                } catch (S3Exception $s3e) {
+                    error_log("Gagal menghapus file S3 ($keyToDelete) setelah upload gagal: " . $s3e->getMessage());
+                }
             }
         }
     }
+
+    header("Location: view_task.php?id=" . $taskId);
+    exit();
 }
 
 $pageTitle = "Upload Hasil Pekerjaan";
