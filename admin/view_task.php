@@ -853,7 +853,6 @@ async function previewS3File(s3Key, fileName, fileType) {
     const previewContent = document.getElementById('previewContent');
     const downloadLink = document.getElementById('downloadFromPreview');
 
-    // 1. Show the modal with a loading indicator
     modalLabel.textContent = 'Preview: ' + fileName;
     previewContent.innerHTML = `
         <div class="text-center p-5">
@@ -865,7 +864,6 @@ async function previewS3File(s3Key, fileName, fileType) {
     previewModal.show();
 
     try {
-        // 2. Fetch the secure, temporary URL from your server
         const response = await fetch(`../includes/generate_presigned_url.php?key=${encodeURIComponent(s3Key)}`);
         if (!response.ok) {
             throw new Error(`Server error! Status: ${response.status}`);
@@ -876,7 +874,6 @@ async function previewS3File(s3Key, fileName, fileType) {
             const secureUrl = data.url;
             let contentHtml = '';
 
-            // 3. Generate the correct HTML based on fileType
             switch (fileType) {
                 case 'image':
                     contentHtml = `<img src="${secureUrl}" class="preview-image" alt="${fileName}">`;
@@ -904,7 +901,6 @@ async function previewS3File(s3Key, fileName, fileType) {
         }
 
     } catch (error) {
-        // 4. Display any errors in the modal
         previewContent.innerHTML = `<div class="alert alert-danger"><strong>Error:</strong> ${error.message}</div>`;
     }
 }
